@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 
 import com.letion.geetionlib.base.App;
+import com.letion.geetionlib.vender.log.L;
 
 import org.simple.eventbus.EventBus;
 
@@ -14,7 +15,7 @@ import butterknife.Unbinder;
 /**
  * Created by liu-feng on 2017/6/5.
  */
-public class ActivityDelegateImpl implements ActivityDelegate{
+public class ActivityDelegateImpl implements ActivityDelegate {
     private Activity mActivity;
     private IActivity iActivity;
     private Unbinder mUnbinder;
@@ -43,22 +44,23 @@ public class ActivityDelegateImpl implements ActivityDelegate{
 
     @Override
     public void onStart() {
-
+        L.d("params : " + " maybe [file part] , activity start");
+        L.e("params : " + " maybe [file part] , activity start");
     }
 
     @Override
     public void onResume() {
-
+        L.d("params : " + " maybe [file part] , activity resume");
     }
 
     @Override
     public void onPause() {
-
+        L.d("params : " + " maybe [file part] , activity pause");
     }
 
     @Override
     public void onStop() {
-
+        L.d("params : " + " maybe [file part] , activity stop");
     }
 
     @Override

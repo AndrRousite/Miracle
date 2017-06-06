@@ -1,4 +1,4 @@
-package com.letion.geetionlib.imageloader;
+package com.letion.geetionlib.vender.imageloader;
 
 import android.content.Context;
 

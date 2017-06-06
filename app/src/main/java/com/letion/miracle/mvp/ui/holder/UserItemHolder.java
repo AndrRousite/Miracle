@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import com.letion.geetionlib.base.App;
 import com.letion.geetionlib.di.component.AppComponent;
-import com.letion.geetionlib.imageloader.ImageLoader;
-import com.letion.geetionlib.imageloader.glide.GlideImageConfig;
+import com.letion.geetionlib.vender.imageloader.ImageLoader;
+import com.letion.geetionlib.vender.imageloader.glide.GlideImageConfig;
 import com.letion.miracle.R;
 import com.letion.miracle.mvp.model.entity.User;
 import com.letion.miracle.mvp.ui.adapter.BaseHolder;

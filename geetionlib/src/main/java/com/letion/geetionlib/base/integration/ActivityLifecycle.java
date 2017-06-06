@@ -27,7 +27,7 @@ import javax.inject.Singleton;
  * Created by liu-feng on 2017/6/5.
  */
 @Singleton
-public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks{
+public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks {
     private AppManager mAppManager;
     private Application mApplication;
     private Map<String, Object> mExtras;
@@ -246,6 +246,15 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
         }
 
         @Override
+        public void onFragmentSaveInstanceState(FragmentManager fm, Fragment f, Bundle outState) {
+            super.onFragmentSaveInstanceState(fm, f, outState);
+            FragmentDelegate fragmentDelegate = fetchFragmentDelegate(f);
+            if (fragmentDelegate != null) {
+                fragmentDelegate.onSaveInstanceState(outState);
+            }
+        }
+
+        @Override
         public void onFragmentViewDestroyed(FragmentManager fm, Fragment f) {
             super.onFragmentViewDestroyed(fm, f);
             FragmentDelegate fragmentDelegate = fetchFragmentDelegate(f);
@@ -272,6 +281,7 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
                 f.getArguments().clear();
             }
         }
+
 
         private FragmentDelegate fetchFragmentDelegate(Fragment fragment) {
             if (fragment instanceof IFragment) {

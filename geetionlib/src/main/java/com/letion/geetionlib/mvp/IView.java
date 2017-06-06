@@ -26,6 +26,7 @@ public interface IView {
      * 跳转activity
      */
     void launchActivity(Intent intent);
+
     /**
      * 杀死自己
      */

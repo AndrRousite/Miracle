@@ -30,7 +30,7 @@ import static com.letion.geetionlib.base.integration.AppManager.SHOW_SNACKBAR;
 import static com.letion.geetionlib.base.integration.AppManager.START_ACTIVITY;
 
 /**
- * Created by jess on 2015/11/23.
+ * Created by liu-feng on 2015/11/23.
  */
 public class UiUtils {
     static public Toast mToast;

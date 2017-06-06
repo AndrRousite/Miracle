@@ -49,13 +49,13 @@ public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActi
     }
 
     /**
-     * 是否使用eventBus,默认为使用(true)，
+     * 是否使用eventBus,默认为使用(false)，
      *
      * @return
      */
     @Override
     public boolean useEventBus() {
-        return true;
+        return false;
     }
 
     /**

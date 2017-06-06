@@ -9,8 +9,7 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 /**
- * Created by jess on 17/10/2016 10:09
- * Contact with jess.yan.effort@gmail.com
+ * Created by liu-feng on 17/10/2016 10:09
  */
 
 public class PermissionUtil {

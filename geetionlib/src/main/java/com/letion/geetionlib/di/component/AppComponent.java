@@ -9,7 +9,7 @@ import com.letion.geetionlib.base.integration.IRepositoryManager;
 import com.letion.geetionlib.di.module.AppModule;
 import com.letion.geetionlib.di.module.ClientModule;
 import com.letion.geetionlib.di.module.GlobalConfigModule;
-import com.letion.geetionlib.imageloader.ImageLoader;
+import com.letion.geetionlib.vender.imageloader.ImageLoader;
 
 import java.io.File;
 import java.util.Map;

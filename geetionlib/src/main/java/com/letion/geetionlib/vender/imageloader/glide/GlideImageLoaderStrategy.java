@@ -1,4 +1,4 @@
-package com.letion.geetionlib.imageloader.glide;
+package com.letion.geetionlib.vender.imageloader.glide;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,11 +9,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
-import com.letion.geetionlib.imageloader.BaseImageLoaderStrategy;
+import com.letion.geetionlib.vender.imageloader.BaseImageLoaderStrategy;
 
 import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -87,12 +85,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<GlideIm
         if (config.isClearDiskCache()) {//清除本地缓存
             Observable.just(0)
                     .observeOn(Schedulers.io())
-                    .subscribe(new Consumer<Integer>() {
-                        @Override
-                        public void accept(@NonNull Integer integer) throws Exception {
-                            Glide.get(ctx).clearDiskCache();
-                        }
-                    });
+                    .subscribe(integer -> Glide.get(ctx).clearDiskCache());
         }
 
         if (config.isClearMemory()) {//清除内存缓存
