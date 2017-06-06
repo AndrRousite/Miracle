@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.letion.geetionlib.base.App;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.vender.imageloader.ImageLoader;
@@ -36,6 +37,7 @@ public class UserItemHolder extends BaseHolder<User> {
         //可以在任何可以拿到Application的地方,拿到AppComponent,从而得到用Dagger管理的单例对象
         mAppComponent = ((App) itemView.getContext().getApplicationContext()).getAppComponent();
         mImageLoader = mAppComponent.imageLoader();
+        itemView.setOnClickListener(v -> ARouter.getInstance().build("/activity/main").navigation());
     }
 
     @Override

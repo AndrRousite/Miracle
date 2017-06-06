@@ -75,7 +75,6 @@ dependencies {
     compile(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
     }
-    compile rootProject.ext.dependencies["log4j"]
 }
 
 tasks.withType(JavaCompile) {

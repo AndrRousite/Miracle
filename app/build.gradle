@@ -21,6 +21,12 @@ android {
             enabled true
         }
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+
         buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
         buildConfigField 'String', 'LOG_TAG', rootProject.ext.android["LOG_TAG"]
     }
@@ -58,4 +64,6 @@ dependencies {
     compile 'com.github.markomilos:paginate:0.5.1'
     provided rootProject.ext.dependencies["javax.annotation"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    compile rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }

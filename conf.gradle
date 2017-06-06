@@ -4,8 +4,8 @@ ext {
             buildToolsVersion: "25.0.3",
             minSdkVersion    : 15,
             targetSdkVersion : 25,
-            versionCode      : 1,
-            versionName      : "0.0.0.3",
+            versionCode      : 4,
+            versionName      : "0.0.0.4",
 
             DEBUG            : "true",
             LOG_TAG          : "\"Letion\""
@@ -57,17 +57,13 @@ ext {
             "dagger2-compiler"           : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
 
             // debug
-            "log4j"                      : "org.apache.logging.log4j:log4j:2.8.2",
             "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
             "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
 
             // weight
             "autolayout"                 : "com.zhy:autolayout:1.4.5",
 
-            "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
-            "xrecyclerview"              : "com.github.limedroid:ARecyclerView:v1.1.5",
             "avi-loading"                : "com.wang.avi:library:1.0.2",
-            "eventbus"                   : "org.greenrobot:eventbus:3.0.0",
 
 
     ]
