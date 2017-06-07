@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.letion.geetionlib.base.BaseFragment;
 import com.letion.geetionlib.di.component.AppComponent;
@@ -16,13 +18,20 @@ import com.letion.miracle.di.component.DaggerTestComponent;
 import com.letion.miracle.di.module.TestModule;
 import com.letion.miracle.mvp.contract.TestContract;
 import com.letion.miracle.mvp.presenter.TestPresenter;
+import com.letion.miracle.mvp.ui.adapter.TestAdapter;
+import com.letion.uikit.smartisan.SmartisanRefreshLayout;
 
-import butterknife.OnClick;
+import butterknife.BindView;
 
 import static com.letion.geetionlib.util.Preconditions.checkNotNull;
 
 
-public class TestFragment extends BaseFragment<TestPresenter> implements TestContract.View {
+public class TestFragment extends BaseFragment<TestPresenter> implements TestContract.View, AdapterView.OnItemClickListener {
+
+    @BindView(R.id.listView)
+    ListView listView;
+    @BindView(R.id.refreshView)
+    SmartisanRefreshLayout refreshView;
 
     public static TestFragment newInstance() {
         TestFragment fragment = new TestFragment();
@@ -46,7 +55,8 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
 
     @Override
     public void initData(Bundle savedInstanceState) {
-
+        mPresenter.request(getActivity());
+        listView.setOnItemClickListener(this);
     }
 
     /**
@@ -94,36 +104,41 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
 
     }
 
-    @OnClick({R.id.btnAlertDefault, R.id.btnAlertColoured, R.id.btnAlertCustomIcon, R.id.btnAlertTextOnly, R.id.btnAlertOnClick, R.id.btnAlertVerbose, R.id.btnAlertCallback, R.id.btnAlertInfiniteDuration})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btnAlertDefault:
+    @Override
+    public void setAdapter(TestAdapter adapter) {
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
                 AlertFactory.create(getActivity())
                         .setTitle("Default Title")
                         .setText("this is a default text")
                         .disableOutsideTouch()
                         .show();
                 break;
-            case R.id.btnAlertColoured:
+            case 1:
                 AlertFactory.create(getActivity())
                         .setTitle("BackgroundColor Title")
                         .setText("this is a background text")
                         .setBackgroundColor(R.color.colorAccent)
                         .show();
                 break;
-            case R.id.btnAlertCustomIcon:
+            case 2:
                 AlertFactory.create(getActivity())
                         .setTitle("CustomIcon Title")
                         .setText("this is a icon text")
                         .setIcon(R.drawable.ic_alert_face)
                         .show();
                 break;
-            case R.id.btnAlertTextOnly:
+            case 3:
                 AlertFactory.create(getActivity())
                         .setText("this is a text only")
                         .show();
                 break;
-            case R.id.btnAlertOnClick:
+            case 4:
                 AlertFactory.create(getActivity())
                         .setTitle("Click inside Title")
                         .setText("this is a click inside")
@@ -131,7 +146,7 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
                         .setOnClickListener(v -> UiUtils.SnackbarText("click a alert bar."))
                         .show();
                 break;
-            case R.id.btnAlertVerbose:
+            case 5:
                 AlertFactory.create(getActivity())
                         .setTitle("Verbose  Title")
                         .setText("The alert scales to accommodate larger bodies of text.\n " +
@@ -139,7 +154,7 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
                                 "The alert scales to accommodate larger bodies of text.\n")
                         .show();
                 break;
-            case R.id.btnAlertCallback:
+            case 6:
                 AlertFactory.create(getActivity())
                         .setTitle("Click inside Title")
                         .setText("this is a click inside")
@@ -148,7 +163,7 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
                         .setOnHideListener(() -> UiUtils.SnackbarText("Hide Alert"))
                         .show();
                 break;
-            case R.id.btnAlertInfiniteDuration:
+            case 7:
                 AlertFactory.create(getActivity())
                         .setTitle("Infinite Title")
                         .setText("alert infinite...")

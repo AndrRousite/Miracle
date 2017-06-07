@@ -15,6 +15,7 @@ import com.letion.miracle.mvp.contract.TestContract;
 import com.letion.miracle.mvp.presenter.TestPresenter;
 
 import com.letion.miracle.R;
+import com.letion.miracle.mvp.ui.adapter.TestAdapter;
 import com.letion.miracle.mvp.ui.fragment.TestFragment;
 
 
@@ -73,4 +74,8 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestCon
         finish();
     }
 
+    @Override
+    public void setAdapter(TestAdapter adapter) {
+
+    }
 }

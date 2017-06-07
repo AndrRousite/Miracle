@@ -1,12 +1,17 @@
 package com.letion.miracle.mvp.presenter;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.letion.geetionlib.base.integration.AppManager;
 import com.letion.geetionlib.di.scope.ActivityScope;
 import com.letion.geetionlib.mvp.BasePresenter;
 import com.letion.geetionlib.vender.imageloader.ImageLoader;
 import com.letion.miracle.mvp.contract.TestContract;
+import com.letion.miracle.mvp.ui.adapter.TestAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,6 +24,9 @@ public class TestPresenter extends BasePresenter<TestContract.Model, TestContrac
     private Application mApplication;
     private ImageLoader mImageLoader;
     private AppManager mAppManager;
+
+    private TestAdapter mAdapter;
+    private List<String> tests = new ArrayList<>();
 
     @Inject
     public TestPresenter(TestContract.Model model, TestContract.View rootView
@@ -38,6 +46,17 @@ public class TestPresenter extends BasePresenter<TestContract.Model, TestContrac
         this.mAppManager = null;
         this.mImageLoader = null;
         this.mApplication = null;
+    }
+
+    public void request(Context context) {
+        if (mAdapter == null) {
+            mAdapter = new TestAdapter(context, tests);
+            mRootView.setAdapter(mAdapter);
+        }
+        tests.clear();
+        tests.addAll(mModel.getTests());
+        mAdapter.notifyDataSetChanged();
+
     }
 
 }

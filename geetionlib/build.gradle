@@ -75,6 +75,7 @@ dependencies {
     compile(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
     }
+    compile project(':uikit')
 }
 
 tasks.withType(JavaCompile) {

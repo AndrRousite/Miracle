@@ -4,52 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertDefault"
+    <com.letion.uikit.smartisan.SmartisanRefreshLayout
+        android:id="@+id/refreshView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/default_alert"/>
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertColoured"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/coloured_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertCustomIcon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/custom_icon_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertTextOnly"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_only_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertOnClick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/on_click_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertVerbose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/verbose_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertCallback"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/callback_alert"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnAlertInfiniteDuration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/infinite_alert"/>
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"></ListView>
+    </com.letion.uikit.smartisan.SmartisanRefreshLayout>
 
 </LinearLayout>
