@@ -15,6 +15,7 @@ import com.letion.miracle.mvp.contract.TestContract;
 import com.letion.miracle.mvp.presenter.TestPresenter;
 
 import com.letion.miracle.R;
+import com.letion.miracle.mvp.ui.fragment.TestFragment;
 
 
 import static com.letion.geetionlib.util.Preconditions.checkNotNull;
@@ -40,7 +41,8 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestCon
 
     @Override
     public void initData(Bundle savedInstanceState) {
-
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, TestFragment.newInstance())
+                .commit();
     }
 
 
@@ -70,6 +72,5 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestCon
     public void killMyself() {
         finish();
     }
-
 
 }

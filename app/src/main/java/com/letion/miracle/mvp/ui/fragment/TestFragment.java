@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 import com.letion.geetionlib.base.BaseFragment;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.util.UiUtils;
-
+import com.letion.geetionlib.vender.qqalert.AlertFactory;
+import com.letion.miracle.R;
 import com.letion.miracle.di.component.DaggerTestComponent;
 import com.letion.miracle.di.module.TestModule;
 import com.letion.miracle.mvp.contract.TestContract;
 import com.letion.miracle.mvp.presenter.TestPresenter;
 
-import com.letion.miracle.R;
+import butterknife.OnClick;
 
 import static com.letion.geetionlib.util.Preconditions.checkNotNull;
 
 
 public class TestFragment extends BaseFragment<TestPresenter> implements TestContract.View {
-
 
     public static TestFragment newInstance() {
         TestFragment fragment = new TestFragment();
@@ -94,4 +94,67 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
 
     }
 
+    @OnClick({R.id.btnAlertDefault, R.id.btnAlertColoured, R.id.btnAlertCustomIcon, R.id.btnAlertTextOnly, R.id.btnAlertOnClick, R.id.btnAlertVerbose, R.id.btnAlertCallback, R.id.btnAlertInfiniteDuration})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btnAlertDefault:
+                AlertFactory.create(getActivity())
+                        .setTitle("Default Title")
+                        .setText("this is a default text")
+                        .disableOutsideTouch()
+                        .show();
+                break;
+            case R.id.btnAlertColoured:
+                AlertFactory.create(getActivity())
+                        .setTitle("BackgroundColor Title")
+                        .setText("this is a background text")
+                        .setBackgroundColor(R.color.colorAccent)
+                        .show();
+                break;
+            case R.id.btnAlertCustomIcon:
+                AlertFactory.create(getActivity())
+                        .setTitle("CustomIcon Title")
+                        .setText("this is a icon text")
+                        .setIcon(R.drawable.ic_alert_face)
+                        .show();
+                break;
+            case R.id.btnAlertTextOnly:
+                AlertFactory.create(getActivity())
+                        .setText("this is a text only")
+                        .show();
+                break;
+            case R.id.btnAlertOnClick:
+                AlertFactory.create(getActivity())
+                        .setTitle("Click inside Title")
+                        .setText("this is a click inside")
+                        .setDuration(10000)
+                        .setOnClickListener(v -> UiUtils.SnackbarText("click a alert bar."))
+                        .show();
+                break;
+            case R.id.btnAlertVerbose:
+                AlertFactory.create(getActivity())
+                        .setTitle("Verbose  Title")
+                        .setText("The alert scales to accommodate larger bodies of text.\n " +
+                                "The alert scales to accommodate larger bodies of text. \n" +
+                                "The alert scales to accommodate larger bodies of text.\n")
+                        .show();
+                break;
+            case R.id.btnAlertCallback:
+                AlertFactory.create(getActivity())
+                        .setTitle("Click inside Title")
+                        .setText("this is a click inside")
+                        .setDuration(10000)
+                        .setOnShowListener(() -> UiUtils.SnackbarText("Show Alert"))
+                        .setOnHideListener(() -> UiUtils.SnackbarText("Hide Alert"))
+                        .show();
+                break;
+            case R.id.btnAlertInfiniteDuration:
+                AlertFactory.create(getActivity())
+                        .setTitle("Infinite Title")
+                        .setText("alert infinite...")
+                        .enableInfiniteDuration(true)   // 不自动消失
+                        .show();
+                break;
+        }
+    }
 }
