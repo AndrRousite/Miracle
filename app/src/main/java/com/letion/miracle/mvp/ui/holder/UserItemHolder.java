@@ -37,7 +37,12 @@ public class UserItemHolder extends BaseHolder<User> {
         //可以在任何可以拿到Application的地方,拿到AppComponent,从而得到用Dagger管理的单例对象
         mAppComponent = ((App) itemView.getContext().getApplicationContext()).getAppComponent();
         mImageLoader = mAppComponent.imageLoader();
-        itemView.setOnClickListener(v -> ARouter.getInstance().build("/activity/main").navigation());
+        itemView.setOnClickListener(v -> {
+            if (getPosition() % 2 == 1)
+                ARouter.getInstance().build("/activity/main").navigation();
+            else
+                ARouter.getInstance().build("/activity/test").navigation();
+        });
     }
 
     @Override

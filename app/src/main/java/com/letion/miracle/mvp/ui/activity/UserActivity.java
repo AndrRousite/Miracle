@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import com.letion.geetionlib.base.BaseActivity;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.util.UiUtils;
-import com.letion.geetionlib.vender.immersionbar.ImmersionBar;
 import com.letion.miracle.R;
 import com.letion.miracle.di.component.DaggerUserComponent;
 import com.letion.miracle.di.module.UserModule;
@@ -163,13 +162,5 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
         super.onDestroy();
         this.mRxPermissions = null;
         this.mPaginate = null;
-    }
-
-    @Override
-    protected boolean applyImmersionBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.colorPrimary)
-                .transparentNavigationBar()
-                .init();
-        return true;
     }
 }
