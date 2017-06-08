@@ -32,7 +32,8 @@
             android:name="com.letion.miracle.GlobalConfiguration"
             android:value="ConfigModule" />
 
-        <activity android:name=".mvp.ui.activity.TestActivity"></activity>
+        <activity android:name=".mvp.ui.activity.TestActivity" />
+        <activity android:name=".mvp.ui.activity.HomeActivity"></activity>
     </application>
 
 </manifest>
