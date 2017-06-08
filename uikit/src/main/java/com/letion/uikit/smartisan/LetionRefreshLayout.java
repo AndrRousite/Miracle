@@ -4,16 +4,18 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.letion.uikit.R;
@@ -21,14 +23,17 @@ import com.letion.uikit.R;
 /**
  * Created by liu-feng on 2017/6/7.
  */
-public class SmartisanRefreshLayout extends LinearLayout {
+public class LetionRefreshLayout extends LinearLayout {
     private static final float ZERO_FOR_COMPARE = 0.005f;
 
     //所有子View
     private RelativeLayout mHeaderLayout;
     private SmartisanCircleView mCircleView;
     private TextView mDescriptionTextView;
-    private ListView mListView;
+    private AdapterView<?> mAdapterView;  // list or grid
+    private RecyclerView mRecyclerView;
+    private ScrollView mScrollView;
+    private WebView mWebView;
 
     //布局相关
     private boolean mIsLayoutLoaded;    //是否已加载过一次layout
@@ -46,28 +51,47 @@ public class SmartisanRefreshLayout extends LinearLayout {
     private float mRubRatio = 1.0f;     //摩擦系数
     private float mListDividerHeight;
 
-    private PullToRefreshListener mListener;    //下拉刷新的回调接口
+    private PullToRefreshListener mListener;
 
 
-    public SmartisanRefreshLayout(Context context, AttributeSet attrs) {
+    public LetionRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setOrientation(VERTICAL); // 设置该布局容器为垂直方向
 
         mHeaderLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.layout_smartisan_header, null, true);
         mCircleView = (SmartisanCircleView) mHeaderLayout.findViewById(R.id.smartisanView);
         mDescriptionTextView = (TextView) mHeaderLayout.findViewById(R.id.descriptionTextView);
-        setOrientation(VERTICAL);
+
         addView(mHeaderLayout, 0);
+
+
 
         mPulledDistance = 0;
         mAnimatorDistance = 0;
 
     }
 
-
-    public void setOnRefreshListener(PullToRefreshListener listener) {
-        mListener = listener;
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        // 确定布局容器中内部子视图类型
+        initSubviewType();
     }
 
+    private void initSubviewType() {
+        int count = getChildCount();
+        if (count < 2) return;  //xml 中没有子视图
+        View childAt = getChildAt(1);
+        if (childAt instanceof AdapterView<?>) {
+            mAdapterView = (AdapterView<?>) childAt;
+        } else if (childAt instanceof RecyclerView) {
+            mRecyclerView = (RecyclerView) childAt;
+        } else if (childAt instanceof ScrollView) {
+            mScrollView = (ScrollView) childAt;
+        } else if (childAt instanceof WebView) {
+            mWebView = (WebView) childAt;
+        }
+    }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -78,10 +102,7 @@ public class SmartisanRefreshLayout extends LinearLayout {
             mHeaderMargin.topMargin = -mHeaderHeight / 2;
             mHeaderMargin.bottomMargin = mHeaderMargin.topMargin;
             mHeaderLayout.setLayoutParams(mHeaderMargin);
-            mListView = (ListView) getChildAt(1);       //这句需要改进
-
-            mListDividerHeight = mListView.getDividerHeight();
-            this.setBackgroundColor(Color.argb(255, 255, 255, 255));       //把背景统一设置为白色
+//            this.setBackgroundColor(Color.argb(255, 255, 255, 255));       //把背景统一设置为白色
 
             mCurrentStatus = Status.STATUS_ORIGIN;
             updateLayoutAndText();
@@ -92,7 +113,6 @@ public class SmartisanRefreshLayout extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        int x = (int) event.getRawX();
         int y = (int) event.getRawY();
 
         switch (event.getAction()) {
@@ -101,8 +121,17 @@ public class SmartisanRefreshLayout extends LinearLayout {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                View firstChildView = mListView.getChildAt(0);  //用于判断ListView是否没有元素
-                if (firstChildView == null || (firstChildView != null && mListView.getFirstVisiblePosition() == 0 && mListView.getChildAt(0).getTop() == 0)) {  //万事俱备，只欠下拉。
+                View firstChildView = null;  //用于判断子布局容器是否没有元素
+                if (mAdapterView != null) {
+                    firstChildView = mAdapterView.getChildAt(0);
+                } else if (mRecyclerView != null) {
+                    firstChildView = mRecyclerView.getChildAt(0);
+                } else if (mScrollView != null) {
+                    firstChildView = mScrollView.getChildAt(0);
+                } else if (mWebView != null) {
+                    firstChildView = mWebView.getChildAt(0);
+                }
+                if (firstChildView == null || (firstChildView != null && firstChildView.getTop() == 0)) {  //万事俱备，只欠下拉。
                     float currentRawY = event.getRawY();
                     float tmpMoveY = currentRawY - mLastMoveY;
                     if ((isEqualZero(mPulledDistance) && tmpMoveY > 0) || (mPulledDistance > 0 && mCurrentStatus != Status.STATUS_REFRESHING)) {
@@ -114,12 +143,6 @@ public class SmartisanRefreshLayout extends LinearLayout {
                             mLastMoveY = event.getRawY();
                         }
                         mInterceptBoolean = true;
-
-//                        // 当前正处于下拉或释放状态，要让ListView失去焦点，否则被点击的那一项会一直处于选中状态
-//                        mListView.setPressed(false);
-//                        mListView.setFocusable(false);
-//                        mListView.setFocusableInTouchMode(false);
-//                        // 当前正处于下拉或释放状态，通过返回true屏蔽掉ListView的滚动事件
                     } else if (mCurrentStatus == Status.STATUS_REFRESHING && tmpMoveY > 0) {
                         mInterceptBoolean = false;
                     } else if (isEqualZero(mPulledDistance) && tmpMoveY < 0) {
@@ -177,11 +200,11 @@ public class SmartisanRefreshLayout extends LinearLayout {
                 if (mCurrentStatus == Status.STATUS_DISTANCE_FINISHED) {
                     mCurrentStatus = Status.STATUS_REFRESH_PREPARE;
                     updateAllView(mCurrentStatus, mPulledDistance, mAnimatorDistance);
-                    new RefreshingTask().execute();
+                    if (mListener != null)
+                        mListener.onRefresh();
                 } else if (mCurrentStatus == Status.STATUS_DISTANCE_UNFINISHED) {
                     mCurrentStatus = Status.STATUS_DISTANCE_UNFINISHED_BACK;
                     updateAllView(mCurrentStatus, mPulledDistance, mAnimatorDistance);
-//                        new HideHeaderTask().execute();
                 }
                 break;
         }
@@ -190,14 +213,31 @@ public class SmartisanRefreshLayout extends LinearLayout {
 
     private void updateLayoutAndText() {
         float mockPulledDistance;
-        if (mPulledDistance <= mListDividerHeight) {
-            mListView.scrollTo(0, (int) mPulledDistance);
+        if (mAdapterView == null && mRecyclerView == null && mScrollView == null && mWebView == null)
+            return;
+        if (mPulledDistance <= 0) {
+            if (mAdapterView != null) {
+                mAdapterView.scrollTo(0, (int) mPulledDistance);
+            } else if (mRecyclerView != null) {
+                mRecyclerView.scrollTo(0, (int) mPulledDistance);
+            } else if (mScrollView != null) {
+                mScrollView.scrollTo(0, (int) mPulledDistance);
+            } else if (mWebView != null) {
+                mWebView.scrollTo(0, (int) mPulledDistance);
+            }
             mockPulledDistance = 0;
         } else {
-            mListView.scrollTo(0, -mListView.getDividerHeight());
-            mockPulledDistance = mPulledDistance - mListDividerHeight;
+            if (mAdapterView != null) {
+                mAdapterView.scrollTo(0, 0);
+            } else if (mRecyclerView != null) {
+                mRecyclerView.scrollTo(0, 0);
+            } else if (mScrollView != null) {
+                mScrollView.scrollTo(0, 0);
+            } else if (mWebView != null) {
+                mWebView.scrollTo(0, 0);
+            }
+            mockPulledDistance = mPulledDistance - 0;
         }
-
 
         mHeaderMargin.topMargin = (int) (-mHeaderHeight / 2 + mockPulledDistance / 2);
         mHeaderMargin.bottomMargin = mHeaderMargin.topMargin;
@@ -435,41 +475,19 @@ public class SmartisanRefreshLayout extends LinearLayout {
         void onAnimationEnd();
     }
 
-
-    public interface PullToRefreshListener {
-        void onRefresh();
-
-        void onRefreshFinished();
-
-    }
-
-    class RefreshingTask extends AsyncTask<Void, Float, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            if (mListener != null) {
-                mListener.onRefresh();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Float... topMargin) {
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (mListener != null) {
-                mListener.onRefreshFinished();
-            }
-        }
-    }
-
     private boolean isEqualZero(float floatValue) {
         if (floatValue < ZERO_FOR_COMPARE && floatValue > -ZERO_FOR_COMPARE) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public interface PullToRefreshListener {
+        void onRefresh();
+    }
+
+    public void setOnRefreshListener(PullToRefreshListener listener) {
+        mListener = listener;
     }
 }

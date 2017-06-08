@@ -1,7 +1,6 @@
 package com.letion.miracle.mvp.presenter;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.letion.geetionlib.base.integration.AppManager;
 import com.letion.geetionlib.di.scope.ActivityScope;
@@ -48,15 +47,14 @@ public class TestPresenter extends BasePresenter<TestContract.Model, TestContrac
         this.mApplication = null;
     }
 
-    public void request(Context context) {
+    public synchronized void request() {
         if (mAdapter == null) {
-            mAdapter = new TestAdapter(context, tests);
+            mAdapter = new TestAdapter(tests, position -> mRootView.onItemClick(position));
             mRootView.setAdapter(mAdapter);
         }
         tests.clear();
         tests.addAll(mModel.getTests());
         mAdapter.notifyDataSetChanged();
-
+        mRootView.finishRefreshing();
     }
-
 }

@@ -69,4 +69,13 @@ public class MainActivity extends SwipeBackActivity<MainPresenter> implements Ma
     }
 
 
+    @Override
+    protected boolean canSwipeBack() {
+        return true;
+    }
+
+    @Override
+    protected boolean applyImmersionBar() {
+        return true;
+    }
 }

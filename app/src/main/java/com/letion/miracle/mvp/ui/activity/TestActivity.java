@@ -78,4 +78,14 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestCon
     public void setAdapter(TestAdapter adapter) {
 
     }
+
+    @Override
+    public void finishRefreshing() {
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
 }
