@@ -45,4 +45,6 @@ dependencies {
         exclude module: 'support-annotations'
     }
     compile rootProject.ext.dependencies["annotations"]
+
+    compile 'com.nineoldandroids:library:2.4.0'
 }
