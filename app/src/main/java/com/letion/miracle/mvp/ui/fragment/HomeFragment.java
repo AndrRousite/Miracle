@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.letion.geetionlib.base.BaseFragment;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.util.UiUtils;
-import com.letion.geetionlib.vender.qqalert.AlertFactory;
+import com.letion.uikit.qqalert.AlertFactory;
 import com.letion.miracle.R;
 import com.letion.miracle.di.component.DaggerHomeComponent;
 import com.letion.miracle.di.module.HomeModule;

@@ -1,4 +1,4 @@
-package com.letion.geetionlib.weight.swipeback;
+package com.letion.uikit.swipeback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.letion.geetionlib.R;
+import com.letion.uikit.R;
 
 public class SwipeBackLayout extends FrameLayout {
     /**

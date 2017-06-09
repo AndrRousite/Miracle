@@ -1,26 +1,23 @@
-package com.letion.geetionlib.weight.autolayout;
+package com.letion.geetionlib.vender.autolayout;
 
 import android.content.Context;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.AppBarLayout;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 import com.zhy.autolayout.AutoLayoutInfo;
 import com.zhy.autolayout.utils.AutoLayoutHelper;
 
-public class AutoCollapsingToolbarLayout extends CollapsingToolbarLayout {
+public class AutoAppBarLayout extends AppBarLayout {
+
     private AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 
-    public AutoCollapsingToolbarLayout(Context context) {
+    public AutoAppBarLayout(Context context) {
         super(context);
     }
 
-    public AutoCollapsingToolbarLayout(Context context, AttributeSet attrs) {
+    public AutoAppBarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    public AutoCollapsingToolbarLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     @Override
@@ -40,12 +37,11 @@ public class AutoCollapsingToolbarLayout extends CollapsingToolbarLayout {
 
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new AutoCollapsingToolbarLayout.LayoutParams(getContext(), attrs);
+        return new AutoAppBarLayout.LayoutParams(getContext(), attrs);
     }
 
 
-
-    public static class LayoutParams extends CollapsingToolbarLayout.LayoutParams
+    public static class LayoutParams extends AppBarLayout.LayoutParams
             implements AutoLayoutHelper.AutoLayoutParams
     {
         private AutoLayoutInfo mAutoLayoutInfo;

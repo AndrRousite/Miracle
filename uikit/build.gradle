@@ -44,4 +44,5 @@ dependencies {
     compile(rootProject.ext.dependencies["design"]) {
         exclude module: 'support-annotations'
     }
+    compile rootProject.ext.dependencies["annotations"]
 }

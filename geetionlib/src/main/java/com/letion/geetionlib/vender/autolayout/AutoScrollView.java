@@ -1,4 +1,4 @@
-package com.letion.geetionlib.weight.autolayout;
+package com.letion.geetionlib.vender.autolayout;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.letion.geetionlib.vender.qqalert;
+package com.letion.uikit.qqalert;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

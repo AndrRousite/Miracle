@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.letion.geetionlib.weight.swipeback;
+package com.letion.uikit.swipeback;
 
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;

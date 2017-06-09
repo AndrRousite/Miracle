@@ -1,4 +1,4 @@
-package com.letion.geetionlib.vender.qqalert;
+package com.letion.uikit.qqalert;
 
 /**
  * Created by liu-feng on 2017/6/7.

@@ -9,7 +9,7 @@ import com.letion.geetionlib.mvp.IPresenter;
 import com.letion.geetionlib.util.UiUtils;
 import com.letion.geetionlib.vender.immersionbar.ImmersionBar;
 import com.letion.geetionlib.vender.log.L;
-import com.letion.geetionlib.weight.swipeback.SwipeBackLayout;
+import com.letion.uikit.swipeback.SwipeBackLayout;
 
 /**
  * Created by liu-feng on 2017/6/7.

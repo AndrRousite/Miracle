@@ -1,6 +1,5 @@
-package com.letion.geetionlib.vender.qqalert;
+package com.letion.uikit.qqalert;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -24,7 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.letion.geetionlib.R;
+import com.letion.uikit.R;
 
 /**
  * Created by liu-feng on 2017/6/7.
