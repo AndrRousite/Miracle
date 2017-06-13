@@ -33,7 +33,9 @@ import static com.letion.geetionlib.base.integration.AppManager.START_ACTIVITY;
  * Created by liu-feng on 2015/11/23.
  */
 public class UiUtils {
-    static public Toast mToast;
+    static Toast mToast;
+
+    private UiUtils(){}
 
     /**
      * 设置hint大小

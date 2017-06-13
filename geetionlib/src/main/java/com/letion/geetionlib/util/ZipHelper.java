@@ -17,6 +17,9 @@ import java.util.zip.Inflater;
  * Created by liu-feng on 16/5/10.
  */
 public class ZipHelper {
+    private ZipHelper() {
+    }
+
     /**
      * zlib decompress 2 String
      *
@@ -24,7 +27,7 @@ public class ZipHelper {
      * @return
      */
     public static String decompressToStringForZlib(byte[] bytesToDecompress) {
-        return decompressToStringForZlib(bytesToDecompress,"UTF-8");
+        return decompressToStringForZlib(bytesToDecompress, "UTF-8");
     }
 
 
