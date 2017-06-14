@@ -1,1 +1,1 @@
-include ':app', ':geetionlib', ':uikit'
+include ':app', ':geetionlib', ':uikit', ':updatelib'

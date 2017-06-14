@@ -76,6 +76,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
     compile project(':uikit')
+    compile project(':updatelib')
 }
 
 tasks.withType(JavaCompile) {
