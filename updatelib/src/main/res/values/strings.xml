@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">updatelib</string>
 
-    <string name="updatefun_provider_file_authorities">cn.hugeterry.updatefun.fileprovider</string> <!--7.0兼容问题-->
+    <string name="updatefun_provider_file_authorities">com.letion.updatelib.fileprovider</string> <!--7.0兼容问题-->
 </resources>

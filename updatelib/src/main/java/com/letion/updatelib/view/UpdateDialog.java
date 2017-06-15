@@ -24,7 +24,7 @@ public class UpdateDialog extends Activity {
         no = (TextView) findViewById(R.id.updatedialog_no);
         tv_version = (TextView) findViewById(R.id.title);
         tv_changelog = (TextView) findViewById(R.id.updatedialog_text_changelog);
-        tv_version.setText("发现新版本: V" + DownloadConfig.version);
+        tv_version.setText("发现新版本: V" + DownloadConfig.versionName);
         tv_changelog.setText("更新日志：\n" + DownloadConfig.changeLog);
 
         yes.setOnClickListener(arg0 -> {

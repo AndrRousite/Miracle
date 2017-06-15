@@ -11,7 +11,7 @@ public class DownloadConfig {
     public static String saveFilePath = Environment.getExternalStorageDirectory()+"/Letion/UpdatePath/";
     public static String apkUrl = "";
     public static String changeLog = "";
-    public static String version = "";
+    public static String versionName = "";
     public static int versionCode = 0;
     public static boolean interceptFlag = false;
 

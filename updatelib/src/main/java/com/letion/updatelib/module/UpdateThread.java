@@ -21,12 +21,10 @@ import java.net.URL;
 public class UpdateThread extends Thread {
 
     private String result;
-    private String url = "http://api.fir.im/apps/latest/" + UpdateConfig.APP_ID
-            + "?api_token=" + UpdateConfig.API_TOKEN;
 
     public void run() {
         try {
-            URL httpUrl = new URL(url);
+            URL httpUrl = new URL(UpdateConfig.url);
 
             HttpURLConnection conn = (HttpURLConnection) httpUrl
                     .openConnection();
@@ -57,11 +55,12 @@ public class UpdateThread extends Thread {
         try {
             JSONObject object = new JSONObject(result);
             DownloadConfig.changeLog = object.getString("changelog");
-            DownloadConfig.version = object.getString("versionShort");
+            DownloadConfig.versionName = object.getString("versionShort");
+            DownloadConfig.versionCode = Integer.parseInt(object.getString("version"));
             DownloadConfig.apkUrl = object.getString("installUrl");
             Log.i("UpdateFun TAG",
                     String.format("ChangeLog:%s, Version:%s, ApkDownloadUrl:%s",
-                            DownloadConfig.changeLog, DownloadConfig.version, DownloadConfig.apkUrl));
+                            DownloadConfig.changeLog, DownloadConfig.versionName, DownloadConfig.apkUrl));
         } catch (JSONException e) {
             e.printStackTrace();
         }

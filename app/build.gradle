@@ -1,4 +1,13 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'im.fir.plugin.gradle'// 必填
+//fir {
+//
+//    //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
+//    apiToken 'c36415dbfd9dac047ecadeee10910475'
+//
+//    //可选 上传fir.im 中显示的changelog
+//    changeLog '替换为你的更新日志'
+//}
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -19,25 +28,36 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
 
         buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
         buildConfigField 'String', 'LOG_TAG', rootProject.ext.android["LOG_TAG"]
+
+        resValue "string", "updatefun_provider_file_authorities", "com.letion.miracle.fileprovider"
     }
 
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
 
         release {
             minifyEnabled true
-            shrinkResources true
-            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'letion'
+            keyPassword 'android'
+            storeFile file('E:\\tools\\keystore\\letion.jks')
+            storePassword 'android'
         }
     }
 
@@ -63,3 +83,4 @@ dependencies {
     compile rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }
+

@@ -16,6 +16,7 @@ import com.letion.miracle.di.module.UserModule;
 import com.letion.miracle.mvp.contract.UserContract;
 import com.letion.miracle.mvp.presenter.UserPresenter;
 import com.letion.miracle.mvp.ui.adapter.DefaultAdapter;
+import com.letion.updatelib.UpdateManager;
 import com.paginate.Paginate;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -54,9 +55,21 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        UpdateManager.getInstance(this);
         mPresenter.requestUsers(true);//打开app时自动加载列表
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UpdateManager.onResume(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        UpdateManager.onStop(this);
+    }
 
     @Override
     public void onRefresh() {

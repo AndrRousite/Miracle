@@ -18,18 +18,20 @@ import java.lang.ref.WeakReference;
  * Created by liu-feng on 2017/6/14.
  */
 public class HandlerRunnable implements Runnable {
-    private String version = "";
-    private Updatehandler up_handler;
+    private String versionName = "";
+    private int versionCode;
+    private UpdateHandler up_handler;
 
     public HandlerRunnable(Context context) {
-        up_handler = new Updatehandler(context);
-        this.version = TDevice.getAppVersionName(context);
+        up_handler = new UpdateHandler(context);
+        this.versionName = TDevice.getAppVersionName(context);
+        this.versionCode = TDevice.getAppVersionCode(context);
     }
 
-    private static class Updatehandler extends Handler {
+    private static class UpdateHandler extends Handler {
         WeakReference<Context> mActivityReference;
 
-        public Updatehandler(Context context) {
+        public UpdateHandler(Context context) {
             mActivityReference = new WeakReference<>(context);
         }
 
@@ -72,11 +74,11 @@ public class HandlerRunnable implements Runnable {
             e.printStackTrace();
         }
 
-        if (DownloadConfig.version == null) {
+        if (DownloadConfig.versionName == null) {
             Log.i("UpdateFun TAG", "获取的应用信息为空，不更新，请确认网络是否畅通或者应用ID及API_TOKEN是否正确");
             msg.arg1 = 2;
             up_handler.sendMessage(msg);
-        } else if (!DownloadConfig.version.equals(version)) {
+        } else if (DownloadConfig.versionCode > versionCode) {
             Log.i("UpdateFun TAG", "需更新版本");
             msg.arg1 = 1;
             up_handler.sendMessage(msg);
