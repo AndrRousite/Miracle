@@ -33,7 +33,8 @@
             android:value="ConfigModule" />
 
         <activity android:name=".mvp.ui.activity.TestActivity" />
-        <activity android:name=".mvp.ui.activity.HomeActivity"></activity>
+        <activity android:name=".mvp.ui.activity.HomeActivity" />
+        <activity android:name=".mvp.ui.activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

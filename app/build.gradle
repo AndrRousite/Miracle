@@ -82,5 +82,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     compile rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    compile rootProject.ext.dependencies["canary-debug"]
 }
 

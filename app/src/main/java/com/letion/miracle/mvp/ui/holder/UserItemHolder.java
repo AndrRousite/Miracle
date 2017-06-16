@@ -38,13 +38,15 @@ public class UserItemHolder extends BaseHolder<User> {
         mAppComponent = ((App) itemView.getContext().getApplicationContext()).getAppComponent();
         mImageLoader = mAppComponent.imageLoader();
         itemView.setOnClickListener(v -> {
-            if (getPosition() % 3 == 1)
+            if (getPosition() % 4 == 1)
                 ARouter.getInstance().build("/activity/main").navigation();
-            else if(getPosition() % 3 == 2)
+            else if(getPosition() % 4 == 2)
                 ARouter.getInstance().build("/activity/test").navigation();
-            else
+            else if(getPosition() % 4 == 3)
                 ARouter.getInstance().build("/activity/home").navigation();
-
+            else{
+                ARouter.getInstance().build("/activity/web").navigation();
+            }
         });
     }
 

@@ -12,7 +12,7 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.letion.updatelib.R;
+import com.letion.updatelib.BuildConfig;
 
 import java.io.File;
 
@@ -106,7 +106,7 @@ public class TDevice {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, context.getString(R.string.updatefun_provider_file_authorities), apkfile);
+            Uri contentUri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID+".FileProvider", apkfile);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
