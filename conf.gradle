@@ -65,6 +65,10 @@ ext {
 
             "avi-loading"                : "com.wang.avi:library:1.0.2",
 
+            // hot fix
+            //"tinker"                     : "com.tencent.tinker:tinker-android-lib:1.7.11",
+            //"tinker-nano"                : "com.tencent.tinker:tinker-android-anno:1.7.11"  // 用于生产Application
+            "sophix"                     : "com.aliyun.ams:alicloud-android-hotfix:3.0.2"
 
     ]
 }
