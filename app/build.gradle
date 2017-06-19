@@ -38,6 +38,8 @@ android {
         buildConfigField 'String', 'LOG_TAG', rootProject.ext.android["LOG_TAG"]
 
         resValue "string", "updatefun_provider_file_authorities", "com.letion.miracle.fileprovider"
+
+        jackOptions { enabled true }
     }
 
     buildTypes {
