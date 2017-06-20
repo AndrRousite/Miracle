@@ -37,3 +37,5 @@ dependencies {
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["design"]
 }
+
+//apply from: "bintray.gradle"

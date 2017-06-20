@@ -3,16 +3,12 @@ apply from: "conf.gradle"
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url "http://maven.bughd.com/public"
-        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
+        classpath 'com.android.tools.build:gradle:2.3.2'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         //添加fir插件依赖
-//        classpath 'im.fir:gradle-fir-publisher:1.0.7'  // fir最新版不支持gradle 3.0
 
 //        classpath 'com.tencent.tinker:tinker-patch-gradle-plugin:1.7.11'
 
@@ -25,6 +21,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/letion/Android" }
         maven { url "http://maven.aliyun.com/nexus/content/repositories/releases" }
     }
 }

@@ -5,10 +5,16 @@ ext {
             minSdkVersion    : 15,
             targetSdkVersion : 25,
             versionCode      : 7,
-            versionName      : "0.0.9",
+            versionName      : "0.1.1",
 
             DEBUG            : "true",
             LOG_TAG          : "\"Letion\""
+    ]
+
+    library = [
+            "agentweb" : "me.letion:agentweb:${android["versionName"]}",
+            "updatelib": "me.letion:updatelib:${android["versionName"]}",
+            "uikit"    : "me.letion:uikit:${android["versionName"]}"
     ]
 
     version = [
@@ -69,6 +75,7 @@ ext {
             //"tinker"                     : "com.tencent.tinker:tinker-android-lib:1.7.11",
             //"tinker-nano"                : "com.tencent.tinker:tinker-android-anno:1.7.11"  // 用于生产Application
             "sophix"                     : "com.aliyun.ams:alicloud-android-hotfix:3.0.2"
+
 
     ]
 }

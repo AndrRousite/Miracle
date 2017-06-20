@@ -37,8 +37,14 @@ dependencies {
     compile rootProject.ext.dependencies["appcompat-v7"]
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xbootclasspath/a:" + System.properties.get("java.home") + "/lib/rt.jar"
     }
 }
+
+//apply from: "bintray.gradle"
