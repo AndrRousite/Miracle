@@ -5,7 +5,7 @@ ext {
             minSdkVersion    : 15,
             targetSdkVersion : 25,
             versionCode      : 7,
-            versionName      : "0.0.0.6",
+            versionName      : "0.0.9",
 
             DEBUG            : "true",
             LOG_TAG          : "\"Letion\""
