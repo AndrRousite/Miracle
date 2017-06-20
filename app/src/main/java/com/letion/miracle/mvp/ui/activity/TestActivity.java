@@ -64,17 +64,6 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestCon
     }
 
     @Override
-    public void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-        finish();
-    }
-
-    @Override
     public void setAdapter(TestAdapter adapter) {
 
     }

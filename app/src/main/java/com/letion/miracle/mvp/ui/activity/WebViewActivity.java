@@ -1,6 +1,5 @@
 package com.letion.miracle.mvp.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.KeyEvent;
@@ -65,17 +64,6 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter> implements W
     public void showMessage(@NonNull String message) {
         checkNotNull(message);
         UiUtils.SnackbarText(message);
-    }
-
-    @Override
-    public void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-        finish();
     }
 
     @Override

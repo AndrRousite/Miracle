@@ -103,16 +103,6 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     }
 
     @Override
-    public void launchActivity(Intent intent) {
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-        finish();
-    }
-
-    @Override
     public void setAdapter(DefaultAdapter adapter) {
         mRecyclerView.setAdapter(adapter);
         initRecycleView();

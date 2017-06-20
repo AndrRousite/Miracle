@@ -1,6 +1,5 @@
 package com.letion.miracle.mvp.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -8,16 +7,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.letion.geetionlib.base.BaseActivity;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.util.UiUtils;
-
+import com.letion.miracle.R;
 import com.letion.miracle.di.component.DaggerHomeComponent;
 import com.letion.miracle.di.module.HomeModule;
 import com.letion.miracle.mvp.contract.HomeContract;
 import com.letion.miracle.mvp.presenter.HomePresenter;
-
-import com.letion.miracle.R;
 import com.letion.miracle.mvp.ui.adapter.HomeAdapter;
 import com.letion.miracle.mvp.ui.fragment.HomeFragment;
-
 
 import static com.letion.geetionlib.util.Preconditions.checkNotNull;
 
@@ -62,18 +58,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         checkNotNull(message);
         UiUtils.SnackbarText(message);
     }
-
-    @Override
-    public void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-        finish();
-    }
-
 
     @Override
     public void setAdapter(HomeAdapter adapter) {

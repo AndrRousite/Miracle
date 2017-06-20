@@ -1,7 +1,5 @@
 package com.letion.geetionlib.mvp;
 
-import android.content.Intent;
-
 /**
  * Created by liu-feng on 2017/6/5.
  */
@@ -21,14 +19,4 @@ public interface IView {
      * 显示信息
      */
     void showMessage(String message);
-
-    /**
-     * 跳转activity
-     */
-    void launchActivity(Intent intent);
-
-    /**
-     * 杀死自己
-     */
-    void killMyself();
 }

@@ -59,17 +59,6 @@ public class MainActivity extends SwipeBackActivity<MainPresenter> implements Ma
     }
 
     @Override
-    public void launchActivity(@NonNull Intent intent) {
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-        finish();
-    }
-
-
-    @Override
     protected boolean canSwipeBack() {
         return true;
     }

@@ -95,17 +95,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
     @Override
-    public void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-
-    }
-
-    @Override
     public void setAdapter(HomeAdapter adapter) {
         listView.setAdapter(adapter);
         UiUtils.configRecycleView(listView, new LinearLayoutManager(getActivity()));

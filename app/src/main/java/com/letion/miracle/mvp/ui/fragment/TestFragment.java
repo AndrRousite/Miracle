@@ -94,17 +94,6 @@ public class TestFragment extends BaseFragment<TestPresenter> implements TestCon
     }
 
     @Override
-    public void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        UiUtils.startActivity(intent);
-    }
-
-    @Override
-    public void killMyself() {
-
-    }
-
-    @Override
     public void setAdapter(TestAdapter adapter) {
         listView.setAdapter(adapter);
         UiUtils.configRecycleView(listView, new LinearLayoutManager(getActivity()));
