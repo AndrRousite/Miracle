@@ -12,7 +12,7 @@ import com.letion.miracle.di.component.DaggerHomeComponent;
 import com.letion.miracle.di.module.HomeModule;
 import com.letion.miracle.mvp.contract.HomeContract;
 import com.letion.miracle.mvp.presenter.HomePresenter;
-import com.letion.miracle.mvp.ui.adapter.HomeAdapter;
+import com.letion.miracle.mvp.ui.adapter.DefaultAdapter;
 import com.letion.miracle.mvp.ui.fragment.HomeFragment;
 
 import static com.letion.geetionlib.util.Preconditions.checkNotNull;
@@ -60,7 +60,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     }
 
     @Override
-    public void setAdapter(HomeAdapter adapter) {
+    public void setAdapter(DefaultAdapter adapter) {
 
     }
 

@@ -2,7 +2,7 @@ package com.letion.miracle.mvp.contract;
 
 import com.letion.geetionlib.mvp.IModel;
 import com.letion.geetionlib.mvp.IView;
-import com.letion.miracle.mvp.ui.adapter.HomeAdapter;
+import com.letion.miracle.mvp.ui.adapter.DefaultAdapter;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public interface HomeContract {
     //对于经常使用的关于UI的方法可以定义到BaseView中,如显示隐藏进度条,和显示文字消息
     interface View extends IView {
-        void setAdapter(HomeAdapter adapter);
+        void setAdapter(DefaultAdapter adapter);
         void finishRefreshing();
         void onItemClick(int position);
     }

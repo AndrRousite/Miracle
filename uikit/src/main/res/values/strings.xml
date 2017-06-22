@@ -5,4 +5,10 @@
     <string name="footer_type_net_error">网络错误</string>
     <string name="footer_type_not_more">没有更多数据</string>
     <string name="footer_type_refreshing">正在刷新</string>
+
+    <string name="header_type_normal">下拉刷新...</string>
+    <string name="header_type_release">释放刷新...</string>
+    <string name="header_type_refreshing">正在刷新...</string>
+    <string name="header_type_complete">刷新完成...</string>
+    <string name="header_type_last_time">上次更新时间：</string>
 </resources>

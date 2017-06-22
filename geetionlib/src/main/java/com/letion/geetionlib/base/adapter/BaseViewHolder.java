@@ -1,4 +1,4 @@
-package com.letion.geetionlib.base;
+package com.letion.geetionlib.base.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,9 +9,9 @@ import com.zhy.autolayout.utils.AutoUtils;
 /**
  * Created by liu-feng on 2017/6/8.
  */
-public abstract class BaseHolder<T> extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder{
 
-    public BaseHolder(View itemView) {
+    public BaseViewHolder(View itemView) {
         super(itemView);
         AutoUtils.autoSize(itemView);//适配
         KnifeUtil.bindTarget(this, itemView);//绑定
@@ -24,13 +24,10 @@ public abstract class BaseHolder<T> extends RecyclerView.ViewHolder {
      * @param
      * @param position
      */
-    public abstract void setData(T data, int position);
+    public abstract void bindViewHolder(T data, int position);
 
     /**
      * 释放资源
      */
-    protected void release() {
-
-    }
-
+    public abstract void releaseViewHolder();
 }

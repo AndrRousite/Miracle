@@ -2,14 +2,16 @@ package com.letion.miracle.mvp.presenter;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
-import com.letion.geetionlib.base.BaseRecyclerAdapter;
 import com.letion.geetionlib.base.integration.AppManager;
 import com.letion.geetionlib.di.scope.ActivityScope;
 import com.letion.geetionlib.mvp.BasePresenter;
 import com.letion.geetionlib.vender.imageloader.ImageLoader;
 import com.letion.miracle.mvp.contract.HomeContract;
-import com.letion.miracle.mvp.ui.adapter.HomeAdapter;
+import com.letion.miracle.mvp.ui.adapter.BaseHolder;
+import com.letion.miracle.mvp.ui.adapter.DefaultAdapter;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     private ImageLoader mImageLoader;
     private AppManager mAppManager;
 
-    private HomeAdapter mAdapter;
+    private DefaultAdapter mAdapter;
 
     @Inject
     public HomePresenter(HomeContract.Model model, HomeContract.View rootView
@@ -48,17 +50,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     }
 
     public void request(Context context, boolean refresh) {
-        if (mAdapter == null) {
-            mAdapter = new HomeAdapter(context, BaseRecyclerAdapter.ONLY_FOOTER);
-            mRootView.setAdapter(mAdapter);
-        }
-        List<String> list = mModel.getItems();
-        if (refresh) {
-            mAdapter.clearAll();
-        }
-        mAdapter.addAll(list);
-        mAdapter.notifyDataSetChanged();
-        mRootView.finishRefreshing();
+
     }
 
 }
