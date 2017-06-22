@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.letion.geetionlib.http.GlobalHttpHandler;
 import com.letion.geetionlib.http.RequestInterceptor;
-import com.letion.geetionlib.util.DataHelper;
+import com.letion.geetionlib.util.TFile;
 
 import java.io.File;
 import java.util.List;
@@ -135,7 +135,7 @@ public class ClientModule {
     @Named("RxCacheDirectory")
     File provideRxCacheDirectory(File cacheDir) {
         File cacheDirectory = new File(cacheDir, "RxCache");
-        return DataHelper.makeDirs(cacheDirectory);
+        return TFile.makeFolder(cacheDirectory);
     }
 
     /**

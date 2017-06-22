@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 /**
  * Created by liu-feng on 2016/3/15.
  */
-
 public final class Preconditions {
     private Preconditions() {
     }

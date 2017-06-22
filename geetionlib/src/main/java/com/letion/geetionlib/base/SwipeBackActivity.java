@@ -14,6 +14,7 @@ import com.letion.uikit.swipeback.SwipeBackLayout;
 /**
  * Created by liu-feng on 2017/6/7.
  */
+@Deprecated
 public abstract class SwipeBackActivity<T extends IPresenter> extends BaseActivity<T> {
     protected SwipeBackLayout mSwipeBackLayout;
 

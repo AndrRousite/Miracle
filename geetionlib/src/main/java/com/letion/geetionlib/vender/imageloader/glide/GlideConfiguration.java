@@ -13,7 +13,7 @@ import com.bumptech.glide.module.GlideModule;
 import com.letion.geetionlib.base.App;
 import com.letion.geetionlib.di.component.AppComponent;
 import com.letion.geetionlib.http.OkHttpUrlLoader;
-import com.letion.geetionlib.util.DataHelper;
+import com.letion.geetionlib.util.TFile;
 
 import java.io.File;
 import java.io.InputStream;
@@ -29,7 +29,7 @@ public class GlideConfiguration implements GlideModule {
         builder.setDiskCache(() -> {
             // Careful: the external cache directory doesn't enforce permissions
             AppComponent appComponent = ((App) context.getApplicationContext()).getAppComponent();
-            return DiskLruCacheWrapper.get(DataHelper.makeDirs(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
+            return DiskLruCacheWrapper.get(TFile.makeFolder(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
         });
 
         MemorySizeCalculator calculator = new MemorySizeCalculator(context);

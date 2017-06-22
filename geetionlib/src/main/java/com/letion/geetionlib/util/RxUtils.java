@@ -17,7 +17,6 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by liu-feng on 11/10/2016 16:39
  */
-
 public class RxUtils {
 
     private RxUtils(){

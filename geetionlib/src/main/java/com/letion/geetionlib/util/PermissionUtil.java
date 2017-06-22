@@ -13,7 +13,6 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 /**
  * Created by liu-feng on 17/10/2016 10:09
  */
-
 public class PermissionUtil {
 
     private PermissionUtil() {
@@ -35,7 +34,6 @@ public class PermissionUtil {
                 needRequest.add(permission);
             }
         }
-
         if (needRequest.size() == 0) {//全部权限都已经申请过，直接执行操作
             requestPermission.onRequestPermissionSuccess();
         } else {//没有申请过,则开始申请

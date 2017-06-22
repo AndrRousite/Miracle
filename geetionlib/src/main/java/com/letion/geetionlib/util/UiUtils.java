@@ -97,7 +97,6 @@ public class UiUtils {
      * @param homePicHeight
      * @return
      */
-
     public static int getDimens(Context context, int homePicHeight) {
         return (int) getResources(context).getDimension(homePicHeight);
     }
@@ -118,7 +117,6 @@ public class UiUtils {
      *
      * @return
      */
-
     public static String getString(Context context, int stringID) {
         return getResources(context).getString(stringID);
     }
@@ -128,7 +126,6 @@ public class UiUtils {
      *
      * @return
      */
-
     public static String getString(Context context, String strName) {
         return getString(context, getResources(context).getIdentifier(strName, "string", context.getPackageName()));
     }
@@ -187,8 +184,7 @@ public class UiUtils {
      *
      * @param string
      */
-
-    public static void makeText(Context context, String string) {
+    public static void showToast(Context context, String string) {
         if (mToast == null) {
             mToast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
         }

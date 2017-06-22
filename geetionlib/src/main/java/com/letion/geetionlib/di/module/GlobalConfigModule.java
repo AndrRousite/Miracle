@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.letion.geetionlib.http.GlobalHttpHandler;
+import com.letion.geetionlib.util.TFile;
 import com.letion.geetionlib.vender.imageloader.BaseImageLoaderStrategy;
 import com.letion.geetionlib.vender.imageloader.glide.GlideImageLoaderStrategy;
-import com.letion.geetionlib.util.DataHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class GlobalConfigModule {
     @Singleton
     @Provides
     File provideCacheFile(Application application) {
-        return mCacheFile == null ? DataHelper.getCacheFile(application) : mCacheFile;
+        return mCacheFile == null ? TFile.getCacheFolder(application) : mCacheFile;
     }
 
 
