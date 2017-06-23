@@ -31,13 +31,16 @@ public class DownloadDialog extends Activity {
         if (DownloadConfig.interceptFlag) DownloadConfig.interceptFlag = false;
         new DownloadThread(this).start();
 
-        closeImage.setOnClickListener(arg0 -> {
-            DownloadConfig.TOShowDownloadView = 1;
-            DownloadConfig.interceptFlag = true;
-            if (DownloadConfig.ISManual) {
-                DownloadConfig.LoadManual = false;
+        closeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadConfig.TOShowDownloadView = 1;
+                DownloadConfig.interceptFlag = true;
+                if (DownloadConfig.ISManual) {
+                    DownloadConfig.LoadManual = false;
+                }
+                finish();
             }
-            finish();
         });
     }
 }

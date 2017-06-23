@@ -5,6 +5,7 @@ import android.content.Context;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
+import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheWrapper;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
@@ -25,11 +26,14 @@ public class GlideConfiguration implements GlideModule {
     public static final int IMAGE_DISK_CACHE_MAX_SIZE = 100 * 1024 * 1024;//图片缓存文件最大值为100Mb
 
     @Override
-    public void applyOptions(Context context, GlideBuilder builder) {
-        builder.setDiskCache(() -> {
-            // Careful: the external cache directory doesn't enforce permissions
-            AppComponent appComponent = ((App) context.getApplicationContext()).getAppComponent();
-            return DiskLruCacheWrapper.get(TFile.makeFolder(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
+    public void applyOptions(final Context context, GlideBuilder builder) {
+        builder.setDiskCache(new DiskCache.Factory() {
+            @Override
+            public DiskCache build() {
+                // Careful: the external cache directory doesn't enforce permissions
+                AppComponent appComponent = ((App) context.getApplicationContext()).getAppComponent();
+                return DiskLruCacheWrapper.get(TFile.makeFolder(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
+            }
         });
 
         MemorySizeCalculator calculator = new MemorySizeCalculator(context);

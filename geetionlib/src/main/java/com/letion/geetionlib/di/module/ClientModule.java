@@ -9,6 +9,7 @@ import com.letion.geetionlib.http.RequestInterceptor;
 import com.letion.geetionlib.util.TFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,7 @@ import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -67,14 +69,19 @@ public class ClientModule {
     @Singleton
     @Provides
     OkHttpClient provideClient(Application application, @Nullable OkhttpConfiguration configuration, OkHttpClient.Builder builder, Interceptor intercept
-            , @Nullable List<Interceptor> interceptors, @Nullable GlobalHttpHandler handler) {
+            , @Nullable List<Interceptor> interceptors, @Nullable final GlobalHttpHandler handler) {
         builder
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addNetworkInterceptor(intercept);
 
         if (handler != null)
-            builder.addInterceptor(chain -> chain.proceed(handler.onHttpRequestBefore(chain, chain.request())));
+            builder.addInterceptor(new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    return chain.proceed(handler.onHttpRequestBefore(chain, chain.request()));
+                }
+            });
 
         if (interceptors != null) {//如果外部提供了interceptor的集合则遍历添加
             for (Interceptor interceptor : interceptors) {

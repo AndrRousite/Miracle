@@ -27,7 +27,7 @@ public class RxUtils {
         return new ObservableTransformer<T, T>() {
             @Override
             public Observable<T> apply(Observable<T> observable) {
-                return observable.subscribeOn(Schedulers.io())
+                return (Observable<T>) observable.subscribeOn(Schedulers.io())
                         .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
                             public void accept(@NonNull Disposable disposable) throws Exception {

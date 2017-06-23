@@ -3,6 +3,7 @@ package com.letion.updatelib.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import com.letion.updatelib.R;
@@ -27,16 +28,22 @@ public class UpdateDialog extends Activity {
         tv_version.setText("发现新版本: V" + DownloadConfig.versionName);
         tv_changelog.setText("更新日志：\n" + DownloadConfig.changeLog);
 
-        yes.setOnClickListener(arg0 -> {
-            DownloadConfig.TOShowDownloadView = 2;
-            finish();
-        });
-        no.setOnClickListener(arg0 -> {
-            DownloadConfig.TOShowDownloadView = 1;
-            if (DownloadConfig.ISManual) {
-                DownloadConfig.LoadManual = false;
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadConfig.TOShowDownloadView = 2;
+                finish();
             }
-            finish();
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadConfig.TOShowDownloadView = 1;
+                if (DownloadConfig.ISManual) {
+                    DownloadConfig.LoadManual = false;
+                }
+                finish();
+            }
         });
     }
 }

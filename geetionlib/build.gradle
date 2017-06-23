@@ -4,10 +4,10 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        targetCompatibility JavaVersion.VERSION_1_8
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//    }
 
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -79,18 +79,19 @@ dependencies {
     compile(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
     }
-
     // module
-    compile(rootProject.ext.library["agentweb"]) {
-        exclude group: 'com.android.support'
-    }
-    compile(rootProject.ext.library["updatelib"]) {
-        exclude group: 'com.android.support'
-    }
-    compile(rootProject.ext.library["uikit"]) {
-        exclude group: 'com.android.support'
-    }
-
+    //    compile(rootProject.ext.library["agentweb"]) {
+    //        exclude group: 'com.android.support'
+    //    }
+    //    compile(rootProject.ext.library["updatelib"]) {
+    //        exclude group: 'com.android.support'
+    //    }
+    //    compile(rootProject.ext.library["uikit"]) {
+    //        exclude group: 'com.android.support'
+    //    }
+    compile project(':agentweb')
+    compile project(':uikit')
+    compile project(':updatelib')
 }
 
 buildscript {

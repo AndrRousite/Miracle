@@ -1,13 +1,14 @@
 package com.letion.miracle;
 
+import android.app.Application;
+
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.letion.geetionlib.base.BaseApplication;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by liu-feng on 2017/6/6.
  */
-public class MiracleApplication extends BaseApplication {
+public class MiracleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();

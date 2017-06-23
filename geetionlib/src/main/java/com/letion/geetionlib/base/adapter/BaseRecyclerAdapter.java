@@ -34,17 +34,23 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseVi
     public BaseViewHolder<T> onCreateViewHolder(ViewGroup parent, final int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(viewType), parent, false);
         mHolder = getViewHolder(view, viewType);
-        mHolder.itemView.setOnClickListener(v -> {
-            if (mOnItemClickListener != null && mInfos.size() > 0) {
-                mOnItemClickListener.onClick(mInfos.get(mHolder.getAdapterPosition()), viewType, mHolder.getAdapterPosition());
+        mHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null && mInfos.size() > 0) {
+                    mOnItemClickListener.onClick(mInfos.get(mHolder.getAdapterPosition()), viewType, mHolder.getAdapterPosition());
+                }
             }
         });
-        mHolder.itemView.setOnLongClickListener(v -> {
-            if (mOnItemLongClickListener != null && mInfos.size() > 0) {
-                mOnItemLongClickListener.onLongClick(mInfos.get(mHolder.getAdapterPosition()), viewType, mHolder.getAdapterPosition());
-                return true;
+        mHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (mOnItemLongClickListener != null && mInfos.size() > 0) {
+                    mOnItemLongClickListener.onLongClick(mInfos.get(mHolder.getAdapterPosition()), viewType, mHolder.getAdapterPosition());
+                    return true;
+                }
+                return false;
             }
-            return false;
         });
         return mHolder;
     }

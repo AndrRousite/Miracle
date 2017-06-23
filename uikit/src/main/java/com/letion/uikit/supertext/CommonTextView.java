@@ -379,9 +379,12 @@ public class CommonTextView extends RelativeLayout {
         if (useRipple) {
             this.setBackgroundResource(R.drawable.supertext_bg_selector);
         }
-        this.setOnClickListener(v -> {
-            if (onCommonTextViewClickListener != null) {
-                onCommonTextViewClickListener.onCommonTextViewClick();
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onCommonTextViewClickListener != null) {
+                    onCommonTextViewClickListener.onCommonTextViewClick();
+                }
             }
         });
         if (mBackground_drawable != null) {
@@ -549,9 +552,12 @@ public class CommonTextView extends RelativeLayout {
             leftTextView.setLineSpacing(mLeftTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(leftTextView, mLeftTextViewGravity);
             if (mLeftViewIsClickable) {
-                leftTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onLeftViewClick();
+                leftTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onLeftViewClick();
+                        }
                     }
                 });
             }
@@ -631,9 +637,12 @@ public class CommonTextView extends RelativeLayout {
             centerTextView.setLineSpacing(mCenterTextViewLineSpacingExtra, 1.0f);
 
             if (mCenterViewIsClickable) {
-                centerTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onCenterViewClick();
+                centerTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onCenterViewClick();
+                        }
                     }
                 });
             }
@@ -703,9 +712,12 @@ public class CommonTextView extends RelativeLayout {
             rightTextView.setLineSpacing(mRightTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(rightTextView, mRightTextViewGravity);
             if (mRightViewIsClickable) {
-                rightTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onRightViewClick();
+                rightTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onRightViewClick();
+                        }
                     }
                 });
             }
@@ -1373,9 +1385,12 @@ public class CommonTextView extends RelativeLayout {
     public CommonTextView setLeftViewIsClickable(boolean isClickable) {
         if (isClickable) {
             if (leftTextView != null) {
-                leftTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onLeftViewClick();
+                leftTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onLeftViewClick();
+                        }
                     }
                 });
             }
@@ -1392,9 +1407,12 @@ public class CommonTextView extends RelativeLayout {
     public CommonTextView setCenterViewIsClickable(boolean isClickable) {
         if (isClickable) {
             if (centerTextView != null) {
-                centerTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onCenterViewClick();
+                centerTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onCenterViewClick();
+                        }
                     }
                 });
             }
@@ -1411,9 +1429,12 @@ public class CommonTextView extends RelativeLayout {
     public CommonTextView setRightViewIsClickable(boolean isClickable) {
         if (isClickable) {
             if (rightTextView != null) {
-                rightTextView.setOnClickListener(v -> {
-                    if (onCommonTextViewClickListener != null) {
-                        onCommonTextViewClickListener.onRightViewClick();
+                rightTextView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onCommonTextViewClickListener != null) {
+                            onCommonTextViewClickListener.onRightViewClick();
+                        }
                     }
                 });
             }

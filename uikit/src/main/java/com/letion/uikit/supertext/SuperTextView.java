@@ -474,9 +474,12 @@ public class SuperTextView extends RelativeLayout {
         setTextColor(leftTopTV, leftTopTVColor);
         setTextSize(leftTopTV, leftTopTVSize);
         if (mLeftTopViewIsClickable) {
-            leftTopTV.setOnClickListener(view -> {
-                if (onSuperTextViewClickListener != null) {
-                    onSuperTextViewClickListener.onLeftTopClick();
+            leftTopTV.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onSuperTextViewClickListener != null) {
+                        onSuperTextViewClickListener.onLeftTopClick();
+                    }
                 }
             });
         }
@@ -499,9 +502,12 @@ public class SuperTextView extends RelativeLayout {
         setTextColor(leftBottomTV, leftBottomTVColor);
         setTextSize(leftBottomTV, leftBottomTVSize);
         if (mLeftBottomViewIsClickable) {
-            leftBottomTV.setOnClickListener(view -> {
-                if (onSuperTextViewClickListener != null) {
-                    onSuperTextViewClickListener.onLeftBottomClick();
+            leftBottomTV.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onSuperTextViewClickListener != null) {
+                        onSuperTextViewClickListener.onLeftBottomClick();
+                    }
                 }
             });
         }
@@ -524,9 +530,12 @@ public class SuperTextView extends RelativeLayout {
         setTextColor(leftBottomTV2, leftBottomTVColor2);
         setTextSize(leftBottomTV2, leftBottomTVSize2);
         if (mLeftBottomView2IsClickable) {
-            leftBottomTV2.setOnClickListener(view -> {
-                if (onSuperTextViewClickListener != null) {
-                    onSuperTextViewClickListener.onLeftBottomClick2();
+            leftBottomTV2.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onSuperTextViewClickListener != null) {
+                        onSuperTextViewClickListener.onLeftBottomClick2();
+                    }
                 }
             });
         }
@@ -1076,9 +1085,12 @@ public class SuperTextView extends RelativeLayout {
     public SuperTextView setLeftTopViewIsClickable(boolean isClickable) {
         if (isClickable) {
             if (leftTopTV != null) {
-                leftTopTV.setOnClickListener(view -> {
-                    if (onSuperTextViewClickListener != null) {
-                        onSuperTextViewClickListener.onLeftTopClick();
+                leftTopTV.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onSuperTextViewClickListener != null) {
+                            onSuperTextViewClickListener.onLeftTopClick();
+                        }
                     }
                 });
             }
@@ -1096,9 +1108,12 @@ public class SuperTextView extends RelativeLayout {
     public SuperTextView setLeftBottomViewIsClickable(boolean isClickable) {
         if (isClickable) {
             if (leftBottomTV != null) {
-                leftBottomTV.setOnClickListener(view -> {
-                    if (onSuperTextViewClickListener != null) {
-                        onSuperTextViewClickListener.onLeftBottomClick();
+                leftBottomTV.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onSuperTextViewClickListener != null) {
+                            onSuperTextViewClickListener.onLeftBottomClick();
+                        }
                     }
                 });
             }
@@ -1115,9 +1130,12 @@ public class SuperTextView extends RelativeLayout {
     public SuperTextView setLeftBottomView2IsClickable(boolean isClickable) {
         if (isClickable) {
             if (leftBottomTV2 != null) {
-                leftBottomTV2.setOnClickListener(view -> {
-                    if (onSuperTextViewClickListener != null) {
-                        onSuperTextViewClickListener.onLeftBottomClick2();
+                leftBottomTV2.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (onSuperTextViewClickListener != null) {
+                            onSuperTextViewClickListener.onLeftBottomClick2();
+                        }
                     }
                 });
             }

@@ -285,7 +285,7 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
 
         private FragmentDelegate fetchFragmentDelegate(Fragment fragment) {
             if (fragment instanceof IFragment) {
-                return fragment.getArguments() == null ? null : fragment.getArguments().getParcelable(FragmentDelegate.FRAGMENT_DELEGATE);
+                return fragment.getArguments() == null ? null : (FragmentDelegate) fragment.getArguments().getParcelable(FragmentDelegate.FRAGMENT_DELEGATE);
             }
             return null;
         }

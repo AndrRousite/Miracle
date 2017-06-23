@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 //apply tinker插件
 //apply plugin: 'com.tencent.tinker.patch'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_7
     }
 
     defaultConfig {
@@ -23,14 +24,14 @@ android {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
-        }
+        }// ARouter
 
         buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
         buildConfigField 'String', 'LOG_TAG', rootProject.ext.android["LOG_TAG"]
 
         resValue "string", "updatefun_provider_file_authorities", "com.letion.miracle.fileprovider"
 
-        jackOptions { enabled true }
+//        jackOptions { enabled true }
     }
 
     buildTypes {
@@ -40,7 +41,7 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -64,20 +65,20 @@ dependencies {
     compile project(':geetionlib')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     compile 'com.github.markomilos:paginate:0.5.1'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     compile rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     compile rootProject.ext.dependencies["canary-debug"]
-
     // Tinker
-//    compile rootProject.ext.dependencies["tinker"]
-//    provided rootProject.ext.dependencies["tinker-nano"]
+    //    compile rootProject.ext.dependencies["tinker"]
+    //    provided rootProject.ext.dependencies["tinker-nano"]
     // Sophix
-    compile rootProject.ext.dependencies["sophix"]
+    //    compile rootProject.ext.dependencies["sophix"]
+//    compile project(path: ':uikit')
 }
+
 
