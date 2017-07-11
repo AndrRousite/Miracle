@@ -3,6 +3,7 @@ package com.letion.geetionlib.http;
 import android.support.annotation.Nullable;
 
 import com.letion.geetionlib.util.ZipHelper;
+import com.letion.geetionlib.vender.log.L;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -86,6 +87,8 @@ public class RequestInterceptor implements Interceptor {
             //解析response content
             bodyString = parseContent(responseBody, encoding, clone);
 
+            L.d(bodyString);
+
         } else {
 
         }
@@ -109,7 +112,8 @@ public class RequestInterceptor implements Interceptor {
         if (encoding != null && encoding.equalsIgnoreCase("gzip")) {//content使用gzip压缩
             return ZipHelper.decompressForGzip(clone.readByteArray(), convertCharset(charset));//解压
         } else if (encoding != null && encoding.equalsIgnoreCase("zlib")) {//content使用zlib压缩
-            return ZipHelper.decompressToStringForZlib(clone.readByteArray(), convertCharset(charset));//解压
+            return ZipHelper.decompressToStringForZlib(clone.readByteArray(), convertCharset
+                    (charset));//解压
         } else {//content没有被压缩
             return clone.readString(charset);
         }
