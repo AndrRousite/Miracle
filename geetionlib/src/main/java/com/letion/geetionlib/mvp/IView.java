@@ -17,6 +17,8 @@ public interface IView {
 
     /**
      * 显示信息
+     * @param mode 模式 1：toast 2. snackbar 3. alert
+     * @param message
      */
-    void showMessage(String message);
+    void showMessage(int mode,String message);
 }

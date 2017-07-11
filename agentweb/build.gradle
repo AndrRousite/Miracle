@@ -38,4 +38,4 @@ dependencies {
     compile rootProject.ext.dependencies["design"]
 }
 
-apply from: "bintray.gradle"
+//apply from: "bintray.gradle"

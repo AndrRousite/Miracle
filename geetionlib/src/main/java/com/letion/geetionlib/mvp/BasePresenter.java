@@ -1,6 +1,11 @@
 package com.letion.geetionlib.mvp;
 
+import android.os.Handler;
+import android.os.Message;
+
 import org.simple.eventbus.EventBus;
+
+import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -9,8 +14,8 @@ import io.reactivex.disposables.Disposable;
  * Created by liu-feng on 2017/6/5.
  */
 public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
-    protected final String TAG = this.getClass().getSimpleName();
     protected CompositeDisposable mCompositeDisposable;
+    protected MHandler mHandler;
 
     protected M mModel;
     protected V mRootView;
@@ -70,6 +75,26 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     protected void unDispose() {
         if (mCompositeDisposable != null) {
             mCompositeDisposable.clear();//保证activity结束时取消所有正在执行的订阅
+        }
+    }
+
+    protected void handleMessage(Message msg) {
+    }
+
+
+    public static class MHandler extends Handler {
+        private final WeakReference<BasePresenter> activityWeakReference;
+
+        public MHandler(BasePresenter presenter) {
+            activityWeakReference = new WeakReference<>(presenter);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            BasePresenter presenter = activityWeakReference.get();
+            if (presenter != null) {
+                presenter.handleMessage(msg);
+            }
         }
     }
 
