@@ -62,6 +62,7 @@ dependencies {
     compile rootProject.ext.dependencies["rxlifecycle-android"]
     compile rootProject.ext.dependencies["rxlifecycle-components"]
     compile rootProject.ext.dependencies["rxpermissions"]
+    compile rootProject.ext.dependencies['progressmanager']
     compile(rootProject.ext.dependencies['rxerrorhandler2']) {
         exclude module: 'rxjava'
     }
@@ -79,19 +80,21 @@ dependencies {
     compile(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
     }
+    // debug
+    compile rootProject.ext.dependencies["timber"]
     // module
-    //    compile(rootProject.ext.library["agentweb"]) {
-    //        exclude group: 'com.android.support'
-    //    }
-    //    compile(rootProject.ext.library["updatelib"]) {
-    //        exclude group: 'com.android.support'
-    //    }
-    //    compile(rootProject.ext.library["uikit"]) {
-    //        exclude group: 'com.android.support'
-    //    }
-    compile project(':agentweb')
-    compile project(':uikit')
-    compile project(':updatelib')
+    compile(rootProject.ext.library["agentweb"]) {
+        exclude group: 'com.android.support'
+    }
+    compile(rootProject.ext.library["updatelib"]) {
+        exclude group: 'com.android.support'
+    }
+    compile(rootProject.ext.library["uikit"]) {
+        exclude group: 'com.android.support'
+    }
+//    compile project(':agentweb')
+//    compile project(':uikit')
+//    compile project(':updatelib')
 }
 
 buildscript {
