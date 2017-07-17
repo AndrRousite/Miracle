@@ -1,1 +1,1 @@
-include ':app', ':geetionlib', ':uikit', ':updatelib', ':agentweb'
+include ':app', ':geetionlib', ':uikit', ':upgradekit', ':webkit'
