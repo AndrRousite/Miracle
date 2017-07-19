@@ -12,8 +12,8 @@ ext {
     ]
 
     library = [
-            "agentweb" : "me.letion:agentweb:${android["versionName"]}",
-            "updatelib": "me.letion:updatelib:${android["versionName"]}",
+            "webkit" : "me.letion:webkit:${android["versionName"]}",
+            "upgradekit": "me.letion:upgradekit:${android["versionName"]}",
             "uikit"    : "me.letion:uikit:${android["versionName"]}"
     ]
 

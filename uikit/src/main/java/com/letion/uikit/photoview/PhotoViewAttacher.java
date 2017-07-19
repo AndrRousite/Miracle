@@ -36,11 +36,12 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-import java.lang.ref.WeakReference;
+import com.letion.uikit.photoview.gestures.OnGestureListener;
+import com.letion.uikit.photoview.gestures.VersionedGestureDetector;
+import com.letion.uikit.photoview.log.LogManager;
+import com.letion.uikit.photoview.scrollerproxy.ScrollerProxy;
 
-import uk.co.senab.photoview.gestures.OnGestureListener;
-import uk.co.senab.photoview.gestures.VersionedGestureDetector;
-import uk.co.senab.photoview.log.LogManager;
+import java.lang.ref.WeakReference;
 
 import static android.view.MotionEvent.ACTION_CANCEL;
 import static android.view.MotionEvent.ACTION_DOWN;
@@ -77,10 +78,12 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
                                         float maxZoom) {
         if (minZoom >= midZoom) {
             throw new IllegalArgumentException(
-                    "Minimum zoom has to be less than Medium zoom. Call setMinimumZoom() with a more appropriate value");
+                    "Minimum zoom has to be less than Medium zoom. Call setMinimumZoom() with a " +
+                            "more appropriate value");
         } else if (midZoom >= maxZoom) {
             throw new IllegalArgumentException(
-                    "Medium zoom has to be less than Maximum zoom. Call setMaximumZoom() with a more appropriate value");
+                    "Medium zoom has to be less than Maximum zoom. Call setMaximumZoom() with a " +
+                            "more appropriate value");
         }
     }
 
@@ -128,7 +131,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
     // Gesture Detectors
     private GestureDetector mGestureDetector;
-    private uk.co.senab.photoview.gestures.GestureDetector mScaleDragDetector;
+    private com.letion.uikit.photoview.gestures.GestureDetector mScaleDragDetector;
 
     // These are set so we don't keep allocating them on the heap
     private final Matrix mBaseMatrix = new Matrix();
@@ -242,7 +245,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
      * Clean-up the resources attached to this object. This needs to be called when the ImageView is
      * no longer used. A good example is from {@link View#onDetachedFromWindow()} or
      * from {@link android.app.Activity#onDestroy()}. This is automatically called if you are using
-     * {@link uk.co.senab.photoview.PhotoView}.
+     * {@link com.letion.uikit.photoview.PhotoView}.
      */
     @SuppressWarnings("deprecation")
     public void cleanup() {
@@ -337,7 +340,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
         if (null == imageView) {
             cleanup();
             LogManager.getLogger().i(LOG_TAG,
-                    "ImageView no longer exists. You should not use this PhotoViewAttacher any more.");
+                    "ImageView no longer exists. You should not use this PhotoViewAttacher any " +
+                            "more.");
         }
 
         return imageView;
@@ -360,7 +364,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
     @Override
     public float getScale() {
-        return (float) Math.sqrt((float) Math.pow(getValue(mSuppMatrix, Matrix.MSCALE_X), 2) + (float) Math.pow(getValue(mSuppMatrix, Matrix.MSKEW_Y), 2));
+        return (float) Math.sqrt((float) Math.pow(getValue(mSuppMatrix, Matrix.MSCALE_X), 2) +
+                (float) Math.pow(getValue(mSuppMatrix, Matrix.MSKEW_Y), 2));
     }
 
     @Override
@@ -393,7 +398,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
          * the edge, aka 'overscrolling', let the parent take over).
          */
         ViewParent parent = imageView.getParent();
-        if (mAllowParentInterceptOnEdge && !mScaleDragDetector.isScaling() && !mBlockParentIntercept) {
+        if (mAllowParentInterceptOnEdge && !mScaleDragDetector.isScaling() &&
+                !mBlockParentIntercept) {
             if (mScrollEdge == EDGE_BOTH
                     || (mScrollEdge == EDGE_LEFT && dx >= 1f)
                     || (mScrollEdge == EDGE_RIGHT && dx <= -1f)) {
@@ -468,7 +474,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
                             scaleFactor, focusX, focusY));
         }
 
-        if ((getScale() < mMaxScale || scaleFactor < 1f) && (getScale() > mMinScale || scaleFactor > 1f)) {
+        if ((getScale() < mMaxScale || scaleFactor < 1f) && (getScale() > mMinScale ||
+                scaleFactor > 1f)) {
             if (null != mScaleChangeListener) {
                 mScaleChangeListener.onScaleChange(scaleFactor, focusX, focusY);
             }
@@ -642,6 +649,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
     /**
      * Set the zoom interpolator
+     *
      * @param interpolator the zoom interpolator
      */
     public void setZoomInterpolator(Interpolator interpolator) {
@@ -683,6 +691,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
     /**
      * Get the display matrix
+     *
      * @param matrix target matrix to copy to
      */
     @Override
@@ -733,7 +742,9 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
         if (null != imageView && !(imageView instanceof IPhotoView)) {
             if (!ScaleType.MATRIX.equals(imageView.getScaleType())) {
                 throw new IllegalStateException(
-                        "The ImageView's ScaleType has been changed since attaching a PhotoViewAttacher. You should call setScaleType on the PhotoViewAttacher instead of on the ImageView"  );
+                        "The ImageView's ScaleType has been changed since attaching a " +
+                                "PhotoViewAttacher. You should call setScaleType on the " +
+                                "PhotoViewAttacher instead of on the ImageView");
             }
         }
     }
@@ -908,7 +919,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 //            mBaseMatrix.postTranslate((viewWidth - drawableWidth * scale) / 2F,
 //                    (viewHeight - drawableHeight * scale) / 2F);
             //需求改变，高度设为0；
-            mBaseMatrix.postTranslate((viewWidth - drawableWidth * scale) / 2F,0);
+            mBaseMatrix.postTranslate((viewWidth - drawableWidth * scale) / 2F, 0);
 
         } else if (mScaleType == ScaleType.CENTER_INSIDE) {
             float scale = Math.min(1.0f, Math.min(widthScale, heightScale));
@@ -987,7 +998,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
         /**
          * Callback for when the scale changes
          *
-         * @param scaleFactor the scale factor (less than 1 for zoom out, greater than 1 for zoom in)
+         * @param scaleFactor the scale factor (less than 1 for zoom out, greater than 1 for zoom
+         *                    in)
          * @param focusX      focal point X position
          * @param focusY      focal point Y position
          */
@@ -1016,7 +1028,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
         /**
          * A simple callback where out of photo happened;
-         * */
+         */
         void onOutsidePhotoTap();
     }
 
@@ -1048,7 +1060,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
     public interface OnSingleFlingListener {
 
         /**
-         * A callback to receive where the user flings on a ImageView. You will receive a callback if
+         * A callback to receive where the user flings on a ImageView. You will receive a
+         * callback if
          * the user flings anywhere on the view.
          *
          * @param e1        - MotionEvent the user first touch.

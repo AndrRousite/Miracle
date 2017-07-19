@@ -87,18 +87,18 @@ dependencies {
     // debug
     compile rootProject.ext.dependencies["timber"]
     // module
-    compile(rootProject.ext.library["agentweb"]) {
+    compile(rootProject.ext.library["webkit"]) {
         exclude group: 'com.android.support'
     }
-    compile(rootProject.ext.library["updatelib"]) {
+    compile(rootProject.ext.library["upgradekit"]) {
         exclude group: 'com.android.support'
     }
     compile(rootProject.ext.library["uikit"]) {
         exclude group: 'com.android.support'
     }
-//    compile project(':agentweb')
+//    compile project(':webkit')
 //    compile project(':uikit')
-//    compile project(':updatelib')
+//    compile project(':upgradekit')
 }
 
 buildscript {
