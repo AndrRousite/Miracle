@@ -14,9 +14,11 @@ import android.view.ViewConfiguration;
 import java.lang.reflect.Method;
 
 /**
- * Created by liu-feng on 2017/6/6.
+ * Created by geyifeng on 2017/5/11.
  */
-public class Config {
+
+class BarConfig {
+
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
     private static final String NAV_BAR_HEIGHT_RES_NAME = "navigation_bar_height";
     private static final String NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME = "navigation_bar_height_landscape";
@@ -46,7 +48,7 @@ public class Config {
     }
 
 
-    public Config(Activity activity) {
+    public BarConfig(Activity activity) {
         Resources res = activity.getResources();
         mInPortrait = (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
         mSmallestWidthDp = getSmallestWidthDp(activity);
@@ -196,4 +198,5 @@ public class Config {
     public int getNavigationBarWidth() {
         return mNavigationBarWidth;
     }
+
 }

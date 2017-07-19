@@ -1,9 +1,6 @@
 package com.letion.geetionlib.base.delegate;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.letion.geetionlib.di.component.AppComponent;
 
@@ -19,7 +16,9 @@ public interface IFragment {
 
     boolean useEventBus();
 
-    View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+    int getResourceId();
+
+    void initView(Bundle savedanceState);
 
     void initData(Bundle savedInstanceState);
 

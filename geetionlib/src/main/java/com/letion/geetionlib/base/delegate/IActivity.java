@@ -21,9 +21,10 @@ public interface IActivity {
      * 如果initView返回0,框架则不会调用{@link android.app.Activity#setContentView(int)}
      *
      * @return
-     * @param savedInstanceState
      */
-    int initView(Bundle savedInstanceState);
+    int getResourceId();
+
+    void initView(Bundle savedInstanceState);
 
     void initData(Bundle savedInstanceState);
 

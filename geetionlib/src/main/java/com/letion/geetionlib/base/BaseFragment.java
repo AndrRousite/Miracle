@@ -26,13 +26,12 @@ public abstract class BaseFragment<P extends IPresenter> extends RxFragment impl
         setArguments(new Bundle());
     }
 
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return initView(inflater, container, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+            Bundle savedInstanceState) {
+        return inflater.inflate(getResourceId(), container, false);
     }
-
 
     @Override
     public void onDestroy() {

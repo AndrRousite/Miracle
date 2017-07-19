@@ -3,6 +3,7 @@ package com.letion.geetionlib.vender.immersionbar;
 /**
  * Created by geyifeng on 2017/4/25.
  */
+
 public enum BarHide {
     FLAG_HIDE_STATUS_BAR, //隐藏状态栏
     FLAG_HIDE_NAVIGATION_BAR, //隐藏导航栏

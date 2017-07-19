@@ -80,6 +80,10 @@ dependencies {
     compile(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
     }
+    // multitype
+    compile(rootProject.ext.dependencies["multitype"]) {
+        exclude group: 'com.android.support'
+    }
     // debug
     compile rootProject.ext.dependencies["timber"]
     // module

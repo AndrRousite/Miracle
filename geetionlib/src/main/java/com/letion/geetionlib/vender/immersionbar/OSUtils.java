@@ -91,7 +91,7 @@ public class OSUtils {
      * @return the boolean
      */
     public static boolean isFlymeOS() {
-        return getMeizuFlymeOSFlag().toLowerCase().contains("flyme");
+        return getFlymeOSFlag().toLowerCase().contains("flyme");
     }
 
     /**
@@ -102,11 +102,42 @@ public class OSUtils {
      */
     public static boolean isFlymeOS4More() {
         String version = getFlymeOSVersion();
-        if (!version.isEmpty() && (Integer.valueOf(version.substring(6, 7)) >= 4)) {
-            return true;
+        int num;
+        if (!version.isEmpty()) {
+            if (version.toLowerCase().contains("os")) {
+                num = Integer.valueOf(version.substring(9, 10));
+            } else {
+                num = Integer.valueOf(version.substring(6, 7));
+            }
+            if (num >= 4) {
+                return true;
+            }
         }
         return false;
     }
+
+    /**
+     * 判断flymeOS的版本是否等于5
+     * Is flyme os 5 boolean.
+     *
+     * @return the boolean
+     */
+    public static boolean isFlymeOS5() {
+        String version = getFlymeOSVersion();
+        int num;
+        if (!version.isEmpty()) {
+            if (version.toLowerCase().contains("os")) {
+                num = Integer.valueOf(version.substring(9, 10));
+            } else {
+                num = Integer.valueOf(version.substring(6, 7));
+            }
+            if (num == 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * 得到flymeOS的版本
@@ -118,7 +149,7 @@ public class OSUtils {
         return isFlymeOS() ? getSystemProperty(KEY_DISPLAY, "") : "";
     }
 
-    private static String getMeizuFlymeOSFlag() {
+    private static String getFlymeOSFlag() {
         return getSystemProperty(KEY_DISPLAY, "");
     }
 
