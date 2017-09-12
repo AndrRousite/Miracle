@@ -24,7 +24,8 @@ public class FragmentDelegateImpl implements FragmentDelegate {
     private Unbinder mUnbinder;
 
 
-    public FragmentDelegateImpl(android.support.v4.app.FragmentManager fragmentManager, android.support.v4.app.Fragment fragment) {
+    public FragmentDelegateImpl(android.support.v4.app.FragmentManager fragmentManager, android
+            .support.v4.app.Fragment fragment) {
         this.mFragmentManager = fragmentManager;
         this.mFragment = fragment;
         this.iFragment = (IFragment) fragment;
@@ -39,7 +40,8 @@ public class FragmentDelegateImpl implements FragmentDelegate {
     public void onCreate(Bundle savedInstanceState) {
         if (iFragment.useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(mFragment);//注册到事件主线
-        iFragment.setupFragmentComponent(((App) mFragment.getActivity().getApplication()).getAppComponent());
+        iFragment.setupFragmentComponent(((App) mFragment.getActivity().getApplication())
+                .getAppComponent());
     }
 
     @Override
@@ -51,6 +53,7 @@ public class FragmentDelegateImpl implements FragmentDelegate {
 
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
+        if (isAdded()) return;
         iFragment.initView(savedInstanceState);
         iFragment.initData(savedInstanceState);
     }
@@ -82,7 +85,7 @@ public class FragmentDelegateImpl implements FragmentDelegate {
 
     @Override
     public void onDestroyView() {
-        if (mUnbinder != null && mUnbinder != mUnbinder.EMPTY) {
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
             try {
                 mUnbinder.unbind();
             } catch (IllegalStateException e) {
@@ -112,7 +115,7 @@ public class FragmentDelegateImpl implements FragmentDelegate {
      */
     @Override
     public boolean isAdded() {
-        return mFragment == null ? false : mFragment.isAdded();
+        return mFragment != null && mFragment.isAdded();
     }
 
     @Override
@@ -132,7 +135,8 @@ public class FragmentDelegateImpl implements FragmentDelegate {
         this.mUnbinder = in.readParcelable(Unbinder.class.getClassLoader());
     }
 
-    public static final Creator<FragmentDelegateImpl> CREATOR = new Creator<FragmentDelegateImpl>() {
+    public static final Creator<FragmentDelegateImpl> CREATOR = new Creator<FragmentDelegateImpl>
+            () {
         @Override
         public FragmentDelegateImpl createFromParcel(Parcel source) {
             return new FragmentDelegateImpl(source);
