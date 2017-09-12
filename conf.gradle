@@ -12,9 +12,9 @@ ext {
     ]
 
     library = [
-            "webkit" : "me.letion:webkit:${android["versionName"]}",
+            "webkit"    : "me.letion:webkit:${android["versionName"]}",
             "upgradekit": "me.letion:upgradekit:${android["versionName"]}",
-            "uikit"    : "me.letion:uikit:${android["versionName"]}"
+            "uikit"     : "me.letion:uikit:${android["versionName"]}"
     ]
 
     version = [
@@ -80,6 +80,9 @@ ext {
             "sophix"                     : "com.aliyun.ams:alicloud-android-hotfix:3.0.2",
 
             // MultiType
-            "multitype"                  : "me.drakeet.multitype:multitype:3.1.0"
+            "multitype"                  : "me.drakeet.multitype:multitype:3.1.0",
+            // 拼音库，大约80k左右
+            "tinypinyin"                 : "com.github.promeg:tinypinyin:1.0.0",
+
     ]
 }
