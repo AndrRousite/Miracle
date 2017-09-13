@@ -181,6 +181,12 @@
         <attr name="tl_indicator_margin_right"/>
         <attr name="tl_indicator_margin_bottom"/>
         <attr name="tl_indicator_corner_radius"/>
+        <!-- 设置icon显示位置,对应Gravity中常量值 -->
+        <attr name="tl_indicator_corner_radius_gravity" format="enum">
+            <enum name="ALL" value="0"/>
+            <enum name="TOP" value="48"/>
+            <enum name="BOTTOM" value="80"/>
+        </attr>
         <attr name="tl_indicator_anim_enable"/>
         <attr name="tl_indicator_anim_duration"/>
         <attr name="tl_indicator_bounce_enable"/>
