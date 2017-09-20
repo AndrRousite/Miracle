@@ -50,6 +50,7 @@ dependencies {
     compile rootProject.ext.dependencies["annotations"]
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["gson"]
     compile rootProject.ext.dependencies["androideventbus"]
     compile rootProject.ext.dependencies["retrofit"]
@@ -84,7 +85,7 @@ dependencies {
     compile(rootProject.ext.dependencies["multitype"]) {
         exclude group: 'com.android.support'
     }
-    // multitype
+    // tinypinyin
     compile rootProject.ext.dependencies["tinypinyin"]
     // debug
     compile rootProject.ext.dependencies["timber"]

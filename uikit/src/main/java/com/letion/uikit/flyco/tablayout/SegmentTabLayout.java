@@ -330,22 +330,30 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
         if (!mIndicatorAnimEnable) {
             if (mCurrentTab == 0) {
                 /**The corners are ordered top-left, top-right, bottom-right, bottom-left*/
-                mRadiusArr[0] = mIndicatorCornerRadiusGravity== Gravity.BOTTOM?0:mIndicatorCornerRadius;
-                mRadiusArr[1] = mIndicatorCornerRadiusGravity== Gravity.BOTTOM?0:mIndicatorCornerRadius;
+                mRadiusArr[0] = mIndicatorCornerRadiusGravity == Gravity.BOTTOM ? 0 :
+                        mIndicatorCornerRadius;
+                mRadiusArr[1] = mIndicatorCornerRadiusGravity == Gravity.BOTTOM ? 0 :
+                        mIndicatorCornerRadius;
                 mRadiusArr[2] = 0;
                 mRadiusArr[3] = 0;
                 mRadiusArr[4] = 0;
                 mRadiusArr[5] = 0;
-                mRadiusArr[6] = mIndicatorCornerRadiusGravity== Gravity.TOP?0:mIndicatorCornerRadius;
-                mRadiusArr[7] = mIndicatorCornerRadiusGravity== Gravity.TOP?0:mIndicatorCornerRadius;
+                mRadiusArr[6] = mIndicatorCornerRadiusGravity == Gravity.TOP ? 0 :
+                        mIndicatorCornerRadius;
+                mRadiusArr[7] = mIndicatorCornerRadiusGravity == Gravity.TOP ? 0 :
+                        mIndicatorCornerRadius;
             } else if (mCurrentTab == mTabCount - 1) {
                 /**The corners are ordered top-left, top-right, bottom-right, bottom-left*/
                 mRadiusArr[0] = 0;
                 mRadiusArr[1] = 0;
-                mRadiusArr[2] = mIndicatorCornerRadiusGravity== Gravity.BOTTOM?0:mIndicatorCornerRadius;
-                mRadiusArr[3] = mIndicatorCornerRadiusGravity== Gravity.BOTTOM?0:mIndicatorCornerRadius;
-                mRadiusArr[4] = mIndicatorCornerRadiusGravity== Gravity.TOP?0:mIndicatorCornerRadius;
-                mRadiusArr[5] = mIndicatorCornerRadiusGravity== Gravity.TOP?0:mIndicatorCornerRadius;
+                mRadiusArr[2] = mIndicatorCornerRadiusGravity == Gravity.BOTTOM ? 0 :
+                        mIndicatorCornerRadius;
+                mRadiusArr[3] = mIndicatorCornerRadiusGravity == Gravity.BOTTOM ? 0 :
+                        mIndicatorCornerRadius;
+                mRadiusArr[4] = mIndicatorCornerRadiusGravity == Gravity.TOP ? 0 :
+                        mIndicatorCornerRadius;
+                mRadiusArr[5] = mIndicatorCornerRadiusGravity == Gravity.TOP ? 0 :
+                        mIndicatorCornerRadius;
                 mRadiusArr[6] = 0;
                 mRadiusArr[7] = 0;
             } else {
@@ -404,7 +412,37 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
         //draw rect
         mRectDrawable.setColor(mBarColor);
         mRectDrawable.setStroke((int) mBarStrokeWidth, mBarStrokeColor);
-        mRectDrawable.setCornerRadius(mIndicatorCornerRadius);
+        float[] tempRadius = new float[8];
+        if (mIndicatorCornerRadiusGravity == Gravity.TOP) {
+            /**The corners are ordered top-left, top-right, bottom-right, bottom-left*/
+            tempRadius[0] = mIndicatorCornerRadius;
+            tempRadius[1] = mIndicatorCornerRadius;
+            tempRadius[2] = mIndicatorCornerRadius;
+            tempRadius[3] = mIndicatorCornerRadius;
+            tempRadius[4] = 0;
+            tempRadius[5] = 0;
+            tempRadius[6] = 0;
+            tempRadius[7] = 0;
+        } else if (mIndicatorCornerRadiusGravity == Gravity.BOTTOM) {
+            tempRadius[0] = 0;
+            tempRadius[1] = 0;
+            tempRadius[2] = 0;
+            tempRadius[3] = 0;
+            tempRadius[4] = mIndicatorCornerRadius;
+            tempRadius[5] = mIndicatorCornerRadius;
+            tempRadius[6] = mIndicatorCornerRadius;
+            tempRadius[7] = mIndicatorCornerRadius;
+        } else {
+            tempRadius[0] = mIndicatorCornerRadius;
+            tempRadius[1] = mIndicatorCornerRadius;
+            tempRadius[2] = mIndicatorCornerRadius;
+            tempRadius[3] = mIndicatorCornerRadius;
+            tempRadius[4] = mIndicatorCornerRadius;
+            tempRadius[5] = mIndicatorCornerRadius;
+            tempRadius[6] = mIndicatorCornerRadius;
+            tempRadius[7] = mIndicatorCornerRadius;
+        }
+        mRectDrawable.setCornerRadii(tempRadius);
         mRectDrawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight()
                 , getHeight() - getPaddingBottom());
         mRectDrawable.draw(canvas);

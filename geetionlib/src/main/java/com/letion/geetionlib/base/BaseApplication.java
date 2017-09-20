@@ -1,6 +1,7 @@
 package com.letion.geetionlib.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.letion.geetionlib.base.delegate.AppDelegate;
 import com.letion.geetionlib.di.component.AppComponent;
@@ -12,12 +13,17 @@ public class BaseApplication extends Application implements App {
 
     private AppDelegate mAppDelegate;
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        this.mAppDelegate = new AppDelegate();
+        this.mAppDelegate.attachBaseContext(base);
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        this.mAppDelegate = new AppDelegate(this);
-        this.mAppDelegate.onCreate();
+        this.mAppDelegate.onCreate(this);
     }
 
     /**

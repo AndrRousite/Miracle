@@ -377,7 +377,7 @@ public class CommonTextView extends RelativeLayout {
     private void initCommonTextView() {
         this.setBackgroundColor(mBackgroundColor);
         if (useRipple) {
-            this.setBackgroundResource(R.drawable.supertext_bg_selector);
+            this.setBackgroundResource(R.drawable.selector_super_text);
         }
         this.setOnClickListener(new OnClickListener() {
             @Override

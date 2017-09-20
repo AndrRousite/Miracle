@@ -381,7 +381,7 @@ public class SuperTextView extends RelativeLayout {
         });
 
         if (useRipple) {
-            this.setBackgroundResource(R.drawable.supertext_bg_selector);
+            this.setBackgroundResource(R.drawable.selector_super_text);
         }
         if (mBackground_drawable != null) {
             this.setBackgroundDrawable(mBackground_drawable);

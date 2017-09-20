@@ -9,26 +9,28 @@ import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 
 /**
  * Created by liu-feng on 2017/6/5.
  */
 public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
     protected CompositeDisposable mCompositeDisposable;
+    protected RxErrorHandler mRxErrorHandler;
     protected MHandler mHandler;
 
     protected M mModel;
-    protected V mRootView;
+    protected V mView;
 
 
     public BasePresenter(M model, V rootView) {
         this.mModel = model;
-        this.mRootView = rootView;
+        this.mView = rootView;
         onAttach();
     }
 
     public BasePresenter(V rootView) {
-        this.mRootView = rootView;
+        this.mView = rootView;
         onAttach();
     }
 
@@ -51,7 +53,8 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
         if (mModel != null)
             mModel.onDestroy();
         this.mModel = null;
-        this.mRootView = null;
+        this.mView = null;
+        this.mRxErrorHandler = null;
         this.mCompositeDisposable = null;
     }
 

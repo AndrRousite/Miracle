@@ -2,7 +2,7 @@ package com.letion.geetionlib.vender.imageloader.glide;
 
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.request.target.Target;
 import com.letion.geetionlib.vender.imageloader.ImageConfig;
 
@@ -14,7 +14,7 @@ import com.letion.geetionlib.vender.imageloader.ImageConfig;
  */
 public class GlideImageConfig extends ImageConfig {
     private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
-    private BitmapTransformation transformation;//glide用它来改变图形的形状
+    private Transformation transformation;//glide用它来改变图形的形状
     private Target[] targets;
     private ImageView[] imageViews;
     private boolean isClearMemory;//清理内存缓存
@@ -37,7 +37,7 @@ public class GlideImageConfig extends ImageConfig {
         return cacheStrategy;
     }
 
-    public BitmapTransformation getTransformation() {
+    public Transformation getTransformation() {
         return transformation;
     }
 
@@ -68,7 +68,7 @@ public class GlideImageConfig extends ImageConfig {
         private int placeholder;
         private int errorPic;
         private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
-        private BitmapTransformation transformation;//glide用它来改变图形的形状
+        private Transformation transformation;//glide用它来改变图形的形状
         private Target[] targets;
         private ImageView[] imageViews;
         private boolean isClearMemory;//清理内存缓存
@@ -102,7 +102,7 @@ public class GlideImageConfig extends ImageConfig {
             return this;
         }
 
-        public Builder transformation(BitmapTransformation transformation) {
+        public Builder transformation(Transformation transformation) {
             this.transformation = transformation;
             return this;
         }

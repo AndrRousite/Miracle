@@ -1,6 +1,7 @@
 package com.letion.geetionlib.base.delegate;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.letion.geetionlib.base.App;
 import com.letion.geetionlib.base.integration.ActivityLifecycle;
@@ -34,8 +35,7 @@ public class AppDelegate implements App {
     private List<Lifecycle> mAppLifecycles = new ArrayList<>();
     private List<Application.ActivityLifecycleCallbacks> mActivityLifecycles = new ArrayList<>();
 
-    public AppDelegate(Application application) {
-        this.mApplication = application;
+    public AppDelegate() {
         this.mModules = new ManifestParser(mApplication).parse();
         for (ConfigModule module : mModules) {
             module.injectAppLifecycle(mApplication, mAppLifecycles);
@@ -43,7 +43,14 @@ public class AppDelegate implements App {
         }
     }
 
-    public void onCreate() {
+    public void attachBaseContext(Context base) {
+        for (Lifecycle lifecycle : mAppLifecycles) {
+            lifecycle.attachBaseContext(base);
+        }
+    }
+
+    public void onCreate(Application application) {
+        this.mApplication = application;
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(mApplication))//提供application
@@ -99,7 +106,8 @@ public class AppDelegate implements App {
      *
      * @return
      */
-    private GlobalConfigModule getGlobalConfigModule(Application context, List<ConfigModule> modules) {
+    private GlobalConfigModule getGlobalConfigModule(Application context, List<ConfigModule>
+            modules) {
 
         GlobalConfigModule.Builder builder = GlobalConfigModule
                 .builder();
@@ -124,6 +132,8 @@ public class AppDelegate implements App {
 
 
     public interface Lifecycle {
+        void attachBaseContext(Context base);
+
         void onCreate(Application application);
 
         void onTerminate(Application application);

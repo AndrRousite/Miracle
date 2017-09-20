@@ -4,11 +4,11 @@ apply plugin: 'com.jfrog.bintray'
 // load properties
 Properties properties = new Properties()
 File localPropertiesFile = project.rootProject.file("local.properties");
-if(localPropertiesFile.exists()){
+if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }
 File projectPropertiesFile = project.file("project.properties");
-if(projectPropertiesFile.exists()){
+if (projectPropertiesFile.exists()) {
     properties.load(projectPropertiesFile.newDataInputStream())
 }
 
@@ -16,7 +16,7 @@ if(projectPropertiesFile.exists()){
 def projectName = properties.getProperty("project.name")
 def projectGroupId = properties.getProperty("project.groupId")
 def projectArtifactId = properties.getProperty("project.artifactId")
-def projectVersionName = android.defaultConfig.versionName
+def projectVersionName = '0.1.4'
 def projectPackaging = properties.getProperty("project.packaging")
 def projectSiteUrl = properties.getProperty("project.siteUrl")
 def projectGitUrl = properties.getProperty("project.gitUrl")
@@ -91,7 +91,7 @@ artifacts {
 
 // javadoc configuration
 javadoc {
-    options{
+    options {
         encoding "UTF-8"
         charSet 'UTF-8'
         author true
