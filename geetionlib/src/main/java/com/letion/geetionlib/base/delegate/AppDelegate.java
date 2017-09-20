@@ -35,11 +35,11 @@ public class AppDelegate implements App {
     private List<Lifecycle> mAppLifecycles = new ArrayList<>();
     private List<Application.ActivityLifecycleCallbacks> mActivityLifecycles = new ArrayList<>();
 
-    public AppDelegate() {
-        this.mModules = new ManifestParser(mApplication).parse();
+    public AppDelegate(Context context) {
+        this.mModules = new ManifestParser(context).parse();
         for (ConfigModule module : mModules) {
-            module.injectAppLifecycle(mApplication, mAppLifecycles);
-            module.injectActivityLifecycle(mApplication, mActivityLifecycles);
+            module.injectAppLifecycle(context, mAppLifecycles);
+            module.injectActivityLifecycle(context, mActivityLifecycles);
         }
     }
 

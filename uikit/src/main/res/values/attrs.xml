@@ -29,5 +29,10 @@
         <attr name="leftSwipe" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="TLoadingView">
+        <attr name="loading_view_size" format="dimension"/>
+        <attr name="android:color"/>
+    </declare-styleable>
+
 
 </resources>

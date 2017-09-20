@@ -16,7 +16,7 @@ public class BaseApplication extends Application implements App {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        this.mAppDelegate = new AppDelegate();
+        this.mAppDelegate = new AppDelegate(base);
         this.mAppDelegate.attachBaseContext(base);
     }
 

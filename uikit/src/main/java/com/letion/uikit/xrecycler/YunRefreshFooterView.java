@@ -42,7 +42,7 @@ public class YunRefreshFooterView extends LinearLayout implements IRefreshFooter
     }
 
     private void initView(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.yun_refresh_footer, this);
+        LayoutInflater.from(context).inflate(R.layout.layout_refresh_footer, this);
         mText = (TextView) findViewById(R.id.msg);
         mIvProgress = (ImageView) findViewById(R.id.iv_progress);
         mAnimationDrawable = (AnimationDrawable) mIvProgress.getDrawable();

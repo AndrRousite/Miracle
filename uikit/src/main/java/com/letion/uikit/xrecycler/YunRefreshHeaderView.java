@@ -39,7 +39,7 @@ public class YunRefreshHeaderView extends LinearLayout implements IRefreshHeader
     }
 
     private void initView(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.kaws_refresh_header, this);
+        LayoutInflater.from(context).inflate(R.layout.layout_refresh_header, this);
         ImageView img = (ImageView) findViewById(R.id.img);
 
         animationDrawable = (AnimationDrawable) img.getDrawable();

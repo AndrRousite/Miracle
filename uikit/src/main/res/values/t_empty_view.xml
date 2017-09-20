@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="empty_image" type="id"/>
+    <item name="empty_text" type="id"/>
+
+    <item name="error_image" type="id"/>
+    <item name="error_text" type="id"/>
+    <item name="retry_button" type="id"/>
+
+    <item name="loading_loading" type="id"/>
+    <item name="loading_text" type="id"/>
+
+    <attr name="TEmptyLayout" format="reference"/>
+
+    <style name="TEmptyLayout">
+    </style>
+
+    <style name="TEmptyLayout.Style">
+        <item name="llEmptyResId">@layout/layout_loading_empty</item>
+        <item name="llLoadingResId">@layout/layout_loading_loading</item>
+        <item name="llErrorResId">@layout/layout_loading_error</item>
+
+        <item name="llTextColor">#999999</item>
+        <item name="llTextSize">14sp</item>
+
+        <item name="llButtonTextColor">#999999</item>
+        <item name="llButtonTextSize">14sp</item>
+        <item name="llButtonBackground">@drawable/ic_button_retry</item>
+
+        <item name="llEmptyImage">@null</item>
+        <item name="llEmptyText">暂无数据</item>
+
+        <item name="llErrorImage">@null</item>
+        <item name="llErrorText">无网络连接，请检查您的网络...</item>
+        <item name="llRetryText">加载失败，点击重试~~</item>
+
+        <item name="llLoadingColor">#999999</item>
+        <item name="llLoadingText">加载中...</item>
+        <item name="llLoadingShowText">false</item>
+    </style>
+
+
+    <declare-styleable name="TEmptyLayout">
+        <!-- 空布局资源id -->
+        <attr name="llEmptyResId" format="reference"/>
+        <!-- 加载中布局资源id -->
+        <attr name="llLoadingResId" format="reference"/>
+        <!-- 错误布局资源id -->
+        <attr name="llErrorResId" format="reference"/>
+
+        <!-- 空布局图片 -->
+        <attr name="llEmptyImage" format="reference"/>
+        <!-- 空布局文本 -->
+        <attr name="llEmptyText" format="string"/>
+
+        <!-- 错误布局图片 -->
+        <attr name="llErrorImage" format="reference"/>
+        <!-- 错误布局文本 -->
+        <attr name="llErrorText" format="string"/>
+        <!-- 错误布局重试按钮文本 -->
+        <attr name="llRetryText" format="string"/>
+
+        <!--loading 的颜色-->
+        <attr name="llLoadingText" format="string"/>
+        <attr name="llLoadingColor" format="color"/>
+        <!--loading 的大小(px)-->
+        <attr name="llLoadingSize" format="dimension"/>
+        <attr name="llLoadingShowText" format="boolean"/>
+
+        <!-- 文本颜色 -->
+        <attr name="llTextColor" format="color"/>
+        <!-- 文本尺寸 -->
+        <attr name="llTextSize" format="dimension"/>
+
+        <!-- 按钮文本颜色 -->
+        <attr name="llButtonTextColor" format="color"/>
+        <!-- 按钮文本尺寸 -->
+        <attr name="llButtonTextSize" format="dimension"/>
+        <!-- 按钮背景 -->
+        <attr name="llButtonBackground" format="reference"/>
+    </declare-styleable>
+</resources>

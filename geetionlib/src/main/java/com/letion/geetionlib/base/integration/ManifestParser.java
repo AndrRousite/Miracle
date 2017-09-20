@@ -1,6 +1,5 @@
 package com.letion.geetionlib.base.integration;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -16,12 +15,12 @@ public final class ManifestParser {
 
     private final Context context;
 
-    public ManifestParser(Application context) {
+    public ManifestParser(Context context) {
         this.context = context;
     }
 
     public List<ConfigModule> parse() {
-        List<ConfigModule> modules = new ArrayList<ConfigModule>();
+        List<ConfigModule> modules = new ArrayList<>();
         try {
             ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
                     context.getPackageName(), PackageManager.GET_META_DATA);
