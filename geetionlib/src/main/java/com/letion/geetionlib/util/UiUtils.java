@@ -33,7 +33,6 @@ import static com.letion.geetionlib.base.integration.AppManager.START_ACTIVITY;
  * Created by liu-feng on 2015/11/23.
  */
 public class UiUtils {
-    static Toast mToast;
 
     private UiUtils(){}
 
@@ -185,11 +184,7 @@ public class UiUtils {
      * @param string
      */
     public static void showToast(Context context, String string) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
-        }
-        mToast.setText(string);
-        mToast.show();
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
     }
 
     /**

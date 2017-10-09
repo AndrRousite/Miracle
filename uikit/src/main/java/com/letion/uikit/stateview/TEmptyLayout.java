@@ -17,12 +17,12 @@
 package com.letion.uikit.stateview;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;

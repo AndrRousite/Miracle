@@ -99,9 +99,9 @@ dependencies {
     compile(rootProject.ext.library["uikit"]) {
         exclude group: 'com.android.support'
     }
-//    compile project(':webkit')
-//    compile project(':uikit')
-//    compile project(':upgradekit')
+    compile project(':webkit')
+    compile project(':uikit')
+    compile project(':upgradekit')
 }
 
 buildscript {

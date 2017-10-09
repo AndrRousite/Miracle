@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="QMUI.Dialog" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@color/qmui_config_color_transparent</item>
+        <item name="android:windowNoTitle">true</item><!-- 不用window title，使用自己的layout来做title -->
+        <!-- <item name="android:windowTitleStyle">@style/dialog_title</item> --><!-- 不用设置windowStyleStyle，因为windowNoTitle=true -->
+        <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
+        <item name="android:minWidth">?attr/qmui_dialog_min_width</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">?attr/qmui_dialog_margin_horizontal</item>
+        <item name="android:layout_marginRight">?attr/qmui_dialog_margin_horizontal</item>
+    </style>
+
+    <!--**********************************************
+    *                  Dialog                        *
+    **********************************************-->
+    <style name="qmui_dialog_wrap">
+        <item name="android:background">?attr/qmui_dialog_bg</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">?attr/qmui_dialog_margin_vertical</item>
+        <item name="android:layout_marginBottom">?attr/qmui_dialog_margin_vertical</item>
+    </style>
+</resources>

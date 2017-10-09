@@ -64,7 +64,7 @@ public class AppManager {
             case SHOW_SNACKBAR:
                 if (message.obj == null)
                     break;
-                showSnackbar((String) message.obj, message.arg1 == 0 ? false : true);
+                showSnackbar((String) message.obj, message.arg1 != 0);
                 break;
             case KILL_ALL:
                 killAll();
