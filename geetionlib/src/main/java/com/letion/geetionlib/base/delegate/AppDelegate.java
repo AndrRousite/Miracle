@@ -43,9 +43,9 @@ public class AppDelegate implements App {
         }
     }
 
-    public void attachBaseContext(Context base) {
+    public void attachBaseContext(Application application) {
         for (Lifecycle lifecycle : mAppLifecycles) {
-            lifecycle.attachBaseContext(base);
+            lifecycle.attachBaseContext(application);
         }
     }
 
@@ -132,7 +132,7 @@ public class AppDelegate implements App {
 
 
     public interface Lifecycle {
-        void attachBaseContext(Context base);
+        void attachBaseContext(Application application);
 
         void onCreate(Application application);
 

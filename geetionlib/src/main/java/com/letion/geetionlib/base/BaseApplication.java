@@ -16,14 +16,16 @@ public class BaseApplication extends Application implements App {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        this.mAppDelegate = new AppDelegate(base);
-        this.mAppDelegate.attachBaseContext(base);
+        if (mAppDelegate == null)
+            this.mAppDelegate = new AppDelegate(base);
+        this.mAppDelegate.attachBaseContext(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        this.mAppDelegate.onCreate(this);
+        if (mAppDelegate != null)
+            this.mAppDelegate.onCreate(this);
     }
 
     /**

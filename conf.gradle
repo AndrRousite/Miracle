@@ -14,7 +14,8 @@ ext {
     library = [
             "webkit"    : "me.letion:webkit:${android["versionName"]}",
             "upgradekit": "me.letion:upgradekit:${android["versionName"]}",
-            "uikit"     : "me.letion:uikit:${android["versionName"]}"
+            "uikit"     : "me.letion:uikit:${android["versionName"]}",
+            "shadow"    : "me.letion:shadow:${android["versionName"]}",
     ]
 
     version = [
