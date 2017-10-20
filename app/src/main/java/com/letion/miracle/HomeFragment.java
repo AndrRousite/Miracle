@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
@@ -25,6 +26,7 @@ import com.letion.uikit.dialog.QMUIDisplayHelper;
 import com.letion.uikit.dialog.QMUIKeyboardHelper;
 import com.letion.uikit.dialog.QMUIResHelper;
 import com.letion.uikit.dialog.QMUIViewHelper;
+import com.letion.uikit.wheelview.LoopView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -170,6 +172,17 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(), "你选择了 " + items[which], Toast.LENGTH_SHORT)
                                 .show();
                         dialog.dismiss();
+                        final BottomSheetDialog dialog1 = new BottomSheetDialog(getActivity());
+                        View dialogView = LayoutInflater.from(getActivity())
+                                .inflate(R.layout.layout_wheelview, null);
+                        ArrayList<String> list = new ArrayList<>();
+                        for (int i = 0; i < 15; i++) {
+                            list.add("item " + i);
+                        }
+                        final LoopView loopView = (LoopView) dialogView.findViewById(R.id.loopView);
+                        loopView.setItems(list);
+                        dialog1.setContentView(dialogView);
+                        dialog1.show();
                     }
                 })
                 .show();

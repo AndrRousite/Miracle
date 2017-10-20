@@ -42,6 +42,7 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
     protected QMUIDialog mDialog;
     protected LayoutInflater mInflater;
     protected String mTitle;
+    protected boolean mCancelable = true;
 
     protected LinearLayout mRootView;
     protected LinearLayout mDialogWrapper;
@@ -74,6 +75,12 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
      */
     public T setTitle(int resId) {
         return setTitle(mContext.getResources().getString(resId));
+    }
+
+    @SuppressWarnings("unchecked")
+    public T setCancelable(boolean cancelable) {
+        this.mCancelable = cancelable;
+        return (T) this;
     }
 
     //region 添加action
@@ -140,7 +147,8 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
      * @param prop     属性
      * @param listener 点击回调事件
      */
-    public T addAction(int iconRes, int strRes, @QMUIDialogAction.Prop int prop, QMUIDialogAction.ActionListener listener) {
+    public T addAction(int iconRes, int strRes, @QMUIDialogAction.Prop int prop, QMUIDialogAction
+            .ActionListener listener) {
         return addAction(iconRes, mContext.getResources().getString(strRes), prop, listener);
     }
 
@@ -152,7 +160,8 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
      * @param prop     属性
      * @param listener 点击回调事件
      */
-    public T addAction(int iconRes, String str, @QMUIDialogAction.Prop int prop, QMUIDialogAction.ActionListener listener) {
+    public T addAction(int iconRes, String str, @QMUIDialogAction.Prop int prop, QMUIDialogAction
+            .ActionListener listener) {
         return addAction(iconRes, str, prop, QMUIDialogAction.ACTION_TYPE_NORMAL, listener);
     }
 
@@ -165,7 +174,9 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
      * @param prop     属性
      * @param listener 点击回调事件
      */
-    protected T addAction(int iconRes, int strRes, @QMUIDialogAction.Prop int prop, @QMUIDialogAction.Type int type, QMUIDialogAction.ActionListener listener) {
+    protected T addAction(int iconRes, int strRes, @QMUIDialogAction.Prop int prop,
+                          @QMUIDialogAction.Type int type, QMUIDialogAction.ActionListener
+                                  listener) {
         return addAction(iconRes, mContext.getResources().getString(strRes), prop, type, listener);
     }
 
@@ -179,8 +190,11 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
      * @param listener 点击回调事件
      */
     @SuppressWarnings("unchecked")
-    protected T addAction(int iconRes, String str, @QMUIDialogAction.Prop int prop, @QMUIDialogAction.Type int type, QMUIDialogAction.ActionListener listener) {
-        QMUIDialogAction action = new QMUIDialogAction(mContext, iconRes, str, type, prop, listener);
+    protected T addAction(int iconRes, String str, @QMUIDialogAction.Prop int prop,
+                          @QMUIDialogAction.Type int type, QMUIDialogAction.ActionListener
+                                  listener) {
+        QMUIDialogAction action = new QMUIDialogAction(mContext, iconRes, str, type, prop,
+                listener);
         mActions.add(action);
         return (T) this;
     }
@@ -189,13 +203,16 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
         return setLeftAction(0, str, listener);
     }
 
-    public QMUIDialogAction setLeftAction(int iconRes, String str, QMUIDialogAction.ActionListener listener) {
+    public QMUIDialogAction setLeftAction(int iconRes, String str, QMUIDialogAction
+            .ActionListener listener) {
         return setLeftAction(iconRes, str, QMUIDialogAction.ACTION_PROP_NEUTRAL, listener);
     }
 
 
-    public QMUIDialogAction setLeftAction(int iconRes, String str, @QMUIDialogAction.Prop int prop, QMUIDialogAction.ActionListener listener) {
-        mLeftAction = new QMUIDialogAction(mContext, iconRes, str, QMUIDialogAction.ACTION_TYPE_NORMAL, prop, listener);
+    public QMUIDialogAction setLeftAction(int iconRes, String str, @QMUIDialogAction.Prop int
+            prop, QMUIDialogAction.ActionListener listener) {
+        mLeftAction = new QMUIDialogAction(mContext, iconRes, str, QMUIDialogAction
+                .ACTION_TYPE_NORMAL, prop, listener);
         return mLeftAction;
     }
 
@@ -247,6 +264,10 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
         // title
         onCreateTitle(mDialog, mDialogWrapper);
 
+        //
+        mDialog.setCancelable(mCancelable);
+        mDialog.setCanceledOnTouchOutside(mCancelable);
+
         //content
         onCreateContent(mDialog, mDialogWrapper);
 
@@ -270,15 +291,18 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
             mTitleView.setSingleLine(true);
             mTitleView.setEllipsize(TextUtils.TruncateAt.END);
             mTitleView.setText(mTitle);
-            mTitleView.setTextColor(QMUIResHelper.getAttrColor(mContext, R.attr.qmui_dialog_title_text_color));
-            mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_title_text_size));
+            mTitleView.setTextColor(QMUIResHelper.getAttrColor(mContext, R.attr
+                    .qmui_dialog_title_text_color));
+            mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen
+                    (mContext, R.attr.qmui_dialog_title_text_size));
             mTitleView.setPadding(
                     QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_padding_horizontal),
                     QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_title_margin_top),
                     QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_padding_horizontal),
                     0
             );
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+                    .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             mTitleView.setLayoutParams(lp);
             parent.addView(mTitleView);
         }
@@ -301,14 +325,19 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
         if (size > 0 || mLeftAction != null) {
             mActionContainer = new LinearLayout(mContext);
             mActionContainer.setOrientation(LinearLayout.HORIZONTAL);
-            mActionContainer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            mActionContainer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams
+                    .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             mActionContainer.setPadding(
-                    QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_action_container_margin_horizontal),
+                    QMUIResHelper.getAttrDimen(mContext, R.attr
+                            .qmui_dialog_action_container_margin_horizontal),
                     0,
-                    QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_action_container_margin_horizontal),
-                    QMUIResHelper.getAttrDimen(mContext, R.attr.qmui_dialog_action_container_margin_bottom));
+                    QMUIResHelper.getAttrDimen(mContext, R.attr
+                            .qmui_dialog_action_container_margin_horizontal),
+                    QMUIResHelper.getAttrDimen(mContext, R.attr
+                            .qmui_dialog_action_container_margin_bottom));
             if (mLeftAction != null) {
-                mActionContainer.addView(mLeftAction.generateActionView(mContext, mDialog, 0, false));
+                mActionContainer.addView(mLeftAction.generateActionView(mContext, mDialog, 0,
+                        false));
             }
             View space = new View(mContext);
             LinearLayout.LayoutParams spaceLp = new LinearLayout.LayoutParams(0, 0);
@@ -321,23 +350,23 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
                 mActionContainer.addView(action.generateActionView(mContext, mDialog, i, true));
             }
 
-            mActionContainer.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    int width = right - left;
-                    int childCount = mActionContainer.getChildCount();
-                    if (childCount > 0) {
-                        View lastChild = mActionContainer.getChildAt(childCount - 1);
-                        // 如果ActionButton的宽度过宽，则减小padding
-                        if (lastChild.getRight() > width) {
-                            int childPaddingHor = Math.max(0, lastChild.getPaddingLeft() - QMUIDisplayHelper.dp2px(mContext, 3));
-                            for (int i = 0; i < childCount; i++) {
-                                mActionContainer.getChildAt(i).setPadding(childPaddingHor, 0, childPaddingHor, 0);
-                            }
+            mActionContainer.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft,
+                                                        oldTop, oldRight, oldBottom) -> {
+                int width = right - left;
+                int childCount = mActionContainer.getChildCount();
+                if (childCount > 0) {
+                    View lastChild = mActionContainer.getChildAt(childCount - 1);
+                    // 如果ActionButton的宽度过宽，则减小padding
+                    if (lastChild.getRight() > width) {
+                        int childPaddingHor = Math.max(0, lastChild.getPaddingLeft() -
+                                QMUIDisplayHelper.dp2px(mContext, 3));
+                        for (int i = 0; i < childCount; i++) {
+                            mActionContainer.getChildAt(i).setPadding(childPaddingHor, 0,
+                                    childPaddingHor, 0);
                         }
                     }
-
                 }
+
             });
             parent.addView(mActionContainer);
 
@@ -346,12 +375,7 @@ public abstract class QMUIDialogBuilder<T extends QMUIDialogBuilder> {
 
     protected void onAfter(QMUIDialog dialog, LinearLayout parent) {
         //默认情况下，点击anchorView使得dialog消失
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDialog.dismiss();
-            }
-        };
+        View.OnClickListener listener = v -> mDialog.dismiss();
         mAnchorBottomView.setOnClickListener(listener);
         mAnchorTopView.setOnClickListener(listener);
     }
