@@ -88,15 +88,12 @@ public class BottomSheetDialogFragment extends android.support.design.widget
         dialog.setContentView(rootView);
         mBehavior = BottomSheetBehavior.from((View) rootView.getParent());
         ((View) rootView.getParent()).setBackgroundColor(Color.TRANSPARENT);
-        rootView.post(new Runnable() {
-            @Override
-            public void run() {
-                /**
-                 * PeekHeight默认高度256dp 会在该高度上悬浮
-                 * 设置等于view的高 就不会卡住
-                 */
-                mBehavior.setPeekHeight(rootView.getHeight());
-            }
+        rootView.post(() -> {
+            /**
+             * PeekHeight默认高度256dp 会在该高度上悬浮
+             * 设置等于view的高 就不会卡住
+             */
+            mBehavior.setPeekHeight(rootView.getHeight());
         });
 
         return dialog;
