@@ -49,9 +49,9 @@ dependencies {
         exclude module: 'support-annotations'
     }
     compile rootProject.ext.dependencies["annotations"]
+
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["glide"]
-    compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["gson"]
     compile rootProject.ext.dependencies["androideventbus"]
     compile rootProject.ext.dependencies["retrofit"]
@@ -91,18 +91,18 @@ dependencies {
     // debug
     compile rootProject.ext.dependencies["timber"]
     // module
-    compile(rootProject.ext.library["webkit"]) {
-        exclude group: 'com.android.support'
-    }
-    compile(rootProject.ext.library["upgradekit"]) {
-        exclude group: 'com.android.support'
-    }
+//    compile(rootProject.ext.library["webkit"]) {
+//        exclude group: 'com.android.support'
+//    }
+//    compile(rootProject.ext.library["upgradekit"]) {
+//        exclude group: 'com.android.support'
+//    }
     compile(rootProject.ext.library["uikit"]) {
         exclude group: 'com.android.support'
     }
-    compile(rootProject.ext.library["shadow"]) {
-        exclude group: 'com.android.support'
-    }
+//    compile(rootProject.ext.library["shadow"]) {
+//        exclude group: 'com.android.support'
+//    }
 //    compile project(':webkit')
 //    compile project(':uikit')
 //    compile project(':upgradekit')
