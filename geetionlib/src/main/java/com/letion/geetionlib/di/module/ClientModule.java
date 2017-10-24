@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import com.letion.geetionlib.http.GlobalHttpHandler;
 import com.letion.geetionlib.http.RequestInterceptor;
 import com.letion.geetionlib.util.TFile;
+import com.letion.geetionlib.vender.rxerrorhandler.RxErrorHandler;
+import com.letion.geetionlib.vender.rxerrorhandler.listener.ResponseErrorListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +23,6 @@ import dagger.Module;
 import dagger.Provides;
 import io.rx_cache2.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

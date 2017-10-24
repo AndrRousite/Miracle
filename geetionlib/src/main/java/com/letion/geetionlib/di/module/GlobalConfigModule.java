@@ -8,6 +8,7 @@ import com.letion.geetionlib.http.GlobalHttpHandler;
 import com.letion.geetionlib.util.TFile;
 import com.letion.geetionlib.vender.imageloader.BaseImageLoaderStrategy;
 import com.letion.geetionlib.vender.imageloader.glide.GlideImageLoaderStrategy;
+import com.letion.geetionlib.vender.rxerrorhandler.listener.ResponseErrorListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 

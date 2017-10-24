@@ -3,13 +3,12 @@ package com.letion.geetionlib.util;
 import android.Manifest;
 import android.os.Build;
 
+import com.letion.geetionlib.vender.rxerrorhandler.RxErrorHandler;
+import com.letion.geetionlib.vender.rxerrorhandler.handler.ErrorHandleSubscriber;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 /**
  * Created by liu-feng on 17/10/2016 10:09

@@ -10,6 +10,7 @@ import com.letion.geetionlib.di.module.AppModule;
 import com.letion.geetionlib.di.module.ClientModule;
 import com.letion.geetionlib.di.module.GlobalConfigModule;
 import com.letion.geetionlib.vender.imageloader.ImageLoader;
+import com.letion.geetionlib.vender.rxerrorhandler.RxErrorHandler;
 
 import java.io.File;
 import java.util.Map;
@@ -17,7 +18,6 @@ import java.util.Map;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import okhttp3.OkHttpClient;
 
 /**

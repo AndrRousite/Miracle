@@ -68,10 +68,10 @@ dependencies {
     compile rootProject.ext.dependencies["rxlifecycle-android"]
     compile rootProject.ext.dependencies["rxlifecycle-components"]
     compile rootProject.ext.dependencies["rxpermissions"]
-    compile rootProject.ext.dependencies['progressmanager']
-    compile(rootProject.ext.dependencies['rxerrorhandler2']) {
-        exclude module: 'rxjava'
-    }
+//    compile rootProject.ext.dependencies['progressmanager']
+//    compile(rootProject.ext.dependencies['rxerrorhandler2']) {
+//        exclude module: 'rxjava'
+//    }
     compile(rootProject.ext.dependencies["rxcache2"]) {
         exclude module: 'rxjava'
         exclude module: 'dagger'
