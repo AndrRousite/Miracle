@@ -45,6 +45,10 @@ dependencies {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
     }
+    compile(rootProject.ext.dependencies["cardview-v7"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+    }
     compile(rootProject.ext.dependencies["design"]) {
         exclude module: 'support-annotations'
     }
@@ -87,7 +91,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
     // tinypinyin
-    compile rootProject.ext.dependencies["tinypinyin"]
+    //compile rootProject.ext.dependencies["tinypinyin"]
     // debug
     compile rootProject.ext.dependencies["timber"]
     // module
@@ -125,4 +129,4 @@ gradle.projectsEvaluated {
 }
 
 //apply from: "https://raw.githubusercontent.com/xiaopansky/android-library-publish-to-jcenter/master/bintrayUpload.gradle"
-//apply from: "bintray.gradle"
+apply from: "bintray.gradle"
