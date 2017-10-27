@@ -88,17 +88,14 @@ public class ProgressResponseBody extends ResponseBody {
                         final long finalIntervalTime = curTime - lastRefreshTime;
                         for (int i = 0; i < mListeners.length; i++) {
                             final ProgressListener listener = mListeners[i];
-                            mHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // Runnable 里的代码是通过 Handler 执行在主线程的,外面代码可能执行在其他线程
-                                    // 所以我必须使用 final ,保证在 Runnable 执行前使用到的变量,在执行时不会被修改
-                                    mProgressInfo.setEachBytes(finalBytesRead != -1 ? finalTempSize : -1);
-                                    mProgressInfo.setCurrentbytes(finalTotalBytesRead);
-                                    mProgressInfo.setIntervalTime(finalIntervalTime);
-                                    mProgressInfo.setFinish(finalBytesRead == -1 && finalTotalBytesRead == mProgressInfo.getContentLength());
-                                    listener.onProgress(mProgressInfo);
-                                }
+                            mHandler.post(() -> {
+                                // Runnable 里的代码是通过 Handler 执行在主线程的,外面代码可能执行在其他线程
+                                // 所以我必须使用 final ,保证在 Runnable 执行前使用到的变量,在执行时不会被修改
+                                mProgressInfo.setEachBytes(finalBytesRead != -1 ? finalTempSize : -1);
+                                mProgressInfo.setCurrentbytes(finalTotalBytesRead);
+                                mProgressInfo.setIntervalTime(finalIntervalTime);
+                                mProgressInfo.setFinish(finalBytesRead == -1 && finalTotalBytesRead == mProgressInfo.getContentLength());
+                                listener.onProgress(mProgressInfo);
                             });
                         }
                         lastRefreshTime = curTime;

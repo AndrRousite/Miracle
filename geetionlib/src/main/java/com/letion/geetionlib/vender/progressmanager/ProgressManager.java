@@ -68,12 +68,7 @@ public final class ProgressManager {
 
     private ProgressManager() {
         this.mHandler = new Handler(Looper.getMainLooper());
-        this.mInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                return wrapResponseBody(chain.proceed(wrapRequestBody(chain.request())));
-            }
-        };
+        this.mInterceptor = chain -> wrapResponseBody(chain.proceed(wrapRequestBody(chain.request())));
     }
 
 

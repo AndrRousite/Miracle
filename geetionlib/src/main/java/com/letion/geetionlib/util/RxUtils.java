@@ -7,10 +7,6 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -26,20 +22,14 @@ public class RxUtils {
         return new ObservableTransformer<T, T>() {
             @Override
             public Observable<T> apply(Observable<T> observable) {
-                return (Observable<T>) observable.subscribeOn(Schedulers.io())
-                        .doOnSubscribe(new Consumer<Disposable>() {
-                            @Override
-                            public void accept(@NonNull Disposable disposable) throws Exception {
-                                view.showLoading();//显示进度条
-                            }
+                return observable.subscribeOn(Schedulers.io())
+                        .doOnSubscribe(disposable -> {
+                            view.showLoading();//显示进度条
                         })
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doAfterTerminate(new Action() {
-                            @Override
-                            public void run() {
-                                view.hideLoading();//隐藏进度条
-                            }
+                        .doAfterTerminate(() -> {
+                            view.hideLoading();//隐藏进度条
                         }).compose(RxUtils.bindToLifecycle(view));
             }
         };

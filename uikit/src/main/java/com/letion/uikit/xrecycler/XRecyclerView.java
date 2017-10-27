@@ -29,7 +29,7 @@ public class XRecyclerView extends RecyclerView{
     private boolean isOther = false;
     private boolean isLoadingData;
     public int previousTotal;
-    public boolean isnomore;
+    public boolean isNoMore;
     private float mLastY = -1;
     private static final float DRAG_RATE = 1.75f;
     private LoadingListener mLoadingListener;
@@ -39,7 +39,7 @@ public class XRecyclerView extends RecyclerView{
     }
 
     public XRecyclerView(Context context, @Nullable AttributeSet attrs) {
-        this(context, null,0);
+        this(context, attrs,0);
     }
 
     public XRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
@@ -110,7 +110,7 @@ public class XRecyclerView extends RecyclerView{
             } else {
                 footView.setVisibility(View.GONE);
             }
-            isnomore = true;
+            isNoMore = true;
         }
         previousTotal = getLayoutManager().getItemCount();
     }
@@ -118,7 +118,7 @@ public class XRecyclerView extends RecyclerView{
     public void noMoreLoading() {
         isLoadingData = false;
         final View footView = mFootViews.get(0);
-        isnomore = true;
+        isNoMore = true;
         if (footView instanceof IRefreshFooterView) {
             ((IRefreshFooterView) footView).setState(IRefreshFooterView.STATE_NOMORE);
         } else {
@@ -162,7 +162,7 @@ public class XRecyclerView extends RecyclerView{
                 lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
             }
             if (layoutManager.getChildCount() > 0
-                    && lastVisibleItemPosition >= layoutManager.getItemCount() - 1 && layoutManager.getItemCount() > layoutManager.getChildCount() && !isnomore && mRefreshHeader.getState() < YunRefreshHeaderView.STATE_REFRESHING) {
+                    && lastVisibleItemPosition >= layoutManager.getItemCount() - 1 && layoutManager.getItemCount() > layoutManager.getChildCount() && !isNoMore && mRefreshHeader.getState() < YunRefreshHeaderView.STATE_REFRESHING) {
 
                 View footView = mFootViews.get(0);
                 isLoadingData = true;
@@ -174,12 +174,7 @@ public class XRecyclerView extends RecyclerView{
                 if (isNetWorkConnected(getContext())) {
                     mLoadingListener.onLoadMore();
                 } else {
-                    postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mLoadingListener.onLoadMore();
-                        }
-                    }, 1000);
+                    postDelayed(() -> mLoadingListener.onLoadMore(), 1000);
                 }
             }
         }
@@ -210,7 +205,7 @@ public class XRecyclerView extends RecyclerView{
                     if (mRefreshHeader.release()) {
                         if (mLoadingListener != null) {
                             mLoadingListener.onRefresh();
-                            isnomore = false;
+                            isNoMore = false;
                             previousTotal = 0;
                             final View footView = mFootViews.get(0);
                             if (footView instanceof IRefreshFooterView) {
@@ -350,7 +345,7 @@ public class XRecyclerView extends RecyclerView{
     }
 
     public void reset() {
-        isnomore = false;
+        isNoMore = false;
         previousTotal = 0;
         final View footView = mFootViews.get(0);
         if (footView instanceof IRefreshFooterView) {
