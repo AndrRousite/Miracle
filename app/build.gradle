@@ -78,7 +78,6 @@ dependencies {
     //    provided rootProject.ext.dependencies["tinker-nano"]
     // Sophix
     //    compile rootProject.ext.dependencies["sophix"]
-//    compile project(path: ':uikit')
 }
 
 

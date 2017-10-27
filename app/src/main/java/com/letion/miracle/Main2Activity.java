@@ -18,7 +18,7 @@ public class Main2Activity extends AppCompatActivity {
 //        waveViewByBezier = (WaveViewByBezier)findViewById(R.id.waveView);
 //        waveViewByBezier.startAnimation();
         emptyLayout = TEmptyLayout.wrap(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new Home1Fragment
                 ()).commit();
     }
 
