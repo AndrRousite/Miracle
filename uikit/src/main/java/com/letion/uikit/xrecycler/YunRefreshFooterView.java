@@ -1,6 +1,5 @@
 package com.letion.uikit.xrecycler;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.Nullable;
@@ -32,12 +31,7 @@ public class YunRefreshFooterView extends LinearLayout implements IRefreshFooter
     }
 
     public YunRefreshFooterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
-    }
-
-    @TargetApi(21)
-    public YunRefreshFooterView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(context, attrs, defStyleAttr);
         initView(context);
     }
 

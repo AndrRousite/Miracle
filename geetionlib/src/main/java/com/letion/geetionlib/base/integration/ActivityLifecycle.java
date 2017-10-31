@@ -35,7 +35,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     private List<FragmentManager.FragmentLifecycleCallbacks> mFragmentLifecycles;
 
     @Inject
-    public ActivityLifecycle(AppManager appManager, Application application, Map<String, Object> extras) {
+    public ActivityLifecycle(AppManager appManager, Application application, Map<String, Object>
+            extras) {
         this.mAppManager = appManager;
         this.mApplication = application;
         this.mExtras = extras;
@@ -47,7 +48,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
         // 默认为false,如果不需要管理(比如不需要在退出所有activity(killAll)时，退出此activity就在intent加此字段为true)
         boolean isNotAdd = false;
         if (activity.getIntent() != null)
-            isNotAdd = activity.getIntent().getBooleanExtra(AppManager.IS_NOT_ADD_ACTIVITY_LIST, false);
+            isNotAdd = activity.getIntent().getBooleanExtra(AppManager.IS_NOT_ADD_ACTIVITY_LIST,
+                    false);
 
         if (!isNotAdd)
             mAppManager.addActivity(activity);
@@ -64,27 +66,33 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
 
         /**
          * 给每个Activity配置Fragment的监听,Activity可以通过 {@link IActivity#useFragment()} 设置是否使用监听
-         * 如果这个Activity返回false的话,这个Activity将不能使用{@link FragmentDelegate},意味着 {@link com.jess.arms.base.BaseFragment}也不能使用
+         * 如果这个Activity返回false的话,这个Activity将不能使用{@link FragmentDelegate},意味着
+         * {@link com.jess.arms.base.BaseFragment}也不能使用
          */
-        boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment() : true;
+        boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment
+                () : true;
         if (activity instanceof FragmentActivity && useFragment) {
 
             if (mFragmentLifecycle == null) {
                 mFragmentLifecycle = new FragmentLifecycle();
             }
 
-            ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(mFragmentLifecycle, true);
+            ((FragmentActivity) activity).getSupportFragmentManager()
+                    .registerFragmentLifecycleCallbacks(mFragmentLifecycle, true);
 
             if (mFragmentLifecycles == null) {
                 mFragmentLifecycles = new ArrayList<>();
-                List<ConfigModule> modules = (List<ConfigModule>) mExtras.get(ConfigModule.class.getName());
+                List<ConfigModule> modules = (List<ConfigModule>) mExtras.get(ConfigModule.class
+                        .getName());
                 for (ConfigModule module : modules) {
                     module.injectFragmentLifecycle(mApplication, mFragmentLifecycles);
                 }
             }
 
-            for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle : mFragmentLifecycles) {
-                ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentLifecycle, true);
+            for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle :
+                    mFragmentLifecycles) {
+                ((FragmentActivity) activity).getSupportFragmentManager()
+                        .registerFragmentLifecycleCallbacks(fragmentLifecycle, true);
             }
         }
     }
@@ -139,14 +147,18 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     public void onActivityDestroyed(Activity activity) {
         mAppManager.removeActivity(activity);
 
-        boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment() : true;
+        boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment
+                () : true;
         if (activity instanceof FragmentActivity && useFragment) {
             if (mFragmentLifecycle != null) {
-                ((FragmentActivity) activity).getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(mFragmentLifecycle);
+                ((FragmentActivity) activity).getSupportFragmentManager()
+                        .unregisterFragmentLifecycleCallbacks(mFragmentLifecycle);
             }
             if (mFragmentLifecycles != null && mFragmentLifecycles.size() > 0) {
-                for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle : mFragmentLifecycles) {
-                    ((FragmentActivity) activity).getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentLifecycle);
+                for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle :
+                        mFragmentLifecycles) {
+                    ((FragmentActivity) activity).getSupportFragmentManager()
+                            .unregisterFragmentLifecycleCallbacks(fragmentLifecycle);
                 }
             }
         }
@@ -161,7 +173,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     private ActivityDelegate fetchActivityDelegate(Activity activity) {
         ActivityDelegate activityDelegate = null;
         if (activity instanceof IActivity && activity.getIntent() != null) {
-            activityDelegate = activity.getIntent().getParcelableExtra(ActivityDelegate.ACTIVITY_DELEGATE);
+            activityDelegate = activity.getIntent().getParcelableExtra(ActivityDelegate
+                    .ACTIVITY_DELEGATE);
         }
         return activityDelegate;
     }
@@ -174,9 +187,10 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
             super.onFragmentAttached(fm, f, context);
             if (f instanceof IFragment && f.getArguments() != null) {
                 FragmentDelegate fragmentDelegate = fetchFragmentDelegate(f);
-                if (fragmentDelegate == null || !fragmentDelegate.isAdded()) {
+                if (fragmentDelegate == null) {
                     fragmentDelegate = new FragmentDelegateImpl(fm, f);
-                    f.getArguments().putParcelable(FragmentDelegate.FRAGMENT_DELEGATE, fragmentDelegate);
+                    f.getArguments().putParcelable(FragmentDelegate.FRAGMENT_DELEGATE,
+                            fragmentDelegate);
                 }
                 fragmentDelegate.onAttach(context);
             }
@@ -192,7 +206,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
         }
 
         @Override
-        public void onFragmentViewCreated(FragmentManager fm, Fragment f, View v, Bundle savedInstanceState) {
+        public void onFragmentViewCreated(FragmentManager fm, Fragment f, View v, Bundle
+                savedInstanceState) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState);
             FragmentDelegate fragmentDelegate = fetchFragmentDelegate(f);
             if (fragmentDelegate != null) {
@@ -201,7 +216,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
         }
 
         @Override
-        public void onFragmentActivityCreated(FragmentManager fm, Fragment f, Bundle savedInstanceState) {
+        public void onFragmentActivityCreated(FragmentManager fm, Fragment f, Bundle
+                savedInstanceState) {
             super.onFragmentActivityCreated(fm, f, savedInstanceState);
             FragmentDelegate fragmentDelegate = fetchFragmentDelegate(f);
             if (fragmentDelegate != null) {
@@ -285,7 +301,8 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
 
         private FragmentDelegate fetchFragmentDelegate(Fragment fragment) {
             if (fragment instanceof IFragment) {
-                return fragment.getArguments() == null ? null : (FragmentDelegate) fragment.getArguments().getParcelable(FragmentDelegate.FRAGMENT_DELEGATE);
+                return fragment.getArguments() == null ? null : (FragmentDelegate) fragment
+                        .getArguments().getParcelable(FragmentDelegate.FRAGMENT_DELEGATE);
             }
             return null;
         }

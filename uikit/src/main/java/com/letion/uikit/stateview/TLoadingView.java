@@ -70,13 +70,9 @@ public class TLoadingView extends View {
         requestLayout();
     }
 
-    private ValueAnimator.AnimatorUpdateListener mUpdateListener = new ValueAnimator
-            .AnimatorUpdateListener() {
-        @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
-            mAnimateValue = (int) animation.getAnimatedValue();
-            invalidate();
-        }
+    private ValueAnimator.AnimatorUpdateListener mUpdateListener = animation -> {
+        mAnimateValue = (int) animation.getAnimatedValue();
+        invalidate();
     };
 
     public void start() {

@@ -224,14 +224,11 @@ public class WaveViewBySinCos extends View {
         valueAnimator.setDuration(1000);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                /**
-                 * 刷新页面调取onDraw方法，通过变更φ 达到移动效果
-                 */
-                invalidate();
-            }
+        valueAnimator.addUpdateListener(animation -> {
+            /**
+             * 刷新页面调取onDraw方法，通过变更φ 达到移动效果
+             */
+            invalidate();
         });
         if (waveStart) {
             valueAnimator.start();

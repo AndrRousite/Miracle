@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -121,12 +120,9 @@ public class MarqueeView extends ViewFlipper {
         for (int i = 0; i < notices.size(); i++) {
             final TextView textView = createTextView(notices.get(i), i);
             final int finalI = i;
-            textView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(finalI, textView);
-                    }
+            textView.setOnClickListener(v -> {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(finalI, textView);
                 }
             });
             addView(textView);

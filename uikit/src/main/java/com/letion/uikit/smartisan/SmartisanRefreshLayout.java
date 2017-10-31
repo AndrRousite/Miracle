@@ -359,12 +359,9 @@ public class SmartisanRefreshLayout extends LinearLayout {
         mCircleAnimator = ValueAnimator.ofFloat(startValue, endValue).setDuration(duration);
         mCircleAnimator.setInterpolator(new LinearInterpolator());
         mCircleAnimator.setRepeatCount(repeatCount);
-        mCircleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                updateHeaderViewCallback.onAnimationUpdate(animatedValue);
-            }
+        mCircleAnimator.addUpdateListener(animation -> {
+            float animatedValue = (float) animation.getAnimatedValue();
+            updateHeaderViewCallback.onAnimationUpdate(animatedValue);
         });
         mCircleAnimator.addListener(new Animator.AnimatorListener() {
             @Override
@@ -398,12 +395,9 @@ public class SmartisanRefreshLayout extends LinearLayout {
         mPulledAnimator = ValueAnimator.ofFloat(startValue, endValue).setDuration(duration);
         mPulledAnimator.setInterpolator(new LinearInterpolator());
         mPulledAnimator.setRepeatCount(repeatCount);
-        mPulledAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                updateHeaderViewCallback.onAnimationUpdate(animatedValue);
-            }
+        mPulledAnimator.addUpdateListener(animation -> {
+            float animatedValue = (float) animation.getAnimatedValue();
+            updateHeaderViewCallback.onAnimationUpdate(animatedValue);
         });
         mPulledAnimator.addListener(new Animator.AnimatorListener() {
             @Override

@@ -530,12 +530,9 @@ public class SuperTextView extends RelativeLayout {
         setTextColor(leftBottomTV2, leftBottomTVColor2);
         setTextSize(leftBottomTV2, leftBottomTVSize2);
         if (mLeftBottomView2IsClickable) {
-            leftBottomTV2.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onSuperTextViewClickListener != null) {
-                        onSuperTextViewClickListener.onLeftBottomClick2();
-                    }
+            leftBottomTV2.setOnClickListener(v -> {
+                if (onSuperTextViewClickListener != null) {
+                    onSuperTextViewClickListener.onLeftBottomClick2();
                 }
             });
         }

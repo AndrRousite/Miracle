@@ -206,12 +206,9 @@ public class WaveViewByBezier extends View {
         valueAnimator.setStartDelay(300);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mOffset = (int) animation.getAnimatedValue();
-                invalidate();
-            }
+        valueAnimator.addUpdateListener(animation -> {
+            mOffset = (int) animation.getAnimatedValue();
+            invalidate();
         });
         valueAnimator.start();
     }

@@ -97,12 +97,7 @@ public class YunRefreshHeaderView extends LinearLayout implements IRefreshHeader
     @Override
     public void complete() {
         setState(STATE_DONE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                reset();
-            }
-        }, 500);
+        new Handler().postDelayed(() -> reset(), 500);
     }
 
     public void reset() {
@@ -154,12 +149,7 @@ public class YunRefreshHeaderView extends LinearLayout implements IRefreshHeader
     private void smoothScrollTo(int destHeight) {
         ValueAnimator animator = ValueAnimator.ofInt(getVisibleHeight(), destHeight);
         animator.setDuration(300).start();
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                setVisibleHeight((int) animation.getAnimatedValue());
-            }
-        });
+        animator.addUpdateListener(animation -> setVisibleHeight((int) animation.getAnimatedValue()));
         animator.start();
     }
 

@@ -197,12 +197,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         //Start the Handler to clean up the Alert
         if (!enableInfiniteDuration) {
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hide();
-                }
-            }, duration);
+            postDelayed(() -> hide(), duration);
         }
     }
 

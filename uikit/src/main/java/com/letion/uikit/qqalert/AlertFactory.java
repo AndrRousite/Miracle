@@ -83,12 +83,7 @@ public final class AlertFactory {
 
     @NonNull
     private static Runnable getRemoveViewRunnable(final Alert childView) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                ((ViewGroup) childView.getParent()).removeView(childView);
-            }
-        };
+        return () -> ((ViewGroup) childView.getParent()).removeView(childView);
     }
 
     /**
@@ -99,14 +94,11 @@ public final class AlertFactory {
     public Alert show() {
         //This will get the Activity Window's DecorView
         if (getActivityWeakReference() != null) {
-            getActivityWeakReference().get().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //Add the new Alert to the View Hierarchy
-                    final ViewGroup decorView = getActivityDecorView();
-                    if (decorView != null && getAlert().getParent() == null) {
-                        decorView.addView(getAlert());
-                    }
+            getActivityWeakReference().get().runOnUiThread(() -> {
+                //Add the new Alert to the View Hierarchy
+                final ViewGroup decorView = getActivityDecorView();
+                if (decorView != null && getAlert().getParent() == null) {
+                    decorView.addView(getAlert());
                 }
             });
         }
