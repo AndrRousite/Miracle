@@ -17,14 +17,14 @@ import android.view.ViewGroup;
 /**
  * Created by liu-feng on 2017/5/27.
  */
-public class XRecyclerView extends RecyclerView{
+public class XRecyclerView extends RecyclerView {
     private WrapAdapter mWrapAdapter;
     private SparseArray<View> mHeaderViews = new SparseArray<>();
     private SparseArray<View> mFootViews = new SparseArray<>();
     private boolean pullRefreshEnabled = true; // 下拉刷新
     private boolean loadingMoreEnabled = true; // 上拉加载
 
-    private YunRefreshHeaderView mRefreshHeader;
+    private IRefreshHeaderView mRefreshHeader;
     // 是否是额外添加FooterView
     private boolean isOther = false;
     private boolean isLoadingData;
@@ -39,7 +39,7 @@ public class XRecyclerView extends RecyclerView{
     }
 
     public XRecyclerView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public XRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
@@ -80,19 +80,24 @@ public class XRecyclerView extends RecyclerView{
         mHeaderViews.clear();
         final float scale = getContext().getResources().getDisplayMetrics().density;
         int height = (int) (1.0f * scale + 0.5f);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, height);
         View view = new View(getContext());
         view.setLayoutParams(params);
         mHeaderViews.put(0, view);
     }
 
     public void addHeaderView(View view) {
-        if (pullRefreshEnabled && !(mHeaderViews.get(0) instanceof YunRefreshHeaderView)) {
+        if (pullRefreshEnabled && !(view instanceof IRefreshHeaderView) && !(mHeaderViews.get(0)
+                instanceof YunRefreshHeaderView)) {
             YunRefreshHeaderView refreshHeader = new YunRefreshHeaderView(getContext());
             mHeaderViews.put(0, refreshHeader);
             mRefreshHeader = refreshHeader;
         }
-        mHeaderViews.put(mHeaderViews.size(), view);
+        if (view instanceof IRefreshHeaderView)
+            mRefreshHeader = (IRefreshHeaderView) view
+                    ;
+        mHeaderViews.put(view instanceof IRefreshHeaderView ? 0 : mHeaderViews.size(), view);
     }
 
     private void loadMoreComplete() {
@@ -149,20 +154,25 @@ public class XRecyclerView extends RecyclerView{
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
 
-        if (state == RecyclerView.SCROLL_STATE_IDLE && mLoadingListener != null && !isLoadingData && loadingMoreEnabled) {
+        if (state == RecyclerView.SCROLL_STATE_IDLE && mLoadingListener != null && !isLoadingData
+                && loadingMoreEnabled) {
             LayoutManager layoutManager = getLayoutManager();
             int lastVisibleItemPosition;
             if (layoutManager instanceof GridLayoutManager) {
-                lastVisibleItemPosition = ((GridLayoutManager) layoutManager).findLastVisibleItemPosition();
+                lastVisibleItemPosition = ((GridLayoutManager) layoutManager)
+                        .findLastVisibleItemPosition();
             } else if (layoutManager instanceof StaggeredGridLayoutManager) {
                 int[] into = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
                 ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(into);
                 lastVisibleItemPosition = findMax(into);
             } else {
-                lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+                lastVisibleItemPosition = ((LinearLayoutManager) layoutManager)
+                        .findLastVisibleItemPosition();
             }
             if (layoutManager.getChildCount() > 0
-                    && lastVisibleItemPosition >= layoutManager.getItemCount() - 1 && layoutManager.getItemCount() > layoutManager.getChildCount() && !isNoMore && mRefreshHeader.getState() < YunRefreshHeaderView.STATE_REFRESHING) {
+                    && lastVisibleItemPosition >= layoutManager.getItemCount() - 1 &&
+                    layoutManager.getItemCount() > layoutManager.getChildCount() && !isNoMore &&
+                    mRefreshHeader.getState() < IRefreshHeaderView.STATE_REFRESHING) {
 
                 View footView = mFootViews.get(0);
                 isLoadingData = true;
@@ -194,7 +204,8 @@ public class XRecyclerView extends RecyclerView{
                 mLastY = ev.getRawY();
                 if (isOnTop() && pullRefreshEnabled) {
                     mRefreshHeader.move(deltaY / DRAG_RATE);
-                    if (mRefreshHeader.getVisibleHeight() > 0 && mRefreshHeader.getState() < YunRefreshHeaderView.STATE_REFRESHING) {
+                    if (mRefreshHeader.getVisibleHeight() > 0 && mRefreshHeader.getState() <
+                            YunRefreshHeaderView.STATE_REFRESHING) {
                         return false;
                     }
                 }
@@ -335,7 +346,8 @@ public class XRecyclerView extends RecyclerView{
      */
     public static boolean isNetWorkConnected(Context context) {
         if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null) {
                 return mNetworkInfo.isAvailable();

@@ -10,9 +10,13 @@ public class TLog {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static boolean isDebug = true;// 判断是否需要打印日志，可以在Application中初始化
+    private static boolean isDebug = true;// 判断是否需要打印日志，可以在Application中初始化
 
     private static final String TAG = "MESSAGE";
+
+    public static void setLogEnabled(boolean debug) {
+        isDebug = debug;
+    }
 
     // 下面四个默人的Tag函数
     public static void i(String msg) {

@@ -10,12 +10,18 @@ import com.letion.geetionlib.BuildConfig;
  */
 public class L {
 
+    private static boolean isDebug = true;// 判断是否需要打印日志，可以在Application中初始化
+
+    public static void setLogEnabled(boolean debug) {
+        isDebug = debug;
+    }
+
     public static void json(String json) {
         json(Log.DEBUG, null, json);
     }
 
     public static void json(int logLevel, String tag, String json) {
-        if (BuildConfig.LOG_DEBUG) {
+        if (isDebug) {
             String formatJson = LogFormat.formatBorder(new String[]{LogFormat.formatJson(json)});
             LogPrinter.println(logLevel, TextUtils.isEmpty(tag) ? BuildConfig.LOG_TAG : tag, formatJson);
         }
@@ -27,7 +33,7 @@ public class L {
 
 
     public static void xml(int logLevel, String tag, String xml) {
-        if (BuildConfig.LOG_DEBUG) {
+        if (isDebug) {
             String formatXml = LogFormat.formatBorder(new String[]{LogFormat.formatXml(xml)});
             LogPrinter.println(logLevel, TextUtils.isEmpty(tag) ? BuildConfig.LOG_TAG : tag, formatXml);
         }
@@ -38,14 +44,14 @@ public class L {
     }
 
     public static void error(String tag, Throwable throwable) {
-        if (BuildConfig.LOG_DEBUG) {
+        if (isDebug) {
             String formatError = LogFormat.formatBorder(new String[]{LogFormat.formatThrowable(throwable)});
             LogPrinter.println(Log.ERROR, TextUtils.isEmpty(tag) ? BuildConfig.LOG_TAG : tag, formatError);
         }
     }
 
     private static void msg(int logLevel, String tag, String format, Object... args) {
-        if (BuildConfig.LOG_DEBUG) {
+        if (isDebug) {
             String formatMsg = LogFormat.formatBorder(new String[]{LogFormat.formatArgs(format, args)});
             LogPrinter.println(logLevel, TextUtils.isEmpty(tag) ? BuildConfig.LOG_TAG : tag, formatMsg);
         }

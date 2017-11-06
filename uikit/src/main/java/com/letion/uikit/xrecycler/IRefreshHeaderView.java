@@ -16,4 +16,6 @@ public interface IRefreshHeaderView {
     void complete();
 
     int getVisibleHeight();
+
+    int getState();
 }

@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -31,7 +32,8 @@ import javax.inject.Singleton;
 public class AppManager {
     protected final String TAG = this.getClass().getSimpleName();
     public static final String APPMANAGER_MESSAGE = "appmanager_message";
-    public static final String IS_NOT_ADD_ACTIVITY_LIST = "is_add_activity_list";//是否加入到activity的list，管理
+    public static final String IS_NOT_ADD_ACTIVITY_LIST = "is_add_activity_list";
+    //是否加入到activity的list，管理
     public static final int START_ACTIVITY = 0;
     public static final int SHOW_SNACKBAR = 1;
     public static final int KILL_ALL = 2;
@@ -80,7 +82,6 @@ public class AppManager {
             startActivity((Intent) message.obj);
         else if (message.obj instanceof Class)
             startActivity((Class) message.obj);
-        return;
     }
 
 
@@ -94,8 +95,12 @@ public class AppManager {
         if (getCurrentActivity() == null) {
             return;
         }
-        View view = getCurrentActivity().getWindow().getDecorView().findViewById(android.R.id.content);
-        Snackbar.make(view, message, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT).show();
+        View view = getCurrentActivity().getWindow().getDecorView().findViewById(android.R.id
+                .content);
+        Snackbar snackbar = Snackbar.make(view, message, isLong ? Snackbar.LENGTH_LONG : Snackbar
+                .LENGTH_SHORT);
+        snackbar.getView().setBackgroundColor(Color.parseColor("#1a000000"));
+        snackbar.show();
     }
 
 

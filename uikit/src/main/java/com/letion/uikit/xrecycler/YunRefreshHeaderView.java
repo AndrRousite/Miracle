@@ -106,6 +106,11 @@ public class YunRefreshHeaderView extends LinearLayout implements IRefreshHeader
     }
 
     @Override
+    public int getState() {
+        return mState;
+    }
+
+    @Override
     public int getVisibleHeight() {
         return mContainer.getHeight();
     }
@@ -151,9 +156,5 @@ public class YunRefreshHeaderView extends LinearLayout implements IRefreshHeader
         animator.setDuration(300).start();
         animator.addUpdateListener(animation -> setVisibleHeight((int) animation.getAnimatedValue()));
         animator.start();
-    }
-
-    public int getState() {
-        return mState;
     }
 }
