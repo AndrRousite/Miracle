@@ -160,7 +160,7 @@ public class TDevice {
         return getDisplayMetrics(context).widthPixels;
     }
 
-    public static float dpToPixel(Context context,float dp) {
-        return dp * (getDisplayMetrics(context).densityDpi / 160F);
+    public static int dpToPixel(Context context, float dp) {
+        return (int) (dp * (getDisplayMetrics(context).densityDpi / 160F) + 0.5f);
     }
 }

@@ -10,7 +10,7 @@ public class TLog {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    private static boolean isDebug = true;// 判断是否需要打印日志，可以在Application中初始化
+    private static boolean isDebug = false;// 判断是否需要打印日志，可以在Application中初始化
 
     private static final String TAG = "MESSAGE";
 

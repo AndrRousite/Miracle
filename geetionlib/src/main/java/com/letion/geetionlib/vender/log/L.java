@@ -10,7 +10,7 @@ import com.letion.geetionlib.BuildConfig;
  */
 public class L {
 
-    private static boolean isDebug = true;// 判断是否需要打印日志，可以在Application中初始化
+    private static boolean isDebug = false;// 判断是否需要打印日志，可以在Application中初始化
 
     public static void setLogEnabled(boolean debug) {
         isDebug = debug;
