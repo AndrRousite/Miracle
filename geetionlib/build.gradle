@@ -18,6 +18,7 @@ android {
 
         buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
         buildConfigField 'String', 'LOG_TAG', rootProject.ext.android["LOG_TAG"]
+
     }
     buildTypes {
         release {
@@ -28,11 +29,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
     //support
     compile(rootProject.ext.dependencies["support-v4"]) {
         exclude module: 'support-annotations'
@@ -54,24 +50,19 @@ dependencies {
     }
     compile rootProject.ext.dependencies["annotations"]
 
-    compile rootProject.ext.dependencies["butterknife"]
-    compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["gson"]
     compile rootProject.ext.dependencies["androideventbus"]
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["retrofit-converter-gson"]
-    compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
-    compile rootProject.ext.dependencies["okhttp3"]
-    compile rootProject.ext.dependencies["rxandroid"]
+    compile(rootProject.ext.dependencies["multitype"]) {
+        exclude group: 'com.android.support'
+    }
+    compile(rootProject.ext.dependencies["autolayout"]) {
+        exclude group: 'com.android.support'
+    }
+
     compile rootProject.ext.dependencies["rxjava"]
-    compile rootProject.ext.dependencies["rxlifecycle"]
-    compile rootProject.ext.dependencies["rxlifecycle-android"]
-    compile rootProject.ext.dependencies["rxlifecycle-components"]
-    compile rootProject.ext.dependencies["rxpermissions"]
-//    compile rootProject.ext.dependencies['progressmanager']
-//    compile(rootProject.ext.dependencies['rxerrorhandler2']) {
-//        exclude module: 'rxjava'
-//    }
+    compile(rootProject.ext.dependencies["rxandroid"]) {
+        exclude module: 'rxjava'
+    }
     compile(rootProject.ext.dependencies["rxcache2"]) {
         exclude module: 'rxjava'
         exclude module: 'dagger'
@@ -79,7 +70,49 @@ dependencies {
     compile(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
         exclude module: 'gson'
     }
+    compile(rootProject.ext.dependencies["rxlifecycle"]) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+    }
+    compile(rootProject.ext.dependencies["rxlifecycle-android"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+    }
+    compile rootProject.ext.dependencies["rxlifecycle-components"]
+    compile(rootProject.ext.dependencies["rxpermissions"]) {
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+    }
+    compile rootProject.ext.dependencies["okhttp3"]
+    compile(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    compile(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    compile(rootProject.ext.dependencies["retrofit-adapter-rxjava"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+
     provided rootProject.ext.dependencies["javax.annotation"]
+    compile(rootProject.ext.dependencies["butterknife"]) {
+        exclude module: 'support-annotations'
+    }
+    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+        exclude group: 'com.google.auto'
+        exclude module: 'guava'
+        exclude module: 'javapoet'
+    }
     compile rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     compile(rootProject.ext.dependencies["glide"]) {
@@ -88,14 +121,18 @@ dependencies {
     annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
         exclude module: 'jsr305'
     }
-    //view
-    compile(rootProject.ext.dependencies["autolayout"]) {
+    compile(rootProject.ext.dependencies["arouter"]) {
         exclude group: 'com.android.support'
     }
-    // multitype
-    compile(rootProject.ext.dependencies["multitype"]) {
-        exclude group: 'com.android.support'
-    }
+//    annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
+//        exclude group: 'com.google.auto'
+//        exclude module: 'guava'
+//        exclude module: 'javapoet'
+//    }
+
+//    compile rootProject.ext.dependencies["canary-debug"]
+//    compile rootProject.ext.dependencies["canary-release"]
+
     // tinypinyin
     //compile rootProject.ext.dependencies["tinypinyin"]
     // debug
@@ -107,14 +144,14 @@ dependencies {
 //    compile(rootProject.ext.library["upgradekit"]) {
 //        exclude group: 'com.android.support'
 //    }
-//    compile(rootProject.ext.library["uikit"]) {
-//        exclude group: 'com.android.support'
-//    }
+    compile(rootProject.ext.library["uikit"]) {
+        exclude group: 'com.android.support'
+    }
 //    compile(rootProject.ext.library["shadow"]) {
 //        exclude group: 'com.android.support'
 //    }
 //    compile project(':webkit')
-    compile project(':uikit')
+//    compile project(':uikit')
 //    compile project(':upgradekit')
 }
 

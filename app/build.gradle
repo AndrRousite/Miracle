@@ -64,12 +64,20 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //compile 'com.github.markomilos:paginate:0.5.1'
     testCompile 'junit:junit:4.12'
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
+    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+        //exclude group: 'com.google.auto'
+        exclude module: 'guava'
+        exclude module: 'javapoet'
+    }
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    compile rootProject.ext.dependencies["arouter"]
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    compile rootProject.ext.dependencies["canary-debug"]
+    annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
+        exclude group: 'com.google.auto'
+        exclude module: 'guava'
+        exclude module: 'javapoet'
+    }
+//    compile rootProject.ext.dependencies["canary-debug"]
     // Tinker
     //    compile rootProject.ext.dependencies["tinker"]
     //    provided rootProject.ext.dependencies["tinker-nano"]
