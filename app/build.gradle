@@ -77,12 +77,19 @@ dependencies {
         exclude module: 'guava'
         exclude module: 'javapoet'
     }
-//    compile rootProject.ext.dependencies["canary-debug"]
+    compile rootProject.ext.dependencies["canary-debug"]
     // Tinker
     //    compile rootProject.ext.dependencies["tinker"]
     //    provided rootProject.ext.dependencies["tinker-nano"]
     // Sophix
     //    compile rootProject.ext.dependencies["sophix"]
+
+//    implementation('me.letion:geetionlib:0.2.6') {
+//        exclude module: 'uikit'
+//    }
+//    implementation('me.letion:uikit:0.2.6') {
+//        exclude group: 'com.android.support'
+//    }
 }
 
 
