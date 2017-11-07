@@ -19,6 +19,7 @@ public class GlideImageConfig extends ImageConfig {
     private ImageView[] imageViews;
     private boolean isClearMemory;//清理内存缓存
     private boolean isClearDiskCache;//清理本地缓存
+    private int fallback; //请求 url 为空,则使用此图片作为占位符
 
     private GlideImageConfig(Builder builder) {
         this.url = builder.url;
@@ -31,6 +32,7 @@ public class GlideImageConfig extends ImageConfig {
         this.imageViews = builder.imageViews;
         this.isClearMemory = builder.isClearMemory;
         this.isClearDiskCache = builder.isClearDiskCache;
+        this.fallback = builder.fallback;
     }
 
     public int getCacheStrategy() {
@@ -57,6 +59,10 @@ public class GlideImageConfig extends ImageConfig {
         return isClearDiskCache;
     }
 
+    public int getFallback() {
+        return fallback;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -67,6 +73,7 @@ public class GlideImageConfig extends ImageConfig {
         private ImageView imageView;
         private int placeholder;
         private int errorPic;
+        private int fallback; //请求 url 为空,则使用此图片作为占位符
         private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
         private Transformation transformation;//glide用它来改变图形的形状
         private Target[] targets;
@@ -89,6 +96,11 @@ public class GlideImageConfig extends ImageConfig {
 
         public Builder errorPic(int errorPic) {
             this.errorPic = errorPic;
+            return this;
+        }
+
+        public Builder fallback(int fallback) {
+            this.fallback = fallback;
             return this;
         }
 

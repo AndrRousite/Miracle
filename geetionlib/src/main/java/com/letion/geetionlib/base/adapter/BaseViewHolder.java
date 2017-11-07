@@ -9,6 +9,7 @@ import com.zhy.autolayout.utils.AutoUtils;
 /**
  * Created by liu-feng on 2017/6/8.
  */
+@Deprecated
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder{
 
     public BaseViewHolder(View itemView) {

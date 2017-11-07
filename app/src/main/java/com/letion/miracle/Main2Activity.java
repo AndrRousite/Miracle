@@ -1,10 +1,12 @@
 package com.letion.miracle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.letion.miracle.mvp.ui.activity.UserActivity;
 import com.letion.uikit.stateview.TEmptyLayout;
 
 public class Main2Activity extends AppCompatActivity {
@@ -60,7 +62,8 @@ public class Main2Activity extends AppCompatActivity {
                 emptyLayout.showContent();
                 return true;
             case R.id.action_error:
-                emptyLayout.showError();
+//                emptyLayout.showError();
+                startActivity(new Intent(this, UserActivity.class));
                 return true;
         }
         return false;

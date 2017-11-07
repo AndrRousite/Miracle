@@ -23,6 +23,12 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     protected M mModel;
     protected V mView;
 
+    public BasePresenter(M model, V rootView, RxErrorHandler rxErrorHandler) {
+        this.mModel = model;
+        this.mView = rootView;
+        this.mRxErrorHandler = rxErrorHandler;
+        onAttach();
+    }
 
     public BasePresenter(M model, V rootView) {
         this.mModel = model;

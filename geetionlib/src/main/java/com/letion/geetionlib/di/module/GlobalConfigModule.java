@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.letion.geetionlib.http.GlobalHttpHandler;
+import com.letion.geetionlib.http.RequestInterceptor;
 import com.letion.geetionlib.util.TFile;
 import com.letion.geetionlib.vender.imageloader.BaseImageLoaderStrategy;
 import com.letion.geetionlib.vender.imageloader.glide.GlideImageLoaderStrategy;

@@ -1,12 +1,12 @@
 package com.letion.geetionlib.http;
 
-import android.content.Context;
+import android.support.annotation.Nullable;
 
-import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.model.GenericLoaderFactory;
+import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
+import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import java.io.InputStream;
 
@@ -24,9 +24,16 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
         this.client = client;
     }
 
+    @Nullable
     @Override
-    public DataFetcher getResourceFetcher(GlideUrl model, int width, int height) {
-        return new OkHttpStreamFetcher(client, model);
+    public LoadData<InputStream> buildLoadData(GlideUrl glideUrl, int width, int height, Options
+            options) {
+        return new LoadData<>(glideUrl, new OkHttpStreamFetcher(client, glideUrl));
+    }
+
+    @Override
+    public boolean handles(GlideUrl glideUrl) {
+        return true;
     }
 
     /**
@@ -64,7 +71,7 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
         }
 
         @Override
-        public ModelLoader<GlideUrl, InputStream> build(Context context, GenericLoaderFactory factories) {
+        public ModelLoader<GlideUrl, InputStream> build(MultiModelLoaderFactory multiFactory) {
             return new OkHttpUrlLoader(client);
         }
 
