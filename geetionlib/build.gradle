@@ -144,14 +144,14 @@ dependencies {
 //    compile(rootProject.ext.library["upgradekit"]) {
 //        exclude group: 'com.android.support'
 //    }
-    compile(rootProject.ext.library["uikit"]) {
-        exclude group: 'com.android.support'
-    }
+//    compile(rootProject.ext.library["uikit"]) {
+//        exclude group: 'com.android.support'
+//    }
 //    compile(rootProject.ext.library["shadow"]) {
 //        exclude group: 'com.android.support'
 //    }
 //    compile project(':webkit')
-//    compile project(':uikit')
+    compile project(':uikit')
 //    compile project(':upgradekit')
 }
 
@@ -172,4 +172,4 @@ gradle.projectsEvaluated {
 }
 
 //apply from: "https://raw.githubusercontent.com/xiaopansky/android-library-publish-to-jcenter/master/bintrayUpload.gradle"
-apply from: "bintray.gradle"
+//apply from: "bintray.gradle"

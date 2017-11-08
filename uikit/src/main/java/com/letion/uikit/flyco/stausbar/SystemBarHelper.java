@@ -2,7 +2,7 @@
  * Copyright (c) 2016 BiliBili Inc.
  */
 
-package com.letion.uikit.flyco.stat_navi_bar;
+package com.letion.uikit.flyco.stausbar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
