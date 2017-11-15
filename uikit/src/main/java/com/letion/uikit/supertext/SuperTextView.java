@@ -134,7 +134,8 @@ public class SuperTextView extends RelativeLayout {
     private boolean useRipple;
 
     private int lineType;
-    private LayoutParams centerBaseLineParams, topLineParams, bottomLineParams, leftImgParams, leftTextParams, centerTextParams, leftTopTextParams, leftBottomParams,
+    private LayoutParams centerBaseLineParams, topLineParams, bottomLineParams, leftImgParams,
+            leftTextParams, centerTextParams, leftTopTextParams, leftBottomParams,
             leftBottomParams2, rightTextParams, rightImgParams, rightCheckBoxParams;
 
     private OnSuperTextViewClickListener onSuperTextViewClickListener;
@@ -156,7 +157,7 @@ public class SuperTextView extends RelativeLayout {
         mContext = context;
 //        defaultLinePadding = dip2px(context, 16);
         defaultPadding = dip2px(context, 16);
-        defaultSize = sp2px(context, 14);
+        defaultSize = sp2px(context, 15);
         centerSpaceHeight = dip2px(context, 10);
         getAttr(attrs);
 
@@ -181,12 +182,16 @@ public class SuperTextView extends RelativeLayout {
         centerTextString = typedArray.getString(R.styleable.SuperTextView_sCenterTextString);
         rightTextString = typedArray.getString(R.styleable.SuperTextView_sRightTextString);
 
-        rightTextStringRightIconRes = typedArray.getDrawable(R.styleable.SuperTextView_sRightTextStringRightIconRes);
-        rightTextStringRightIconPadding = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightTextStringRightIconResPadding, dip2px(mContext, 5));
+        rightTextStringRightIconRes = typedArray.getDrawable(R.styleable
+                .SuperTextView_sRightTextStringRightIconRes);
+        rightTextStringRightIconPadding = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightTextStringRightIconResPadding, dip2px(mContext, 5));
 
         leftTopTextString = typedArray.getString(R.styleable.SuperTextView_sLeftTopTextString);
-        leftBottomTextString = typedArray.getString(R.styleable.SuperTextView_sLeftBottomTextString);
-        leftBottomTextString2 = typedArray.getString(R.styleable.SuperTextView_sLeftBottomTextString2);
+        leftBottomTextString = typedArray.getString(R.styleable
+                .SuperTextView_sLeftBottomTextString);
+        leftBottomTextString2 = typedArray.getString(R.styleable
+                .SuperTextView_sLeftBottomTextString2);
 
         showCheckBox = typedArray.getBoolean(R.styleable.SuperTextView_sRightCheckBoxShow, false);
         isChecked = typedArray.getBoolean(R.styleable.SuperTextView_sIsChecked, false);
@@ -195,67 +200,107 @@ public class SuperTextView extends RelativeLayout {
         lineType = typedArray.getInt(R.styleable.SuperTextView_sLineShow, DEFAULT);
 
         /////////设置view的边距////////
-        centerSpaceHeight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sCenterSpaceHeight, centerSpaceHeight);
+        centerSpaceHeight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sCenterSpaceHeight, centerSpaceHeight);
 
-        bothLineWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBothLineWidth, dip2px(mContext, 0.5f));
-        topLineWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sTopLineWidth, dip2px(mContext, 0.5f));
-        bottomLineWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBottomLineWidth, dip2px(mContext, 0.5f));
+        bothLineWidth = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBothLineWidth, dip2px(mContext, 0.5f));
+        topLineWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sTopLineWidth,
+                dip2px(mContext, 0.5f));
+        bottomLineWidth = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBottomLineWidth, dip2px(mContext, 0.5f));
 
         lineColor = typedArray.getColor(R.styleable.SuperTextView_sLineColor, lineColor);
 
-        topLineMargin = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sTopLineMargin, defaultLinePadding);
-        topLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sTopLineMarginLeft, defaultLinePadding);
-        topLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sTopLineMarginRight, defaultLinePadding);
+        topLineMargin = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sTopLineMargin, defaultLinePadding);
+        topLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sTopLineMarginLeft, defaultLinePadding);
+        topLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sTopLineMarginRight, defaultLinePadding);
 
-        bottomLineMargin = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBottomLineMargin, defaultLinePadding);
-        bottomLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBottomLineMarginLeft, defaultLinePadding);
-        bottomLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBottomLineMarginRight, defaultLinePadding);
+        bottomLineMargin = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBottomLineMargin, defaultLinePadding);
+        bottomLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBottomLineMarginLeft, defaultLinePadding);
+        bottomLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBottomLineMarginRight, defaultLinePadding);
 
-        bothLineMargin = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBothLineMargin, defaultLinePadding);
-        bothLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBothLineMarginLeft, defaultLinePadding);
-        bothLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sBothLineMarginRight, defaultLinePadding);
+        bothLineMargin = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBothLineMargin, defaultLinePadding);
+        bothLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBothLineMarginLeft, defaultLinePadding);
+        bothLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sBothLineMarginRight, defaultLinePadding);
 
-        leftIconMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftIconMarginLeft, defaultPadding);
-        leftTVMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftTextMarginLeft, defaultPadding);
+        leftIconMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftIconMarginLeft, defaultPadding);
+        leftTVMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftTextMarginLeft, defaultPadding);
 
-        leftTopMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftTopTextMarginLeft, defaultPadding);
-        leftBottomMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftBottomTextMarginLeft, defaultPadding);
-        leftBottomMarginLeft2 = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftBottomTextMarginLeft2, defaultPadding);
-        rightTVMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightTextMarginRight, defaultPadding);
-        rightIconMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightIconMarginRight, defaultPadding);
-        rightCheckBoxMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightCheckBoxMarginRight, defaultPadding);
+        leftTopMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftTopTextMarginLeft, defaultPadding);
+        leftBottomMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftBottomTextMarginLeft, defaultPadding);
+        leftBottomMarginLeft2 = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftBottomTextMarginLeft2, defaultPadding);
+        rightTVMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightTextMarginRight, defaultPadding);
+        rightIconMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightIconMarginRight, defaultPadding);
+        rightCheckBoxMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightCheckBoxMarginRight, defaultPadding);
         //////设置字体颜色////////
-        backgroundColor = typedArray.getColor(R.styleable.SuperTextView_sBackgroundColor, defaultBgColor);
+        backgroundColor = typedArray.getColor(R.styleable.SuperTextView_sBackgroundColor,
+                defaultBgColor);
         leftTVColor = typedArray.getColor(R.styleable.SuperTextView_sLeftTextColor, defaultColor);
-        leftTopTVColor = typedArray.getColor(R.styleable.SuperTextView_sLeftTopTextColor, defaultColor);
-        leftBottomTVColor = typedArray.getColor(R.styleable.SuperTextView_sLeftBottomTextColor, defaultColor);
-        leftBottomTVColor2 = typedArray.getColor(R.styleable.SuperTextView_sLeftBottomTextColor2, defaultColor);
+        leftTopTVColor = typedArray.getColor(R.styleable.SuperTextView_sLeftTopTextColor,
+                defaultColor);
+        leftBottomTVColor = typedArray.getColor(R.styleable.SuperTextView_sLeftBottomTextColor,
+                defaultColor);
+        leftBottomTVColor2 = typedArray.getColor(R.styleable.SuperTextView_sLeftBottomTextColor2,
+                defaultColor);
         rightTVColor = typedArray.getColor(R.styleable.SuperTextView_sRightTextColor, defaultColor);
-        centerTVColor = typedArray.getColor(R.styleable.SuperTextView_sCenterTextColor, defaultColor);
+        centerTVColor = typedArray.getColor(R.styleable.SuperTextView_sCenterTextColor,
+                defaultColor);
         //////设置字体大小////////
-        leftTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftTextSize, defaultSize);
-        leftTopTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftTopTextSize, defaultSize);
-        leftBottomTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftBottomTextSize, defaultSize);
-        leftBottomTVSize2 = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftBottomTextSize2, defaultSize);
-        rightTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightTextSize, defaultSize);
-        centerTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sCenterTextSize, defaultSize);
+        leftTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftTextSize,
+                defaultSize);
+        leftTopTVSize = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftTopTextSize, defaultSize);
+        leftBottomTVSize = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftBottomTextSize, defaultSize);
+        leftBottomTVSize2 = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftBottomTextSize2, defaultSize);
+        rightTVSize = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightTextSize,
+                defaultSize);
+        centerTVSize = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sCenterTextSize, defaultSize);
 
         ///////设置textView的属性///////////SuperTextViewxEms
         isSingLines = typedArray.getBoolean(R.styleable.SuperTextView_sIsSingLines, isSingLines);
         maxLines = typedArray.getInt(R.styleable.SuperTextView_sMaxLines, maxLines);
         maxEms = typedArray.getInt(R.styleable.SuperTextView_sMaxEms, maxEms);
 
-        leftIconWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftIconWidth, 0);
-        leftIconHeight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sLeftIconHeight, 0);
+        leftIconWidth = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftIconWidth, 0);
+        leftIconHeight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sLeftIconHeight, 0);
 
-        rightIconWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightIconWidth, 0);
-        rightIconHeight = typedArray.getDimensionPixelSize(R.styleable.SuperTextView_sRightIconHeight, 0);
+        rightIconWidth = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightIconWidth, 0);
+        rightIconHeight = typedArray.getDimensionPixelSize(R.styleable
+                .SuperTextView_sRightIconHeight, 0);
 
-        mLeftTopViewIsClickable = typedArray.getBoolean(R.styleable.SuperTextView_sLeftTopViewIsClickable, false);
-        mLeftBottomViewIsClickable = typedArray.getBoolean(R.styleable.SuperTextView_sLeftBottomViewIsClickable, false);
-        mLeftBottomView2IsClickable = typedArray.getBoolean(R.styleable.SuperTextView_sLeftBottomView2IsClickable, false);
+        mLeftTopViewIsClickable = typedArray.getBoolean(R.styleable
+                .SuperTextView_sLeftTopViewIsClickable, false);
+        mLeftBottomViewIsClickable = typedArray.getBoolean(R.styleable
+                .SuperTextView_sLeftBottomViewIsClickable, false);
+        mLeftBottomView2IsClickable = typedArray.getBoolean(R.styleable
+                .SuperTextView_sLeftBottomView2IsClickable, false);
 
-        mBackground_drawable = typedArray.getDrawable(R.styleable.SuperTextView_sBackgroundDrawableRes);
+        mBackground_drawable = typedArray.getDrawable(R.styleable
+                .SuperTextView_sBackgroundDrawableRes);
 
         typedArray.recycle();
     }
@@ -452,7 +497,8 @@ public class SuperTextView extends RelativeLayout {
      * @param maxLines    显示最大行
      * @param maxEms      最多显示多少个字
      */
-    private void setTextViewParams(TextView textView, boolean isSingLines, int maxLines, int maxEms) {
+    private void setTextViewParams(TextView textView, boolean isSingLines, int maxLines, int
+            maxEms) {
         textView.setSingleLine(isSingLines);
         textView.setMaxLines(maxLines);
         textView.setMaxEms(maxEms);
@@ -572,7 +618,8 @@ public class SuperTextView extends RelativeLayout {
         rightTV.setText(rightTextString);
         setTextColor(rightTV, rightTVColor);
         setTextSize(rightTV, rightTVSize);
-        setTextViewRightDrawble(rightTV, rightTextStringRightIconRes, rightTextStringRightIconPadding);
+        setTextViewRightDrawble(rightTV, rightTextStringRightIconRes,
+                rightTextStringRightIconPadding);
         rightTV.setGravity(Gravity.RIGHT);
         setTextViewParams(rightTV, isSingLines, maxLines, maxEms);
         addView(rightTV);
@@ -606,7 +653,8 @@ public class SuperTextView extends RelativeLayout {
     private void initRightCheckBox() {
         rightCheckBox = new CheckBox(mContext);
 
-        rightCheckBoxParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        rightCheckBoxParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams
+                .WRAP_CONTENT);
 
         rightCheckBoxParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
         rightCheckBoxParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
@@ -779,7 +827,8 @@ public class SuperTextView extends RelativeLayout {
      * @param drawablePadding drawablePadding
      * @return
      */
-    public SuperTextView setRightString(String rightString, Drawable drawable, int drawablePadding) {
+    public SuperTextView setRightString(String rightString, Drawable drawable, int
+            drawablePadding) {
         rightTextString = rightString;
         rightTextStringRightIconRes = drawable;
         rightTextStringRightIconPadding = drawablePadding;
@@ -1065,7 +1114,8 @@ public class SuperTextView extends RelativeLayout {
         return (int) (spValue * scale + 0.5f);
     }
 
-    public static void setTextViewRightDrawble(TextView textView, Drawable drawable, int drawablePadding) {
+    public static void setTextViewRightDrawble(TextView textView, Drawable drawable, int
+            drawablePadding) {
         if (drawable != null && textView != null) {
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             textView.setCompoundDrawables(null, null, drawable, null);

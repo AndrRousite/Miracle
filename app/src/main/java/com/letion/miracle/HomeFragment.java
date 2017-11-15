@@ -20,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.letion.uikit.dialog.QMUIBottomSheet;
 import com.letion.uikit.dialog.QMUIDialog;
 import com.letion.uikit.dialog.QMUIDialogAction;
 import com.letion.uikit.dialog.QMUIDisplayHelper;
@@ -63,7 +64,9 @@ public class HomeFragment extends Fragment {
                 "单选菜单类型对话框",
                 "多选菜单类型对话框",
                 "带输入框的对话框",
-                "高度适应键盘升降的对话框"
+                "高度适应键盘升降的对话框",
+                "BottomSheet List",
+                "BottomSheet Grid"
         };
         List<String> data = new ArrayList<>();
         Collections.addAll(data, listItems);
@@ -96,6 +99,12 @@ public class HomeFragment extends Fragment {
                         break;
                     case 7:
                         showAutoDialog();
+                        break;
+                    case 8:
+                        showSimpleBottomSheetList();
+                        break;
+                    case 9:
+                        showSimpleBottomSheetGrid();
                         break;
                 }
             }
@@ -326,5 +335,61 @@ public class HomeFragment extends Fragment {
             layout.addView(textView);
             return layout;
         }
+    }
+
+    private void showSimpleBottomSheetGrid() {
+        final int TAG_SHARE_WECHAT_FRIEND = 0;
+        final int TAG_SHARE_WECHAT_MOMENT = 1;
+        final int TAG_SHARE_WEIBO = 2;
+        final int TAG_SHARE_CHAT = 3;
+        final int TAG_SHARE_LOCAL = 4;
+        QMUIBottomSheet.BottomGridSheetBuilder builder = new QMUIBottomSheet
+                .BottomGridSheetBuilder(getActivity());
+        builder.addItem(R.mipmap.ic_launcher, "分享到微信", TAG_SHARE_WECHAT_FRIEND, QMUIBottomSheet
+                .BottomGridSheetBuilder.FIRST_LINE)
+                .addItem(R.mipmap.ic_launcher, "分享到朋友圈", TAG_SHARE_WECHAT_MOMENT, QMUIBottomSheet
+                        .BottomGridSheetBuilder.FIRST_LINE)
+                .addItem(R.mipmap.ic_launcher, "分享到微博", TAG_SHARE_WEIBO, QMUIBottomSheet
+                        .BottomGridSheetBuilder.FIRST_LINE)
+                .addItem(R.mipmap.ic_launcher, "分享到私信", TAG_SHARE_CHAT, QMUIBottomSheet
+                        .BottomGridSheetBuilder.FIRST_LINE)
+                .addItem(R.mipmap.ic_launcher, "保存到本地", TAG_SHARE_LOCAL, QMUIBottomSheet
+                        .BottomGridSheetBuilder.SECOND_LINE)
+                .setOnSheetItemClickListener((dialog, itemView) -> {
+                    dialog.dismiss();
+                    int tag = (int) itemView.getTag();
+                    switch (tag) {
+                        case TAG_SHARE_WECHAT_FRIEND:
+                            Toast.makeText(getActivity(), "分享到微信", Toast.LENGTH_SHORT).show();
+                            break;
+                        case TAG_SHARE_WECHAT_MOMENT:
+                            Toast.makeText(getActivity(), "分享到朋友圈", Toast.LENGTH_SHORT).show();
+                            break;
+                        case TAG_SHARE_WEIBO:
+                            Toast.makeText(getActivity(), "分享到微博", Toast.LENGTH_SHORT).show();
+                            break;
+                        case TAG_SHARE_CHAT:
+                            Toast.makeText(getActivity(), "分享到私信", Toast.LENGTH_SHORT).show();
+                            break;
+                        case TAG_SHARE_LOCAL:
+                            Toast.makeText(getActivity(), "保存到本地", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }).build().show();
+    }
+
+    private void showSimpleBottomSheetList() {
+        new QMUIBottomSheet.BottomListSheetBuilder(getActivity())
+                .setTitle("修改头像")
+                .addItem("Item 1")
+                .addItem(0, "Item 2", "2", true, true)
+                .addItem(0, "Item 3", "3", true, false)
+                .setOnSheetItemClickListener((dialog, itemView, position, tag) -> {
+                    dialog.dismiss();
+                    Toast.makeText(getActivity(), "Item " + (position + 1), Toast.LENGTH_SHORT)
+                            .show();
+                })
+                .build()
+                .show();
     }
 }

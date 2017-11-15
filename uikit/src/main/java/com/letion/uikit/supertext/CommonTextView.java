@@ -170,9 +170,11 @@ public class CommonTextView extends RelativeLayout {
     private boolean mRightViewIsClickable = false;
 
 
-    private RelativeLayout.LayoutParams leftTVParams, centerTVParams, rightTVParams, topLineParams, bottomLineParams;
+    private RelativeLayout.LayoutParams leftTVParams, centerTVParams, rightTVParams,
+            topLineParams, bottomLineParams;
     private RelativeLayout.LayoutParams leftTopTVParams, centerTopTVParams, rightTopTVParams;
-    private RelativeLayout.LayoutParams leftBottomTVParams, centerBottomTVParams, rightBottomTVParams;
+    private RelativeLayout.LayoutParams leftBottomTVParams, centerBottomTVParams,
+            rightBottomTVParams;
     private RelativeLayout.LayoutParams centerBaseLineParams;
     private RelativeLayout.LayoutParams leftIVParams;
 //    private RelativeLayout.LayoutParams rightIVParams;
@@ -194,9 +196,9 @@ public class CommonTextView extends RelativeLayout {
     public CommonTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        defaultSize = dip2px(context, 13);
-        defaultPadding = dip2px(context, 10);
-        mCenterSpaceHeight = dip2px(context, 5);
+        defaultSize = dip2px(context, 15);
+        defaultPadding = dip2px(context, 16);
+        mCenterSpaceHeight = dip2px(context, 10);
         getAttr(attrs);
         init();
     }
@@ -210,118 +212,190 @@ public class CommonTextView extends RelativeLayout {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonTextView);
 
         ////////设置文字或者图片资源////////
-        mLeft_drawableLeft = typedArray.getDrawable(R.styleable.CommonTextView_cLeftIconResForDrawableLeft);
-        mLeft_drawableTop = typedArray.getDrawable(R.styleable.CommonTextView_cLeftIconResForDrawableTop);
-        mLeft_drawableRight = typedArray.getDrawable(R.styleable.CommonTextView_cLeftIconResForDrawableRight);
-        mLeft_drawableBottom = typedArray.getDrawable(R.styleable.CommonTextView_cLeftIconResForDrawableBottom);
+        mLeft_drawableLeft = typedArray.getDrawable(R.styleable
+                .CommonTextView_cLeftIconResForDrawableLeft);
+        mLeft_drawableTop = typedArray.getDrawable(R.styleable
+                .CommonTextView_cLeftIconResForDrawableTop);
+        mLeft_drawableRight = typedArray.getDrawable(R.styleable
+                .CommonTextView_cLeftIconResForDrawableRight);
+        mLeft_drawableBottom = typedArray.getDrawable(R.styleable
+                .CommonTextView_cLeftIconResForDrawableBottom);
 
-        mCenter_drawableLeft = typedArray.getDrawable(R.styleable.CommonTextView_cCenterIconResForDrawableLeft);
-        mCenter_drawableTop = typedArray.getDrawable(R.styleable.CommonTextView_cCenterIconResForDrawableTop);
-        mCenter_drawableRight = typedArray.getDrawable(R.styleable.CommonTextView_cCenterIconResForDrawableRight);
-        mCenter_drawableBottom = typedArray.getDrawable(R.styleable.CommonTextView_cCenterIconResForDrawableBottom);
+        mCenter_drawableLeft = typedArray.getDrawable(R.styleable
+                .CommonTextView_cCenterIconResForDrawableLeft);
+        mCenter_drawableTop = typedArray.getDrawable(R.styleable
+                .CommonTextView_cCenterIconResForDrawableTop);
+        mCenter_drawableRight = typedArray.getDrawable(R.styleable
+                .CommonTextView_cCenterIconResForDrawableRight);
+        mCenter_drawableBottom = typedArray.getDrawable(R.styleable
+                .CommonTextView_cCenterIconResForDrawableBottom);
 
-        mRight_drawableLeft = typedArray.getDrawable(R.styleable.CommonTextView_cRightIconResForDrawableLeft);
-        mRight_drawableTop = typedArray.getDrawable(R.styleable.CommonTextView_cRightIconResForDrawableTop);
-        mRight_drawableRight = typedArray.getDrawable(R.styleable.CommonTextView_cRightIconResForDrawableRight);
-        mRight_drawableBottom = typedArray.getDrawable(R.styleable.CommonTextView_cRightIconResForDrawableBottom);
+        mRight_drawableLeft = typedArray.getDrawable(R.styleable
+                .CommonTextView_cRightIconResForDrawableLeft);
+        mRight_drawableTop = typedArray.getDrawable(R.styleable
+                .CommonTextView_cRightIconResForDrawableTop);
+        mRight_drawableRight = typedArray.getDrawable(R.styleable
+                .CommonTextView_cRightIconResForDrawableRight);
+        mRight_drawableBottom = typedArray.getDrawable(R.styleable
+                .CommonTextView_cRightIconResForDrawableBottom);
 
-        mLeft_IV_drawable = typedArray.getDrawable(R.styleable.CommonTextView_cLeftImageViewDrawableRes);
-//        mRight_IV_drawable = typedArray.getDrawable(R.styleable.CommonTextView_cRightImageViewDrawableRes);
+        mLeft_IV_drawable = typedArray.getDrawable(R.styleable
+                .CommonTextView_cLeftImageViewDrawableRes);
+//        mRight_IV_drawable = typedArray.getDrawable(R.styleable
+// .CommonTextView_cRightImageViewDrawableRes);
         /////////////////////
 
         mLeftTextString = typedArray.getString(R.styleable.CommonTextView_cLeftTextString);
         mLeftTopTextString = typedArray.getString(R.styleable.CommonTextView_cLeftTopTextString);
-        mLeftBottomTextString = typedArray.getString(R.styleable.CommonTextView_cLeftBottomTextString);
+        mLeftBottomTextString = typedArray.getString(R.styleable
+                .CommonTextView_cLeftBottomTextString);
 
         mCenterTextString = typedArray.getString(R.styleable.CommonTextView_cCenterTextString);
-        mCenterTopTextString = typedArray.getString(R.styleable.CommonTextView_cCenterTopTextString);
-        mCenterBottomTextString = typedArray.getString(R.styleable.CommonTextView_cCenterBottomTextString);
+        mCenterTopTextString = typedArray.getString(R.styleable
+                .CommonTextView_cCenterTopTextString);
+        mCenterBottomTextString = typedArray.getString(R.styleable
+                .CommonTextView_cCenterBottomTextString);
 
         mRightTextString = typedArray.getString(R.styleable.CommonTextView_cRightTextString);
         mRightTopTextString = typedArray.getString(R.styleable.CommonTextView_cRightTopTextString);
-        mRightBottomTextString = typedArray.getString(R.styleable.CommonTextView_cRightBottomTextString);
+        mRightBottomTextString = typedArray.getString(R.styleable
+                .CommonTextView_cRightBottomTextString);
 
-        mLeftTextColor = typedArray.getColor(R.styleable.CommonTextView_cLeftTextColor, defaultColor);
-        mLeftTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cLeftTopTextColor, defaultColor);
-        mLeftBottomTextColor = typedArray.getColor(R.styleable.CommonTextView_cLeftBottomTextColor, defaultColor);
+        mLeftTextColor = typedArray.getColor(R.styleable.CommonTextView_cLeftTextColor,
+                defaultColor);
+        mLeftTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cLeftTopTextColor,
+                defaultColor);
+        mLeftBottomTextColor = typedArray.getColor(R.styleable
+                .CommonTextView_cLeftBottomTextColor, defaultColor);
 
-        mCenterTextColor = typedArray.getColor(R.styleable.CommonTextView_cCenterTextColor, defaultColor);
-        mCenterTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cCenterTopTextColor, defaultColor);
-        mCenterBottomTextColor = typedArray.getColor(R.styleable.CommonTextView_cCenterBottomTextColor, defaultColor);
+        mCenterTextColor = typedArray.getColor(R.styleable.CommonTextView_cCenterTextColor,
+                defaultColor);
+        mCenterTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cCenterTopTextColor,
+                defaultColor);
+        mCenterBottomTextColor = typedArray.getColor(R.styleable
+                .CommonTextView_cCenterBottomTextColor, defaultColor);
 
-        mRightTextColor = typedArray.getColor(R.styleable.CommonTextView_cRightTextColor, defaultColor);
-        mRightTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cRightTopTextColor, defaultColor);
-        mRightBottomTextColor = typedArray.getColor(R.styleable.CommonTextView_cRightBottomTextColor, defaultColor);
+        mRightTextColor = typedArray.getColor(R.styleable.CommonTextView_cRightTextColor,
+                defaultColor);
+        mRightTopTextColor = typedArray.getColor(R.styleable.CommonTextView_cRightTopTextColor,
+                defaultColor);
+        mRightBottomTextColor = typedArray.getColor(R.styleable
+                .CommonTextView_cRightBottomTextColor, defaultColor);
 
-        mLeftTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftTextSize, defaultSize);
-        mLeftTopTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftTopTextSize, defaultSize);
-        mLeftBottomTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftBottomTextSize, defaultSize);
+        mLeftTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftTextSize, defaultSize);
+        mLeftTopTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftTopTextSize, defaultSize);
+        mLeftBottomTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftBottomTextSize, defaultSize);
 
-        mCenterTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterTextSize, defaultSize);
-        mCenterTopTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterTopTextSize, defaultSize);
-        mCenterBottomTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterBottomTextSize, defaultSize);
+        mCenterTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterTextSize, defaultSize);
+        mCenterTopTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterTopTextSize, defaultSize);
+        mCenterBottomTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterBottomTextSize, defaultSize);
 
-        mRightTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightTextSize, defaultSize);
-        mRightTopTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightTopTextSize, defaultSize);
-        mRightBottomTextSize = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightBottomTextSize, defaultSize);
+        mRightTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightTextSize, defaultSize);
+        mRightTopTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightTopTextSize, defaultSize);
+        mRightBottomTextSize = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightBottomTextSize, defaultSize);
 
-        mLeftIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftIconDrawablePadding, defaultPadding);
-        mCenterIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterIconDrawablePadding, defaultPadding);
-        mRightIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightIconDrawablePadding, defaultPadding);
+        mLeftIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftIconDrawablePadding, defaultPadding);
+        mCenterIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterIconDrawablePadding, defaultPadding);
+        mRightIconDrawablePadding = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightIconDrawablePadding, defaultPadding);
 
-        mLeftViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftViewPaddingLeft, defaultPadding);
-        mLeftViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftViewPaddingRight, defaultPadding);
-        mCenterViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterViewPaddingLeft, defaultPadding);
-        mCenterViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterViewPaddingRight, defaultPadding);
-        mRightViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightViewPaddingLeft, defaultPadding);
-        mRightViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightViewPaddingRight, defaultPadding);
+        mLeftViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftViewPaddingLeft, defaultPadding);
+        mLeftViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftViewPaddingRight, defaultPadding);
+        mCenterViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterViewPaddingLeft, defaultPadding);
+        mCenterViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterViewPaddingRight, defaultPadding);
+        mRightViewPaddingLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightViewPaddingLeft, defaultPadding);
+        mRightViewPaddingRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightViewPaddingRight, defaultPadding);
 
-        mBothDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cBothDividerLineMarginLeft, 0);
-        mBothDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cBothDividerLineMarginRight, 0);
+        mBothDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cBothDividerLineMarginLeft, 0);
+        mBothDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cBothDividerLineMarginRight, 0);
 
-        mTopDividerLineMarginLR = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cTopDividerLineMarginLR, 0);
-        mTopDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cTopDividerLineMarginLeft, 0);
-        mTopDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cTopDividerLineMarginRight, 0);
+        mTopDividerLineMarginLR = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cTopDividerLineMarginLR, 0);
+        mTopDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cTopDividerLineMarginLeft, 0);
+        mTopDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cTopDividerLineMarginRight, 0);
 
-        mBottomDividerLineMarginLR = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cBottomDividerLineMarginLR, 0);
-        mBottomDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cBottomDividerLineMarginLeft, 0);
-        mBottomDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cBottomDividerLineMarginRight, 0);
+        mBottomDividerLineMarginLR = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cBottomDividerLineMarginLR, 0);
+        mBottomDividerLineMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cBottomDividerLineMarginLeft, 0);
+        mBottomDividerLineMarginRight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cBottomDividerLineMarginRight, 0);
 
-        mLeftImageViewMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftImageViewMarginLeft, defaultPadding);
-//        mRightImageViewMarginRight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightImageViewMarginRight, defaultPadding);
+        mLeftImageViewMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftImageViewMarginLeft, defaultPadding);
+//        mRightImageViewMarginRight = typedArray.getDimensionPixelSize(R.styleable
+// .CommonTextView_cRightImageViewMarginRight, defaultPadding);
 
-        mCenterSpaceHeight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterSpaceHeight, mCenterSpaceHeight);
+        mCenterSpaceHeight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterSpaceHeight, mCenterSpaceHeight);
 
 
-        mLeftTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cLeftTextViewLineSpacingExtra, 0);
-        mCenterTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterTextViewLineSpacingExtra, 0);
-        mRightTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cRightTextViewLineSpacingExtra, 0);
+        mLeftTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cLeftTextViewLineSpacingExtra, 0);
+        mCenterTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterTextViewLineSpacingExtra, 0);
+        mRightTextViewLineSpacingExtra = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cRightTextViewLineSpacingExtra, 0);
 
-        mDividerLineType = typedArray.getInt(R.styleable.CommonTextView_cShowDividerLineType, DEFAULT);
-        mDividerLineColor = typedArray.getColor(R.styleable.CommonTextView_cDividerLineColor, defaultDividerLineColor);
+        mDividerLineType = typedArray.getInt(R.styleable.CommonTextView_cShowDividerLineType,
+                DEFAULT);
+        mDividerLineColor = typedArray.getColor(R.styleable.CommonTextView_cDividerLineColor,
+                defaultDividerLineColor);
 
-        mDividerLineHeight = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cDividerLineHeight, dip2px(mContext, 0.5f));
+        mDividerLineHeight = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cDividerLineHeight, dip2px(mContext, 0.5f));
 
         useRipple = typedArray.getBoolean(R.styleable.CommonTextView_cUseRipple, false);
 
-        mBackgroundColor = typedArray.getColor(R.styleable.CommonTextView_cBackgroundColor, mBackgroundColor);
+        mBackgroundColor = typedArray.getColor(R.styleable.CommonTextView_cBackgroundColor,
+                mBackgroundColor);
 
         mSetSingleLine = typedArray.getBoolean(R.styleable.CommonTextView_cSetSingleLine, true);
         mSetMaxEms = typedArray.getInt(R.styleable.CommonTextView_cSetMaxEms, mSetMaxEms);
         mSetLines = typedArray.getInt(R.styleable.CommonTextView_cSetLines, 1);
 
-        mLeftTextViewGravity = typedArray.getInt(R.styleable.CommonTextView_cLeftTextViewGravity, DEFAULT_Gravity);
-        mCenterTextViewGravity = typedArray.getInt(R.styleable.CommonTextView_cCenterTextViewGravity, DEFAULT_Gravity);
-        mRightTextViewGravity = typedArray.getInt(R.styleable.CommonTextView_cRightTextViewGravity, DEFAULT_Gravity);
+        mLeftTextViewGravity = typedArray.getInt(R.styleable.CommonTextView_cLeftTextViewGravity,
+                DEFAULT_Gravity);
+        mCenterTextViewGravity = typedArray.getInt(R.styleable
+                .CommonTextView_cCenterTextViewGravity, DEFAULT_Gravity);
+        mRightTextViewGravity = typedArray.getInt(R.styleable
+                .CommonTextView_cRightTextViewGravity, DEFAULT_Gravity);
 
-        mLeftViewIsClickable = typedArray.getBoolean(R.styleable.CommonTextView_cLeftViewIsClickable, false);
-        mCenterViewIsClickable = typedArray.getBoolean(R.styleable.CommonTextView_cCenterViewIsClickable, false);
-        mRightViewIsClickable = typedArray.getBoolean(R.styleable.CommonTextView_cRightViewIsClickable, false);
+        mLeftViewIsClickable = typedArray.getBoolean(R.styleable
+                .CommonTextView_cLeftViewIsClickable, false);
+        mCenterViewIsClickable = typedArray.getBoolean(R.styleable
+                .CommonTextView_cCenterViewIsClickable, false);
+        mRightViewIsClickable = typedArray.getBoolean(R.styleable
+                .CommonTextView_cRightViewIsClickable, false);
 
-        mBackground_drawable = typedArray.getDrawable(R.styleable.CommonTextView_cBackgroundDrawableRes);
+        mBackground_drawable = typedArray.getDrawable(R.styleable
+                .CommonTextView_cBackgroundDrawableRes);
 
-        mIsCenterAlignLeft = typedArray.getBoolean(R.styleable.CommonTextView_cIsCenterAlignLeft, false);
-        mCenterViewMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CommonTextView_cCenterViewMarginLeft, dip2px(mContext, 200));
+        mIsCenterAlignLeft = typedArray.getBoolean(R.styleable.CommonTextView_cIsCenterAlignLeft,
+                false);
+        mCenterViewMarginLeft = typedArray.getDimensionPixelSize(R.styleable
+                .CommonTextView_cCenterViewMarginLeft, dip2px(mContext, 200));
 
         typedArray.recycle();
     }
@@ -345,7 +419,8 @@ public class CommonTextView extends RelativeLayout {
         if (mCenterTextString != null) {
             initCenterText();
         }
-        if (mRightTextString != null || mRight_drawableLeft != null || mRight_drawableRight != null) {
+        if (mRightTextString != null || mRight_drawableLeft != null || mRight_drawableRight !=
+                null) {
             initRightText();
         }
 
@@ -398,7 +473,8 @@ public class CommonTextView extends RelativeLayout {
     private void initCenterBaseLine() {
         if (centerBaseLineView == null) {
             if (centerBaseLineParams == null) {
-                centerBaseLineParams = new LayoutParams(LayoutParams.MATCH_PARENT, mCenterSpaceHeight);
+                centerBaseLineParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+                        mCenterSpaceHeight);
                 centerBaseLineParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
             }
             centerBaseLineView = new View(mContext);
@@ -547,7 +623,8 @@ public class CommonTextView extends RelativeLayout {
             leftTVParams.addRule(CENTER_VERTICAL, TRUE);
             leftTVParams.addRule(RIGHT_OF, R.id.cLeftImageViewId);
             leftTVParams.setMargins(mLeftViewPaddingLeft, 0, mLeftViewPaddingRight, 0);
-            leftTextView = initText(leftTextView, leftTVParams, R.id.cLeftTextId, mLeftTextColor, mLeftTextSize);
+            leftTextView = initText(leftTextView, leftTVParams, R.id.cLeftTextId, mLeftTextColor,
+                    mLeftTextSize);
             leftTextView.setText(mLeftTextString);
             leftTextView.setLineSpacing(mLeftTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(leftTextView, mLeftTextViewGravity);
@@ -563,7 +640,8 @@ public class CommonTextView extends RelativeLayout {
             }
         }
 
-        setDrawable(leftTextView, mLeft_drawableLeft, mLeft_drawableTop, mLeft_drawableRight, mLeft_drawableBottom, mLeftIconDrawablePadding);
+        setDrawable(leftTextView, mLeft_drawableLeft, mLeft_drawableTop, mLeft_drawableRight,
+                mLeft_drawableBottom, mLeftIconDrawablePadding);
 
     }
 
@@ -579,7 +657,8 @@ public class CommonTextView extends RelativeLayout {
             leftTopTVParams.addRule(ABOVE, R.id.cCenterBaseLineId);
             leftTopTVParams.addRule(RIGHT_OF, R.id.cLeftImageViewId);
             leftTopTVParams.setMargins(mLeftViewPaddingLeft, 0, mLeftViewPaddingRight, 0);
-            leftTopTextView = initText(leftTopTextView, leftTopTVParams, R.id.cLeftTopTextId, mLeftTopTextColor, mLeftTopTextSize);
+            leftTopTextView = initText(leftTopTextView, leftTopTVParams, R.id.cLeftTopTextId,
+                    mLeftTopTextColor, mLeftTopTextSize);
             leftTopTextView.setText(mLeftTopTextString);
             setTextViewGravity(leftTopTextView, mLeftTextViewGravity);
 
@@ -599,7 +678,8 @@ public class CommonTextView extends RelativeLayout {
             leftBottomTVParams.addRule(BELOW, R.id.cCenterBaseLineId);
             leftBottomTVParams.addRule(RIGHT_OF, R.id.cLeftImageViewId);
             leftBottomTVParams.setMargins(mLeftViewPaddingLeft, 0, mLeftViewPaddingRight, 0);
-            leftBottomTextView = initText(leftBottomTextView, leftBottomTVParams, R.id.cLeftBottomTextId, mLeftBottomTextColor, mLeftBottomTextSize);
+            leftBottomTextView = initText(leftBottomTextView, leftBottomTVParams, R.id
+                    .cLeftBottomTextId, mLeftBottomTextColor, mLeftBottomTextSize);
             leftBottomTextView.setText(mLeftBottomTextString);
             setTextViewGravity(leftBottomTextView, mLeftTextViewGravity);
 
@@ -614,7 +694,8 @@ public class CommonTextView extends RelativeLayout {
         if (centerTextView == null) {
             if (centerTVParams == null) {
                 if (mIsCenterAlignLeft) {
-                    centerTVParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                    centerTVParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams
+                            .WRAP_CONTENT);
                 } else {
                     centerTVParams = getParams(centerTVParams);
                 }
@@ -624,11 +705,13 @@ public class CommonTextView extends RelativeLayout {
             centerTVParams.addRule(RelativeLayout.CENTER_IN_PARENT, TRUE);
 
             if (mIsCenterAlignLeft) {
-                centerTextView = initText(centerTextView, centerTVParams, R.id.cCenterTextId, mCenterTextColor, mCenterTextSize);
+                centerTextView = initText(centerTextView, centerTVParams, R.id.cCenterTextId,
+                        mCenterTextColor, mCenterTextSize);
                 centerTVParams.setMargins(mCenterViewMarginLeft, 0, mCenterViewPaddingRight, 0);
                 setTextViewGravity(centerTextView, Gravity_Left_Center);
             } else {
-                centerTextView = initText(centerTextView, centerTVParams, R.id.cCenterTextId, mCenterTextColor, mCenterTextSize);
+                centerTextView = initText(centerTextView, centerTVParams, R.id.cCenterTextId,
+                        mCenterTextColor, mCenterTextSize);
                 centerTVParams.setMargins(mCenterViewPaddingLeft, 0, mCenterViewPaddingRight, 0);
                 setTextViewGravity(centerTextView, mCenterTextViewGravity);
             }
@@ -648,7 +731,8 @@ public class CommonTextView extends RelativeLayout {
             }
 
         }
-        setDrawable(centerTextView, mCenter_drawableLeft, mCenter_drawableTop, mCenter_drawableRight, mCenter_drawableBottom, mCenterIconDrawablePadding);
+        setDrawable(centerTextView, mCenter_drawableLeft, mCenter_drawableTop,
+                mCenter_drawableRight, mCenter_drawableBottom, mCenterIconDrawablePadding);
 
     }
 
@@ -664,7 +748,8 @@ public class CommonTextView extends RelativeLayout {
             centerTopTVParams.addRule(RelativeLayout.CENTER_IN_PARENT, TRUE);
             centerTopTVParams.addRule(ABOVE, R.id.cCenterBaseLineId);
             centerTopTVParams.setMargins(mCenterViewPaddingLeft, 0, mCenterViewPaddingRight, 0);
-            centerTopTextView = initText(centerTopTextView, centerTopTVParams, R.id.cCenterTopTextId, mCenterTopTextColor, mCenterTopTextSize);
+            centerTopTextView = initText(centerTopTextView, centerTopTVParams, R.id
+                    .cCenterTopTextId, mCenterTopTextColor, mCenterTopTextSize);
             centerTopTextView.setText(mCenterTopTextString);
             centerTopTextView.setLineSpacing(mCenterTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(centerTopTextView, mCenterTextViewGravity);
@@ -684,7 +769,8 @@ public class CommonTextView extends RelativeLayout {
             centerBottomTVParams.addRule(RelativeLayout.CENTER_IN_PARENT, TRUE);
             centerBottomTVParams.addRule(BELOW, R.id.cCenterBaseLineId);
             centerBottomTVParams.setMargins(mCenterViewPaddingLeft, 0, mCenterViewPaddingRight, 0);
-            centerBottomTextView = initText(centerBottomTextView, centerBottomTVParams, R.id.cCenterBottomTextId, mCenterBottomTextColor, mCenterBottomTextSize);
+            centerBottomTextView = initText(centerBottomTextView, centerBottomTVParams, R.id
+                    .cCenterBottomTextId, mCenterBottomTextColor, mCenterBottomTextSize);
             centerBottomTextView.setText(mCenterBottomTextString);
             centerBottomTextView.setLineSpacing(mCenterTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(centerBottomTextView, mCenterTextViewGravity);
@@ -706,7 +792,8 @@ public class CommonTextView extends RelativeLayout {
             rightTVParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
             rightTVParams.addRule(RelativeLayout.LEFT_OF, R.id.cRightImageViewId);
             rightTVParams.setMargins(mRightViewPaddingLeft, 0, mRightViewPaddingRight, 0);
-            rightTextView = initText(rightTextView, rightTVParams, R.id.cRightTextId, mRightTextColor, mRightTextSize);
+            rightTextView = initText(rightTextView, rightTVParams, R.id.cRightTextId,
+                    mRightTextColor, mRightTextSize);
             rightTextView.setText(mRightTextString);
 //            rightTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
             rightTextView.setLineSpacing(mRightTextViewLineSpacingExtra, 1.0f);
@@ -723,7 +810,8 @@ public class CommonTextView extends RelativeLayout {
             }
 
         }
-        setDrawable(rightTextView, mRight_drawableLeft, mRight_drawableTop, mRight_drawableRight, mRight_drawableBottom, mRightIconDrawablePadding);
+        setDrawable(rightTextView, mRight_drawableLeft, mRight_drawableTop, mRight_drawableRight,
+                mRight_drawableBottom, mRightIconDrawablePadding);
 
     }
 
@@ -740,7 +828,8 @@ public class CommonTextView extends RelativeLayout {
             rightTopTVParams.addRule(ABOVE, R.id.cCenterBaseLineId);
             rightTopTVParams.addRule(RelativeLayout.LEFT_OF, R.id.cRightImageViewId);
             rightTopTVParams.setMargins(mRightViewPaddingLeft, 0, mRightViewPaddingRight, 0);
-            rightTopTextView = initText(rightTopTextView, rightTopTVParams, R.id.cRightTopTextId, mRightTopTextColor, mRightTopTextSize);
+            rightTopTextView = initText(rightTopTextView, rightTopTVParams, R.id.cRightTopTextId,
+                    mRightTopTextColor, mRightTopTextSize);
             rightTopTextView.setText(mRightTopTextString);
             rightTopTextView.setLineSpacing(mRightTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(rightTopTextView, mRightTextViewGravity);
@@ -762,7 +851,8 @@ public class CommonTextView extends RelativeLayout {
             rightBottomTVParams.addRule(BELOW, R.id.cCenterBaseLineId);
             rightBottomTVParams.addRule(RelativeLayout.LEFT_OF, R.id.cRightImageViewId);
             rightBottomTVParams.setMargins(mRightViewPaddingLeft, 0, mRightViewPaddingRight, 0);
-            rightBottomTextView = initText(rightBottomTextView, rightBottomTVParams, R.id.cRightBottomTextId, mRightBottomTextColor, mRightBottomTextSize);
+            rightBottomTextView = initText(rightBottomTextView, rightBottomTVParams, R.id
+                    .cRightBottomTextId, mRightBottomTextColor, mRightBottomTextSize);
             rightBottomTextView.setText(mRightBottomTextString);
             rightBottomTextView.setLineSpacing(mRightTextViewLineSpacingExtra, 1.0f);
             setTextViewGravity(rightBottomTextView, mRightTextViewGravity);
@@ -793,7 +883,8 @@ public class CommonTextView extends RelativeLayout {
      * @param textSize     字体大小
      * @return 返回
      */
-    public TextView initText(TextView textView, LayoutParams layoutParams, int id, int textColor, int textSize) {
+    public TextView initText(TextView textView, LayoutParams layoutParams, int id, int textColor,
+                             int textSize) {
         if (textView == null) {
             textView = new TextView(mContext);
             textView.setId(id);
@@ -835,8 +926,10 @@ public class CommonTextView extends RelativeLayout {
      * @param drawableBottom  下边图标
      * @param drawablePadding 图标距离文字的间距
      */
-    public void setDrawable(TextView textView, Drawable drawableLeft, Drawable drawableTop, Drawable drawableRight, Drawable drawableBottom, int drawablePadding) {
-        textView.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, drawableTop, drawableRight, drawableBottom);
+    public void setDrawable(TextView textView, Drawable drawableLeft, Drawable drawableTop,
+                            Drawable drawableRight, Drawable drawableBottom, int drawablePadding) {
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, drawableTop,
+                drawableRight, drawableBottom);
         textView.setCompoundDrawablePadding(drawablePadding);
     }
 
@@ -1058,7 +1151,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setLeftDrawableLeft(Drawable drawableLeft) {
         if (drawableLeft != null) {
-            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft.getMinimumHeight());
+            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft
+                    .getMinimumHeight());
         }
         if (leftTextView == null) {
             initLeftText();
@@ -1075,7 +1169,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setLeftDrawableTop(Drawable drawableTop) {
         if (drawableTop != null) {
-            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop.getMinimumHeight());
+            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop
+                    .getMinimumHeight());
         }
         if (leftTextView == null) {
             initLeftText();
@@ -1092,7 +1187,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setLeftDrawableRight(Drawable drawableRight) {
         if (drawableRight != null) {
-            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight.getMinimumHeight());
+            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight
+                    .getMinimumHeight());
         }
         if (leftTextView == null) {
             initLeftText();
@@ -1109,7 +1205,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setLeftDrawableBottom(Drawable drawableBottom) {
         if (drawableBottom != null) {
-            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom.getMinimumHeight());
+            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom
+                    .getMinimumHeight());
         }
         if (leftTextView == null) {
             initLeftText();
@@ -1126,7 +1223,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setCenterDrawableLeft(Drawable drawableLeft) {
         if (drawableLeft != null) {
-            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft.getMinimumHeight());
+            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft
+                    .getMinimumHeight());
         }
         if (centerTextView == null) {
             initCenterText();
@@ -1143,7 +1241,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setCenterDrawableTop(Drawable drawableTop) {
         if (drawableTop != null) {
-            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop.getMinimumHeight());
+            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop
+                    .getMinimumHeight());
         }
         if (centerTextView == null) {
             initCenterText();
@@ -1160,7 +1259,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setCenterDrawableRight(Drawable drawableRight) {
         if (drawableRight != null) {
-            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight.getMinimumHeight());
+            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight
+                    .getMinimumHeight());
         }
         if (centerTextView == null) {
             initCenterText();
@@ -1177,7 +1277,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setCenterDrawableBottom(Drawable drawableBottom) {
         if (drawableBottom != null) {
-            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom.getMinimumHeight());
+            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom
+                    .getMinimumHeight());
         }
         if (centerTextView == null) {
             initCenterText();
@@ -1194,7 +1295,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setRightDrawableLeft(Drawable drawableLeft) {
         if (drawableLeft != null) {
-            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft.getMinimumHeight());
+            drawableLeft.setBounds(0, 0, drawableLeft.getMinimumWidth(), drawableLeft
+                    .getMinimumHeight());
         }
         if (rightTextView == null) {
             initRightText();
@@ -1211,7 +1313,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setRightDrawableTop(Drawable drawableTop) {
         if (drawableTop != null) {
-            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop.getMinimumHeight());
+            drawableTop.setBounds(0, 0, drawableTop.getMinimumWidth(), drawableTop
+                    .getMinimumHeight());
         }
         if (rightTextView == null) {
             initRightText();
@@ -1228,7 +1331,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setRightDrawableRight(Drawable drawableRight) {
         if (drawableRight != null) {
-            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight.getMinimumHeight());
+            drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight
+                    .getMinimumHeight());
         }
         if (rightTextView == null) {
             initRightText();
@@ -1245,7 +1349,8 @@ public class CommonTextView extends RelativeLayout {
      */
     public CommonTextView setRightDrawableBottom(Drawable drawableBottom) {
         if (drawableBottom != null) {
-            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom.getMinimumHeight());
+            drawableBottom.setBounds(0, 0, drawableBottom.getMinimumWidth(), drawableBottom
+                    .getMinimumHeight());
         }
         if (rightTextView == null) {
             initRightText();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="QMUI.Dialog" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@color/qmui_config_color_transparent</item>
         <item name="android:windowNoTitle">true</item><!-- 不用window title，使用自己的layout来做title -->
@@ -20,5 +21,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">?attr/qmui_dialog_margin_vertical</item>
         <item name="android:layout_marginBottom">?attr/qmui_dialog_margin_vertical</item>
+    </style>
+
+    <!--**********************************************
+    *                  Bottom Sheet                        *
+    **********************************************-->
+    <style name="QMUI.BottomSheet" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null
+        </item><!-- 为了避免在有 NavigationBar 的手机上 Dialog 从 NavigationBar 底部上来。去掉 Dialog 的动画，使用 View 的动画。-->
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+
+    <!-- 提示更新小圆点 -->
+    <style name="QMUI.TipPoint">
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@drawable/qmui_tips_point</item>
     </style>
 </resources>
