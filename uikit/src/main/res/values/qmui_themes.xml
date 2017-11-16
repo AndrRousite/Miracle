@@ -83,6 +83,9 @@
         <item name="qmui_dialog_action_text_negative_color">
             @color/qmui_dialog_action_text_negative_color
         </item>
+        <item name="qmui_dialog_action_text_neutral_color">
+            @color/qmui_dialog_action_text_neutral_color
+        </item>
         <item name="qmui_dialog_action_text_color">@color/qmui_dialog_action_text_color</item>
         <item name="qmui_dialog_action_btn_bg">@drawable/qmui_dialog_action_btn_bg</item>
         <item name="qmui_dialog_action_block_btn_bg">?attr/qmui_s_list_item_bg_with_border_none

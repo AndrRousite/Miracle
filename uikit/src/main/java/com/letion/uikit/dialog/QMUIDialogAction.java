@@ -21,19 +21,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- *
  * @author cginechen
  * @date 2015-10-20
  */
 public class QMUIDialogAction {
 
-    @IntDef({ACTION_TYPE_NORMAL,ACTION_TYPE_BLOCK})
+    @IntDef({ACTION_TYPE_NORMAL, ACTION_TYPE_BLOCK})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Type {}
+    public @interface Type {
+    }
 
-    @IntDef({ACTION_PROP_NEGATIVE,ACTION_PROP_NEUTRAL,ACTION_PROP_POSITIVE})
+    @IntDef({ACTION_PROP_NEGATIVE, ACTION_PROP_NEUTRAL, ACTION_PROP_POSITIVE})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Prop {}
+    public @interface Prop {
+    }
 
     //类型
     public static final int ACTION_TYPE_NORMAL = 0;
@@ -53,59 +54,70 @@ public class QMUIDialogAction {
     private Button mButton;
 
     //region 构造器
+
     /**
      * 正常类型无图标Action
-     * @param context context
-     * @param strRes 文案
+     *
+     * @param context         context
+     * @param strRes          文案
      * @param onClickListener 点击事件
      */
     public QMUIDialogAction(Context context, int strRes, ActionListener onClickListener) {
-        this(context,0,strRes,ACTION_TYPE_NORMAL,onClickListener);
+        this(context, 0, strRes, ACTION_TYPE_NORMAL, onClickListener);
     }
 
     public QMUIDialogAction(Context context, String str, ActionListener onClickListener) {
-        this(context,0,str,ACTION_TYPE_NORMAL,onClickListener);
+        this(context, 0, str, ACTION_TYPE_NORMAL, onClickListener);
     }
 
     /**
      * 无图标Action
-     * @param context context
-     * @param iconRes 图标
-     * @param strRes 文案
+     *
+     * @param context         context
+     * @param iconRes         图标
+     * @param strRes          文案
      * @param onClickListener 点击事件
      */
-    public QMUIDialogAction(Context context, int iconRes, int strRes, ActionListener onClickListener) {
+    public QMUIDialogAction(Context context, int iconRes, int strRes, ActionListener
+            onClickListener) {
         this(context, iconRes, strRes, ACTION_TYPE_NORMAL, onClickListener);
     }
-    public QMUIDialogAction(Context context, int iconRes, String str, ActionListener onClickListener) {
+
+    public QMUIDialogAction(Context context, int iconRes, String str, ActionListener
+            onClickListener) {
         this(context, iconRes, str, ACTION_TYPE_NORMAL, onClickListener);
     }
 
     /**
      * 无图标Action
-     * @param context context
-     * @param iconRes 图标
-     * @param strRes 文案
-     * @param actionType 类型
+     *
+     * @param context         context
+     * @param iconRes         图标
+     * @param strRes          文案
+     * @param actionType      类型
      * @param onClickListener 点击事件
      */
-    public QMUIDialogAction(Context context, int iconRes, int strRes, @Type int actionType, ActionListener onClickListener) {
-        this(context, iconRes, strRes, actionType,ACTION_PROP_NEUTRAL,onClickListener);
+    public QMUIDialogAction(Context context, int iconRes, int strRes, @Type int actionType,
+                            ActionListener onClickListener) {
+        this(context, iconRes, strRes, actionType, ACTION_PROP_NEUTRAL, onClickListener);
     }
-    public QMUIDialogAction(Context context, int iconRes, String str, @Type int actionType, ActionListener onClickListener) {
-        this(context, iconRes, str, actionType,ACTION_PROP_NEUTRAL,onClickListener);
+
+    public QMUIDialogAction(Context context, int iconRes, String str, @Type int actionType,
+                            ActionListener onClickListener) {
+        this(context, iconRes, str, actionType, ACTION_PROP_NEUTRAL, onClickListener);
     }
 
 
     /**
-     * @param context context
-     * @param iconRes 图标
-     * @param strRes 文案
-     * @param actionType 类型
-     * @param actionProp 属性
+     * @param context         context
+     * @param iconRes         图标
+     * @param strRes          文案
+     * @param actionType      类型
+     * @param actionProp      属性
      * @param onClickListener 点击事件
      */
-    public QMUIDialogAction(Context context, int iconRes, int strRes, @Type int actionType, @Prop int actionProp, ActionListener onClickListener) {
+    public QMUIDialogAction(Context context, int iconRes, int strRes, @Type int actionType, @Prop
+            int actionProp, ActionListener onClickListener) {
         mContext = context;
         mIconRes = iconRes;
         mStr = mContext.getResources().getString(strRes);
@@ -113,7 +125,9 @@ public class QMUIDialogAction {
         mActionProp = actionProp;
         mOnClickListener = onClickListener;
     }
-    public QMUIDialogAction(Context context, int iconRes, String str, @Type int actionType, @Prop int actionProp, ActionListener onClickListener) {
+
+    public QMUIDialogAction(Context context, int iconRes, String str, @Type int actionType, @Prop
+            int actionProp, ActionListener onClickListener) {
         mContext = context;
         mIconRes = iconRes;
         mStr = str;
@@ -133,9 +147,10 @@ public class QMUIDialogAction {
         return mButton;
     }
 
-    public View generateActionView(Context context, final QMUIDialog dialog, final int index, boolean hasLeftMargin){
+    public View generateActionView(Context context, final QMUIDialog dialog, final int index,
+                                   boolean hasLeftMargin) {
         mButton = null;
-        if(mActionType == ACTION_TYPE_BLOCK){
+        if (mActionType == ACTION_TYPE_BLOCK) {
             BlockActionView actionView = new BlockActionView(context, mStr, mIconRes);
             mButton = actionView.getButton();
             if (mOnClickListener != null) {
@@ -150,11 +165,17 @@ public class QMUIDialogAction {
             }
             return actionView;
         } else {
-            mButton = QMUIDialogAction.generateSpanActionButton(context, mStr, mIconRes, hasLeftMargin);
-            if(mActionProp == ACTION_PROP_NEGATIVE){
-                mButton.setTextColor(QMUIResHelper.getAttrColorStateList(mContext, R.attr.qmui_dialog_action_text_negative_color));
-            }else{
-                mButton.setTextColor(QMUIResHelper.getAttrColorStateList(mContext, R.attr.qmui_dialog_action_text_color));
+            mButton = QMUIDialogAction.generateSpanActionButton(context, mStr, mIconRes,
+                    hasLeftMargin);
+            if (mActionProp == ACTION_PROP_NEGATIVE) {
+                mButton.setTextColor(QMUIResHelper.getAttrColorStateList(mContext, R.attr
+                        .qmui_dialog_action_text_negative_color));
+            } else if (mActionProp == ACTION_PROP_NEUTRAL) {
+                mButton.setTextColor(QMUIResHelper.getAttrColorStateList(mContext, R.attr
+                        .qmui_dialog_action_text_neutral_color));
+            } else {
+                mButton.setTextColor(QMUIResHelper.getAttrColorStateList(mContext, R.attr
+                        .qmui_dialog_action_text_color));
             }
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -172,35 +193,47 @@ public class QMUIDialogAction {
      * 生成适用于对话框的按钮
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static Button generateSpanActionButton(Context context, String text, int iconRes, boolean hasLeftMargin) {
+    public static Button generateSpanActionButton(Context context, String text, int iconRes,
+                                                  boolean hasLeftMargin) {
         Button button = new Button(context);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_height));
-        if(hasLeftMargin){
-            lp.leftMargin = QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_margin_left);
+        if (hasLeftMargin) {
+            lp.leftMargin = QMUIResHelper.getAttrDimen(context, R.attr
+                    .qmui_dialog_action_button_margin_left);
         }
         button.setLayoutParams(lp);
-        button.setMinHeight(QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_height));
-        button.setMinWidth(QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_min_width));
-        button.setMinimumWidth(QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_min_width));
-        button.setMinimumHeight(QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_height));
+        button.setMinHeight(QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_height));
+        button.setMinWidth(QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_min_width));
+        button.setMinimumWidth(QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_min_width));
+        button.setMinimumHeight(QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_height));
         button.setText(text);
         if (iconRes != 0) {
             Drawable drawable = ContextCompat.getDrawable(context, iconRes);
             if (drawable != null) {
-                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable
+                        .getIntrinsicHeight());
                 button.setCompoundDrawables(drawable, null, null, null);
-                button.setCompoundDrawablePadding(QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_drawable_padding));
+                button.setCompoundDrawablePadding(QMUIResHelper.getAttrDimen(context, R.attr
+                        .qmui_dialog_action_drawable_padding));
             }
 
         }
         button.setGravity(Gravity.CENTER);
         button.setClickable(true);
-        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_text_size));
-        button.setTextColor(QMUIResHelper.getAttrColorStateList(context, R.attr.qmui_dialog_action_text_color));
-        button.setBackground(QMUIResHelper.getAttrDrawable(context, R.attr.qmui_dialog_action_btn_bg));
-        final int paddingHor = QMUIResHelper.getAttrDimen(context, R.attr.qmui_dialog_action_button_padding_horizontal);
+        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_text_size));
+        button.setTextColor(QMUIResHelper.getAttrColorStateList(context, R.attr
+                .qmui_dialog_action_text_color));
+        button.setBackground(QMUIResHelper.getAttrDrawable(context, R.attr
+                .qmui_dialog_action_btn_bg));
+        final int paddingHor = QMUIResHelper.getAttrDimen(context, R.attr
+                .qmui_dialog_action_button_padding_horizontal);
         button.setPadding(paddingHor, 0, paddingHor, 0);
         return button;
     }
@@ -218,9 +251,11 @@ public class QMUIDialogAction {
         private void init(String text, int iconRes) {
             LinearLayout.LayoutParams parentLp = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    QMUIResHelper.getAttrDimen(getContext(), R.attr.qmui_dialog_action_block_btn_height));
+                    QMUIResHelper.getAttrDimen(getContext(), R.attr
+                            .qmui_dialog_action_block_btn_height));
             setLayoutParams(parentLp);
-            QMUIViewHelper.setBackgroundKeepingPadding(this, QMUIResHelper.getAttrDrawable(getContext(), R.attr.qmui_dialog_action_block_btn_bg));
+            QMUIViewHelper.setBackgroundKeepingPadding(this, QMUIResHelper.getAttrDrawable
+                    (getContext(), R.attr.qmui_dialog_action_block_btn_bg));
             setPadding(
                     QMUIResHelper.getAttrDimen(getContext(), R.attr.qmui_dialog_padding_horizontal),
                     0,
@@ -231,7 +266,8 @@ public class QMUIDialogAction {
             mButton = new Button(getContext());
             mButton.setBackgroundResource(0);
             mButton.setPadding(0, 0, 0, 0);
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup
+                    .LayoutParams.MATCH_PARENT);
             lp.gravity = Gravity.RIGHT;
             mButton.setLayoutParams(lp);
             mButton.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
@@ -239,9 +275,11 @@ public class QMUIDialogAction {
             if (iconRes != 0) {
                 Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
                 if (drawable != null) {
-                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable
+                            .getIntrinsicHeight());
                     mButton.setCompoundDrawables(drawable, null, null, null);
-                    mButton.setCompoundDrawablePadding(QMUIResHelper.getAttrDimen(getContext(), R.attr.qmui_dialog_action_drawable_padding));
+                    mButton.setCompoundDrawablePadding(QMUIResHelper.getAttrDimen(getContext(), R
+                            .attr.qmui_dialog_action_drawable_padding));
                 }
 
             }
@@ -251,8 +289,10 @@ public class QMUIDialogAction {
             mButton.setMinimumHeight(0);
             mButton.setClickable(false);
             mButton.setDuplicateParentStateEnabled(true);
-            mButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen(getContext(), R.attr.qmui_dialog_action_button_text_size));
-            mButton.setTextColor(QMUIResHelper.getAttrColorStateList(getContext(), R.attr.qmui_dialog_action_text_color));
+            mButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, QMUIResHelper.getAttrDimen(getContext
+                    (), R.attr.qmui_dialog_action_button_text_size));
+            mButton.setTextColor(QMUIResHelper.getAttrColorStateList(getContext(), R.attr
+                    .qmui_dialog_action_text_color));
 
             addView(mButton);
         }
@@ -267,7 +307,7 @@ public class QMUIDialogAction {
         return mActionProp;
     }
 
-    public interface ActionListener{
+    public interface ActionListener {
         void onClick(QMUIDialog dialog, int index);
     }
 

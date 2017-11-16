@@ -80,6 +80,7 @@
     <attr name="qmui_dialog_action_btn_bg" format="reference"/>
     <attr name="qmui_dialog_action_block_btn_bg" format="reference"/>
     <attr name="qmui_dialog_action_text_negative_color" format="reference"/>
+    <attr name="qmui_dialog_action_text_neutral_color" format="reference"/>
     <attr name="qmui_dialog_action_text_color" format="reference"/>
 
     <!-- tips -->

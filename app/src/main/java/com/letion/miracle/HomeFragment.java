@@ -136,13 +136,22 @@ public class HomeFragment extends Fragment {
         new QMUIDialog.MessageDialogBuilder(getActivity())
                 .setTitle("标题")
                 .setMessage("确定要删除吗？")
-                .addAction("取消", new QMUIDialogAction.ActionListener() {
+                .addAction(0, "取消", QMUIDialogAction.ACTION_PROP_POSITIVE, new QMUIDialogAction
+                        .ActionListener() {
                     @Override
                     public void onClick(QMUIDialog dialog, int index) {
                         dialog.dismiss();
                     }
                 })
                 .addAction(0, "删除", QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction
+                        .ActionListener() {
+                    @Override
+                    public void onClick(QMUIDialog dialog, int index) {
+                        Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                })
+                .addAction(0, "确定", QMUIDialogAction.ACTION_PROP_NEUTRAL, new QMUIDialogAction
                         .ActionListener() {
                     @Override
                     public void onClick(QMUIDialog dialog, int index) {
