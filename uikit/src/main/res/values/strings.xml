@@ -18,5 +18,5 @@
     <string name="time_error">时间有问题</string>
 
 
-    <string name="df_ttf">fonts/gtw.ttf</string>
+    <string name="df_ttf">fonts/Roboto-ThinItalic.ttf</string>
 </resources>

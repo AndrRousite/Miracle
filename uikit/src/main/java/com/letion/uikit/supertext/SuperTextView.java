@@ -305,7 +305,7 @@ public class SuperTextView extends RelativeLayout {
         mBackground_drawable = typedArray.getDrawable(R.styleable
                 .SuperTextView_sBackgroundDrawableRes);
 
-        if (typedArray.hasValue(R.styleable.CommonTextView_cCenterViewTypeface)) {
+        if (typedArray.hasValue(R.styleable.SuperTextView_sCenterViewTypeface)) {
             mTypeface = Typeface.createFromAsset(getContext().getAssets(), typedArray.getString(R
                     .styleable.SuperTextView_sCenterViewTypeface));
         }

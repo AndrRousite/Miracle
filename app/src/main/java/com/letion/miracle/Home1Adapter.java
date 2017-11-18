@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.letion.uikit.supertext.CommonTextView;
+import com.letion.uikit.supertext.SuperTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Home1Adapter extends RecyclerView.Adapter<Home1Adapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String arg = data.get(position);
-        holder.ctv.setLeftTextString(TextUtils.isEmpty(arg) ? "" : arg).setRightTextString
+        holder.ctv.setLeftString(TextUtils.isEmpty(arg) ? "" : arg).setRightString
                 (TextUtils.isEmpty(arg) ? "" : arg);
     }
 
@@ -49,7 +49,7 @@ public class Home1Adapter extends RecyclerView.Adapter<Home1Adapter.ViewHolder> 
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        CommonTextView ctv;
+        SuperTextView ctv;
 
         public ViewHolder(View itemView) {
             super(itemView);

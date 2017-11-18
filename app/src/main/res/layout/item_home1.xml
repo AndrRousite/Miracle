@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.letion.uikit.supertext.CommonTextView
+    <com.letion.uikit.supertext.SuperTextView
         android:id="@+id/ctv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
