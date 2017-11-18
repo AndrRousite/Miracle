@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.letion.miracle.view.TRefreshFooterView;
-import com.letion.miracle.view.TRefreshHeaderView;
 import com.letion.uikit.xrecycler.XRecyclerView;
 
 import java.util.ArrayList;
@@ -34,8 +32,8 @@ public class Home1Fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         xRecyclerView = (XRecyclerView) view.findViewById(R.id.recyclerView);
-        xRecyclerView.addHeaderView(new TRefreshHeaderView(getContext()));
-        xRecyclerView.addFootView(new TRefreshFooterView(getContext()), false);
+//        xRecyclerView.addHeaderView(new TRefreshHeaderView(getContext()));
+//        xRecyclerView.addFootView(new TRefreshFooterView(getContext()), false);
     }
 
     @Override
@@ -70,5 +68,11 @@ public class Home1Fragment extends Fragment {
         } else {
             mAdapter.addAll(list);
         }
+        xRecyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                xRecyclerView.refreshComplete();
+            }
+        }, 2000);
     }
 }

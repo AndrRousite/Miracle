@@ -6,7 +6,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.letion.uikit.supertext.CommonTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,18 @@ import java.util.List;
 public class Home1Adapter extends RecyclerView.Adapter<Home1Adapter.ViewHolder> {
     protected List<String> data = new ArrayList<>();
 
+
     @Override
-    public Home1Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(android.R.layout
-                .simple_list_item_1, parent, false));
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
+                .item_home1, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(Home1Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         String arg = data.get(position);
-        ((TextView) holder.itemView).setText(TextUtils.isEmpty(arg) ? "" : arg);
+        holder.ctv.setLeftTextString(TextUtils.isEmpty(arg) ? "" : arg).setRightTextString
+                (TextUtils.isEmpty(arg) ? "" : arg);
     }
 
     @Override
@@ -41,14 +44,16 @@ public class Home1Adapter extends RecyclerView.Adapter<Home1Adapter.ViewHolder> 
     }
 
     @NonNull
-    public void addAll(List<String> data){
+    public void addAll(List<String> data) {
         this.data.addAll(data);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        CommonTextView ctv;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            ctv = itemView.findViewById(R.id.ctv);
         }
     }
 }

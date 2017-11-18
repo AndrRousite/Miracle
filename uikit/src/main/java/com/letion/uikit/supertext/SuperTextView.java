@@ -2,6 +2,7 @@ package com.letion.uikit.supertext;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -31,6 +32,8 @@ public class SuperTextView extends RelativeLayout {
     private ImageView rightIconIV;//右边图标
     private CheckBox rightCheckBox;//右边checkbox
     private Drawable rightCheckBoxBg;//checkBox的背景
+
+    private Typeface mTypeface;
 
     private TextView leftTV;//左边textView
     private TextView centerTV;//中间textView
@@ -302,6 +305,11 @@ public class SuperTextView extends RelativeLayout {
         mBackground_drawable = typedArray.getDrawable(R.styleable
                 .SuperTextView_sBackgroundDrawableRes);
 
+        if (typedArray.hasValue(R.styleable.CommonTextView_cCenterViewTypeface)) {
+            mTypeface = Typeface.createFromAsset(getContext().getAssets(), typedArray.getString(R
+                    .styleable.SuperTextView_sCenterViewTypeface));
+        }
+
         typedArray.recycle();
     }
 
@@ -482,6 +490,8 @@ public class SuperTextView extends RelativeLayout {
         leftTV.setLayoutParams(leftTextParams);
         leftTV.setText(leftTextString);
 
+        if (mTypeface != null) leftTV.setTypeface(mTypeface);
+
         setTextViewParams(leftTV, isSingLines, maxLines, maxEms);
 
         setTextColor(leftTV, leftTVColor);
@@ -510,6 +520,7 @@ public class SuperTextView extends RelativeLayout {
      */
     private void initLeftTopText() {
         leftTopTV = new TextView(mContext);
+        if (mTypeface != null) leftTopTV.setTypeface(mTypeface);
         leftTopTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         leftTopTextParams.addRule(RelativeLayout.ABOVE, R.id.sCenterBaseLineId);
         leftTopTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftIconId);
@@ -538,6 +549,7 @@ public class SuperTextView extends RelativeLayout {
      */
     private void initLeftBottomText() {
         leftBottomTV = new TextView(mContext);
+        if (mTypeface != null) leftBottomTV.setTypeface(mTypeface);
         leftBottomParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         leftBottomParams.addRule(RelativeLayout.BELOW, R.id.sCenterBaseLineId);
         leftBottomParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftIconId);
@@ -566,6 +578,7 @@ public class SuperTextView extends RelativeLayout {
      */
     private void initLeftBottomText2() {
         leftBottomTV2 = new TextView(mContext);
+        if (mTypeface != null) leftBottomTV2.setTypeface(mTypeface);
         leftBottomParams2 = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         leftBottomParams2.addRule(RelativeLayout.BELOW, R.id.sCenterBaseLineId);
         leftBottomParams2.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftBottomTextId);
@@ -591,6 +604,7 @@ public class SuperTextView extends RelativeLayout {
      */
     private void initCenterText() {
         centerTV = new TextView(mContext);
+        if (mTypeface != null) centerTV.setTypeface(mTypeface);
         centerTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         centerTextParams.addRule(RelativeLayout.CENTER_IN_PARENT, TRUE);
         centerTV.setId(R.id.sCenterTextId);
@@ -607,6 +621,7 @@ public class SuperTextView extends RelativeLayout {
      */
     private void initRightText() {
         rightTV = new TextView(mContext);
+        if (mTypeface != null) rightTV.setTypeface(mTypeface);
         rightTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         rightTextParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
         rightTextParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);

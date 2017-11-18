@@ -2,6 +2,7 @@ package com.letion.uikit.supertext;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -155,6 +156,11 @@ public class CommonTextView extends RelativeLayout {
     private int mLeftTextViewGravity;
     private int mCenterTextViewGravity;
     private int mRightTextViewGravity;
+
+    /**
+     * textview font
+     */
+    private Typeface mTypeface;
 
     private TextView leftTextView, centerTextView, rightTextView;
     private TextView leftTopTextView, centerTopTextView, rightTopTextView;
@@ -396,6 +402,11 @@ public class CommonTextView extends RelativeLayout {
                 false);
         mCenterViewMarginLeft = typedArray.getDimensionPixelSize(R.styleable
                 .CommonTextView_cCenterViewMarginLeft, dip2px(mContext, 200));
+
+        if (typedArray.hasValue(R.styleable.CommonTextView_cCenterViewTypeface)) {
+            mTypeface = Typeface.createFromAsset(getContext().getAssets(), typedArray.getString(R
+                    .styleable.CommonTextView_cCenterViewTypeface));
+        }
 
         typedArray.recycle();
     }
@@ -896,6 +907,8 @@ public class CommonTextView extends RelativeLayout {
             textView.setSingleLine(mSetSingleLine);
             textView.setMaxEms(mSetMaxEms);
             textView.setEllipsize(TextUtils.TruncateAt.END);
+            if (mTypeface != null)
+                textView.setTypeface(mTypeface);
             addView(textView);
         }
         return textView;

@@ -49,11 +49,11 @@ public class XRecyclerView extends RecyclerView {
 
     private void initView(Context context) {
         if (pullRefreshEnabled) {
-            YunRefreshHeaderView refreshHeader = new YunRefreshHeaderView(context);
+            ClassicsRefreshHeaderView refreshHeader = new ClassicsRefreshHeaderView(context);
             mHeaderViews.put(0, refreshHeader);
             mRefreshHeader = refreshHeader;
         }
-        YunRefreshFooterView footView = new YunRefreshFooterView(context);
+        ClassicsRefreshFooterView footView = new ClassicsRefreshFooterView(context);
         addFootView(footView, false);
         mFootViews.get(0).setVisibility(GONE);
     }
@@ -90,7 +90,7 @@ public class XRecyclerView extends RecyclerView {
     public void addHeaderView(View view) {
         if (pullRefreshEnabled && !(view instanceof IRefreshHeaderView) && !(mHeaderViews.get(0)
                 instanceof YunRefreshHeaderView)) {
-            YunRefreshHeaderView refreshHeader = new YunRefreshHeaderView(getContext());
+            ClassicsRefreshHeaderView refreshHeader = new ClassicsRefreshHeaderView(getContext());
             mHeaderViews.put(0, refreshHeader);
             mRefreshHeader = refreshHeader;
         }
@@ -205,7 +205,7 @@ public class XRecyclerView extends RecyclerView {
                 if (isOnTop() && pullRefreshEnabled) {
                     mRefreshHeader.move(deltaY / DRAG_RATE);
                     if (mRefreshHeader.getVisibleHeight() > 0 && mRefreshHeader.getState() <
-                            YunRefreshHeaderView.STATE_REFRESHING) {
+                            ClassicsRefreshHeaderView.STATE_REFRESHING) {
                         return false;
                     }
                 }
@@ -314,7 +314,7 @@ public class XRecyclerView extends RecyclerView {
             }
         } else {
             if (mFootViews != null) {
-                YunRefreshFooterView footView = new YunRefreshFooterView(getContext());
+                ClassicsRefreshFooterView footView = new ClassicsRefreshFooterView(getContext());
                 addFootView(footView, false);
             }
         }
