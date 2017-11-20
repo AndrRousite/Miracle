@@ -117,8 +117,8 @@
             @drawable/qmui_list_item_bg_with_border_bottom
         </item>
         <!-- super text  -->
-        <item name="cCenterViewTypeface">@string/df_ttf</item>
-        <item name="sCenterViewTypeface">@string/df_ttf</item>
+        <!--<item name="cCenterViewTypeface">@string/df_ttf</item>-->
+        <!--<item name="sCenterViewTypeface">@string/df_ttf</item>-->
     </style>
 
 </resources>
