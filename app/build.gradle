@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'AndResGuard'
 //apply tinker插件
 //apply plugin: 'com.tencent.tinker.patch'
 //apply plugin: 'me.tatarka.retrolambda'
@@ -32,6 +33,19 @@ android {
 //        resValue "string", "updatefun_provider_file_authorities", "com.letion.miracle.fileprovider"
 
 //        jackOptions { enabled true }
+
+        resConfigs "zh"
+    }
+
+
+    signingConfigs {
+        release {
+            //注意：该签名文件的路径是以你的moudle文件夹为根路径的，而不是project，不能写错了
+            storeFile file("keystore/miracle.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
     }
 
     buildTypes {
@@ -41,13 +55,12 @@ android {
         }
 
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    configurations.all {
-        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }
 }
 
@@ -59,37 +72,53 @@ buildscript {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
-    compile project(':geetionlib')
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //compile 'com.github.markomilos:paginate:0.5.1'
     testCompile 'junit:junit:4.12'
-    provided rootProject.ext.dependencies["javax.annotation"]
-    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
-        exclude module: 'support-annotations'
-        //exclude group: 'com.google.auto'
-        exclude module: 'guava'
-        exclude module: 'javapoet'
-    }
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
-        exclude group: 'com.google.auto'
-        exclude module: 'guava'
-        exclude module: 'javapoet'
-    }
-    compile rootProject.ext.dependencies["canary-debug"]
-    // Tinker
-    //    compile rootProject.ext.dependencies["tinker"]
-    //    provided rootProject.ext.dependencies["tinker-nano"]
-    // Sophix
-    //    compile rootProject.ext.dependencies["sophix"]
+    compile "com.android.support:appcompat-v7:27.1.1"
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
 
-//    implementation('me.letion:geetionlib:0.2.6') {
-//        exclude module: 'uikit'
-//    }
-//    implementation('me.letion:uikit:0.2.6') {
-//        exclude group: 'com.android.support'
-//    }
 }
 
+andResGuard {
+    // mappingFile = file("./resource_mapping.txt")
+    mappingFile = null
+    use7zip = true
+    useSign = true
+    // 打开这个开关，会keep住所有资源的原始路径，只混淆资源的名字
+    keepRoot = false
+    whiteList = [
+            // for your icon
+            "R.drawable.icon",
+            // for fabric
+            "R.string.com.crashlytics.*",
+            // for google-services
+            "R.string.google_app_id",
+            "R.string.gcm_defaultSenderId",
+            "R.string.default_web_client_id",
+            "R.string.ga_trackingId",
+            "R.string.firebase_database_url",
+            "R.string.google_api_key",
+            "R.string.google_crash_reporting_api_key"
+    ]
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+            "resources.arsc"
+    ]
+    sevenzip {
+        artifact = 'com.tencent.mm:SevenZip:1.2.12'
+        //path = "/usr/local/bin/7za"
+    }
 
+    /**
+     * 可选： 如果不设置则会默认覆盖assemble输出的apk
+     **/
+    // finalApkBackupPath = "${project.rootDir}/final.apk"
+
+    /**
+     * 可选: 指定v1签名时生成jar文件的摘要算法
+     * 默认值为“SHA-1”
+     **/
+    // digestalg = "SHA-256"
+}
