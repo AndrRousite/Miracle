@@ -51,7 +51,9 @@ ext {
             retrofit                : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitSdkVersion",
             retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitSdkVersion",
             retrofitAdapterRxjava2  : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitSdkVersion",
-            okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:$dependVersion.okhttpSdkVersion'
+            okhttp3LoggerInterceptor: "com.squareup.okhttp3:logging-interceptor:$dependVersion.okhttpSdkVersion",
+            okhttp3                 : "com.squareup.okhttp3:okhttp:$dependVersion.okhttpSdkVersion",
+            okhttp3Urlconnection    : "com.squareup.okhttp:okhttp-urlconnection:2.0.0"
     ]
 
     rxJava = [
@@ -86,61 +88,12 @@ ext {
             androidUtilCode: "com.blankj:utilcode:$dependVersion.androidUtilCodeVersion"
     ]
 
-
-    dependencies = [
-            "support-v4"                 : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
-            "appcompat-v7"               : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-            "recyclerview-v7"            : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-            "design"                     : "com.android.support:design:${version["androidSupportSdkVersion"]}",
-            "cardview-v7"                : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "annotations"                : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
-
-            "butterknife"                : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
-            "butterknife-compiler"       : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
-            "gson"                       : "com.google.code.gson:gson:2.8.2",
-            "glide"                      : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
-            "glide-compiler"             : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
-            "arouter"                    : "com.alibaba:arouter-api:1.2.4",
-            "arouter-compiler"           : "com.alibaba:arouter-compiler:1.1.4",
-            "androideventbus"            : "org.simple:androideventbus:1.0.5.1",
-
-            "retrofit"                   : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
-            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
-            "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
-            "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${version["okhttpSdkVersion"]}",
-            "okhttp-urlconnection"       : "com.squareup.okhttp:okhttp-urlconnection:2.0.0",
-            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${version["okhttpSdkVersion"]}",
-            "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1",
-            "rxjava"                     : "io.reactivex.rxjava2:rxjava:2.1.6",
-            "rxlifecycle"                : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycle2SdkVersion"]}",
-            "rxlifecycle-android"        : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxlifecycle2SdkVersion"]}",
-            "rxlifecycle-components"     : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
-            "rxpermissions"              : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar",
-            "rxcache2"                   : "com.github.VictorAlbertos.RxCache:runtime:1.8.0-2.x",
-            "rxcache-jolyglot-gson"      : "com.github.VictorAlbertos.Jolyglot:gson:0.0.3",
-            "rxerrorhandler2"            : "me.jessyan:rxerrorhandler:2.0.2",
-            "progressmanager"            : "me.jessyan:progressmanager:1.2.5",
-            "javax.annotation"           : "javax.annotation:jsr250-api:1.0",
-            "dagger2"                    : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
-            "dagger2-compiler"           : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
-
-            // debug
-            "timber"                     : "com.jakewharton.timber:timber:4.5.1",
-            "logger"                     : "com.orhanobut:logger:2.1.1",
-            "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
-            "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
-
-            // weight
-            "autolayout"                 : "com.zhy:autolayout:1.4.5",
-
-            // hot fix
-            //"tinker"                     : "com.tencent.tinker:tinker-android-lib:1.7.11",
-            //"tinker-nano"                : "com.tencent.tinker:tinker-android-anno:1.7.11"  // 用于生产Application
-            "sophix"                     : "com.aliyun.ams:alicloud-android-hotfix:3.0.2",
-
-            // MultiType
-            "multitype"                  : "me.drakeet.multitype:multitype:3.1.0",
-            // 拼音库，大约80k左右
-            "tinypinyin"                 : "com.github.promeg:tinypinyin:1.0.0",
-    ]
+    supportLibs = supportDeps.values()
+    daggerLibs = dagger.values()
+    retrofitLibs = retrofit.values()
+    rxJavaLibs = rxJava.values()
+    glideLibs = glide.values()
+    leakCanaryLibs = leakCanary.values()
+    loggerLibs = logger.values()
+    utilLibs = util.values()
 }
