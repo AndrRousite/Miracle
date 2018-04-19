@@ -1,34 +1,91 @@
 ext {
     android = [
+            applicationId    : "com.letion.miracle",
             compileSdkVersion: 27,
             buildToolsVersion: "27.0.3",
-            minSdkVersion    : 15,
+            minSdkVersion    : 14,
             targetSdkVersion : 27,
-            versionCode      : 19,
-            versionName      : "0.2.6",
+            versionCode      : 20,
+            versionName      : "0.3.0",
 
             DEBUG            : "true",
-            LOG_TAG          : "\"Letion\""
+            TAG              : "\"Letion\""
     ]
 
-    library = [
-            "webkit"    : "me.letion:webkit:${android["versionName"]}",
-            "upgradekit": "me.letion:upgradekit:${android["versionName"]}",
-            "uikit"     : "me.letion:uikit:${android["versionName"]}",
-            "shadow"    : "me.letion:shadow:0.1.3",
+    dependVersion = [
+            androidSupportSdkVersion  : "27.1.1",
+            constraintLayoutSdkVersion: "1.0.2",
+            retrofitSdkVersion        : "2.3.0",
+            okhttpSdkVersion          : "3.9.0",
+            dagger2SdkVersion         : "2.12",
+            glideSdkVersion           : "4.2.0",
+            rx2SdkJava                : "2.1.5",
+            rx2SdkAndroid             : "2.0.1",
+            rx2SdkCache               : "1.8.0-2.x",
+            rx2SdkCacheJolyglotGson   : "0.0.3",
+            rxlifecycle2SdkVersion    : "2.2.0",
+            rx2SdkBus                 : "2.0.0",
+            rx2SdkPermission          : "0.9.5@aar",
+            rx2SdkErrorhandler        : "2.1.1",
+            loggerVersion             : "2.1.1",
+            androidUtilCodeVersion    : "1.13.13",
+            butterknifeSdkVersion     : "8.8.1",
+            canarySdkVersion          : "1.5.4"
     ]
 
-    version = [
-            androidSupportSdkVersion: "27.1.1",
-            retrofitSdkVersion      : "2.3.0",
-            okhttpSdkVersion        : "3.9.0",
-            dagger2SdkVersion       : "2.12",
-            glideSdkVersion         : "4.2.0",
-            butterknifeSdkVersion   : "8.8.1",
-            rxlifecycle2SdkVersion  : "2.2.0",
-            espressoSdkVersion      : "3.0.1",
-            canarySdkVersion        : "1.5.4"
+    supportDeps = [
+            supportv4       : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
+            appcompatv7     : "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
+            cardview        : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion",
+            design          : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
+            annotations     : "com.android.support:support-annotations:$dependVersion.androidSupportSdkVersion",
+            constraintlayout: "com.android.support.constraint:constraint-layout:$dependVersion.constraintLayoutSdkVersion"
     ]
+
+    dagger = [
+            "dagger2"         : "com.google.dagger:dagger:$dependVersion.dagger2SdkVersion",
+            "dagger2-compiler": "com.google.dagger:dagger-compiler:$dependVersion.dagger2SdkVersion"
+    ]
+
+    retrofit = [
+            retrofit                : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitSdkVersion",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitSdkVersion",
+            retrofitAdapterRxjava2  : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitSdkVersion",
+            okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:$dependVersion.okhttpSdkVersion'
+    ]
+
+    rxJava = [
+            rxJava               : "io.reactivex.rxjava2:rxjava:$dependVersion.rx2SdkJava",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$dependVersion.rx2SdkAndroid",
+            rxlifecycle          : "com.trello.rxlifecycle2:rxlifecycle:$dependVersion.rxlifecycle2SdkVersion",
+            rxlifecycleAndroid   : "com.trello.rxlifecycle2:rxlifecycle-android:$dependVersion.rxlifecycle2SdkVersion",
+            rxlifecycleComponents: "com.trello.rxlifecycle2:rxlifecycle-components:$dependVersion.rxlifecycle2SdkVersion",
+            rxcache2             : "com.github.VictorAlbertos.RxCache:runtime:$dependVersion.rx2SdkCache",
+            rxcache2JolyglotGson : "com.github.VictorAlbertos.RxCache:runtime:$dependVersion.rx2SdkCacheJolyglotGson",
+            rxBus                : "com.hwangjr.rxbus:rxbus:$dependVersion.rx2SdkBus",
+            rxPermissions        : "com.tbruyelle.rxpermissions2:rxpermissions:$dependVersion.rx2SdkPermission",
+            rxErrorhandler       : "me.jessyan:rxerrorhandler:$dependVersion.rx2SdkErrorhandler",
+    ]
+
+    glide = [
+            glide        : "com.github.bumptech.glide:glide:$dependVersion.glideSdkVersion",
+            glideCompiler: "com.github.bumptech.glide:compiler:$dependVersion.glideSdkVersion",
+            glideOkhttp  : "com.github.bumptech.glide:okhttp3-integration:$dependVersion.glideSdkVersion"
+    ]
+
+    leakCanary = [
+            canaryDebug  : "com.squareup.leakcanary:leakcanary-android:$dependVersion.canarySdkVersion",
+            canaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:$dependVersion.canarySdkVersion"
+    ]
+
+    logger = [
+            logger: "com.orhanobut:logger:$dependVersion.loggerVersion"
+    ]
+
+    util = [
+            androidUtilCode: "com.blankj:utilcode:$dependVersion.androidUtilCodeVersion"
+    ]
+
 
     dependencies = [
             "support-v4"                 : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
