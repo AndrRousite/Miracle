@@ -18,7 +18,7 @@ try {
 def runAsApp = ext.has('runAsApp')
 if (runAsApp) {
     runAsApp = ext.runAsApp
-} else if(ext.has('mainApp') && ext.mainApp) { //ext.mainApp为true时，代表以app方式运行
+} else if (ext.has('mainApp') && ext.mainApp) { //ext.mainApp为true时，代表以app方式运行
     runAsApp = true
 } else {
     //build.gradle中没有配置runAsApp，且ext.mainApp=false或未配置
@@ -127,12 +127,24 @@ android {
             }
         }
     }
+
+
+    defaultConfig {
+        resConfigs "zh"
+        if (!runAsApp) {
+            resourcePrefix project.name + "_"
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 dependencies {
     implementation "com.billy.android:cc:0.5.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
-
-
 
 //auto register extension:
 // 源码地址：https://github.com/luckybilly/AutoRegister
@@ -153,15 +165,19 @@ dependencies {
     register(new CategoryB()); //scanSuperClass的子类
   }
  */
+project.apply plugin: 'kotlin-android'
+project.apply plugin: 'kotlin-android-extensions'
+project.apply plugin: 'kotlin-kapt'
+
 project.apply plugin: 'auto-register'
 autoregister {
     registerInfo = [
             [
-                    'scanInterface'             : 'com.billy.cc.core.component.IComponent'
-                    , 'codeInsertToClassName'   : 'com.billy.cc.core.component.ComponentManager'
-                    , 'registerMethodName'      : 'registerComponent'
-                    , 'exclude'                 : [//排除的类，支持正则表达式（包分隔符需要用/表示，不能用.）
-                                                   'com.billy.cc.core.component.'.replaceAll("\\.", "/") + ".*"
+                    'scanInterface'          : 'com.billy.cc.core.component.IComponent'
+                    , 'codeInsertToClassName': 'com.billy.cc.core.component.ComponentManager'
+                    , 'registerMethodName'   : 'registerComponent'
+                    , 'exclude'              : [//排除的类，支持正则表达式（包分隔符需要用/表示，不能用.）
+                                                'com.billy.cc.core.component.'.replaceAll("\\.", "/") + ".*"
             ]
             ]
     ]

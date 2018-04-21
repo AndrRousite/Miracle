@@ -8,11 +8,6 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
     defaultConfig {
         applicationId rootProject.ext.android["applicationId"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -34,7 +29,7 @@ android {
 
 //        jackOptions { enabled true }
 
-        resConfigs "zh"
+//        resConfigs "zh"
     }
 
 
@@ -50,7 +45,9 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -73,8 +70,12 @@ buildscript {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation "com.android.support:appcompat-v7:27.1.1"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    addComponent 'testa'
 
 }
 

@@ -6,19 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/testa_call_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_margin_padding">
-
-        <TextView
-            android:id="@+id/textA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Call A" />
-
-
-    </LinearLayout>
+        android:gravity="center"
+        android:text="Call Test" />
 
 </android.support.constraint.ConstraintLayout>
