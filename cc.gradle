@@ -168,6 +168,9 @@ dependencies {
 project.apply plugin: 'kotlin-android'
 project.apply plugin: 'kotlin-android-extensions'
 project.apply plugin: 'kotlin-kapt'
+//if (!runAsApp) {
+//    project.apply plugin: 'com.jakewharton.butterknife'
+//}
 
 project.apply plugin: 'auto-register'
 autoregister {

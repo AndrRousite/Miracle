@@ -30,7 +30,10 @@ ext {
             loggerVersion             : "2.1.1",
             androidUtilCodeVersion    : "1.13.13",
             butterknifeSdkVersion     : "8.8.1",
-            canarySdkVersion          : "1.5.4"
+            canarySdkVersion          : "1.5.4",
+
+
+            lifecycleSdkVersion       : "1.1.0"
     ]
 
     supportDeps = [
@@ -43,8 +46,8 @@ ext {
     ]
 
     dagger = [
-            "dagger2"         : "com.google.dagger:dagger:$dependVersion.dagger2SdkVersion",
-            "dagger2-compiler": "com.google.dagger:dagger-compiler:$dependVersion.dagger2SdkVersion"
+            "dagger2"        : "com.google.dagger:dagger:$dependVersion.dagger2SdkVersion",
+            "dagger2Compiler": "com.google.dagger:dagger-compiler:$dependVersion.dagger2SdkVersion"
     ]
 
     retrofit = [
@@ -80,12 +83,23 @@ ext {
             canaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:$dependVersion.canarySdkVersion"
     ]
 
-    logger = [
+    log = [
             logger: "com.orhanobut:logger:$dependVersion.loggerVersion"
     ]
 
     util = [
             androidUtilCode: "com.blankj:utilcode:$dependVersion.androidUtilCodeVersion"
+    ]
+
+    butterknife = [
+            butterknife        : "com.jakewharton:butterknife:$dependVersion.butterknifeSdkVersion",
+            butterknifeCompiler: "com.jakewharton:butterknife-compiler:$dependVersion.butterknifeSdkVersion"
+    ]
+
+    lifecycle = [
+            runtime   : "android.arch.lifecycle:runtime:$dependVersion.lifecycleSdkVersion",
+            extensions: "android.arch.lifecycle:extensions:$dependVersion.lifecycleSdkVersion",
+            compiler  : "android.arch.lifecycle:compiler:$dependVersion.lifecycleSdkVersion",
     ]
 
     supportLibs = supportDeps.values()
@@ -94,6 +108,7 @@ ext {
     rxJavaLibs = rxJava.values()
     glideLibs = glide.values()
     leakCanaryLibs = leakCanary.values()
-    loggerLibs = logger.values()
+    loggerLibs = log.values()
     utilLibs = util.values()
+    lifecycleLibs = lifecycle.values()
 }

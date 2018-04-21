@@ -1,0 +1,53 @@
+apply from: rootProject.file('cc.gradle')
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    // Support库
+    implementation rootProject.ext.supportLibs
+    // 网络请求库
+    implementation rootProject.ext.retrofitLibs
+    // RxJava2
+    implementation rootProject.ext.rxJavaLibs
+    // dagger2
+    implementation rootProject.ext.dagger.dagger2
+    annotationProcessor  rootProject.ext.dagger.dagger2Compiler
+    // butterknife
+    implementation rootProject.ext.butterknife.butterknife
+    annotationProcessor  rootProject.ext.butterknife.butterknifeCompiler
+    // glide
+    implementation rootProject.ext.glide.glide
+    implementation(rootProject.ext.glide.glideOkhttp) {
+        exclude group: 'glide-parent'
+    }
+    annotationProcessor  rootProject.ext.glide.glideCompiler
+    //logger
+    implementation rootProject.ext.loggerLibs
+    // util
+    implementation rootProject.ext.utilLibs
+    // leakCanary
+    debugImplementation rootProject.ext.leakCanary.canaryDebug
+    releaseImplementation rootProject.ext.leakCanary.canaryRelease
+    implementation project(':baseMVP')
+}
