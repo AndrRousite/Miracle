@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply from: rootProject.file('cc.gradle')
 apply plugin: 'AndResGuard'
 //apply tinker插件
 //apply plugin: 'com.tencent.tinker.patch'

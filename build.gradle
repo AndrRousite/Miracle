@@ -5,9 +5,12 @@ buildscript {
         jcenter()
         mavenCentral()
         google()
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.30"
+        classpath 'com.billy.android:autoregister:1.2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.12'
@@ -24,6 +27,7 @@ allprojects {
         maven { url "https://dl.bintray.com/letion/Android" }
         maven { url "http://maven.aliyun.com/nexus/content/repositories/releases" }
         google()
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     }
 }
 
