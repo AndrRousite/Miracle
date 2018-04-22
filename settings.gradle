@@ -1,1 +1,1 @@
-include ':app', ':testA', ':baseMVP', ':geetionLib'
+include ':app', ':app-test', ':baseMVP', ':geetionLib'
