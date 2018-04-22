@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 /**
  * Created by Chatikyan on 29.06.2017.
  */
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Viewable {

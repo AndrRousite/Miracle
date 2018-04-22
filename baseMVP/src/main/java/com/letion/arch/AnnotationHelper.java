@@ -3,7 +3,6 @@ package com.letion.arch;
 /**
  * Created by Chatikyan on 29.06.2017.
  */
-
 class AnnotationHelper {
 
     static BaseMVPContract.Presenter createPresenter(Class<?> annotatedClass) {

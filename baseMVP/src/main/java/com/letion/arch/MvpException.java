@@ -3,7 +3,6 @@ package com.letion.arch;
 /**
  * Created by Chatikyan on 01.07.2017.
  */
-
 class MvpException extends RuntimeException {
 
     MvpException(String message) {

@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by Chatikyan on 20.05.2017.
  */
-
 public abstract class BaseMVPActivity<V extends BaseMVPContract.View, P extends BaseMVPContract.Presenter<V>>
         extends AppCompatActivity implements BaseMVPContract.View {
 

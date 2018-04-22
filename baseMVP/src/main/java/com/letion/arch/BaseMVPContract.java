@@ -7,7 +7,6 @@ import android.os.Bundle;
 /**
  * Created by Chatikyan on 20.05.2017.
  */
-
 public interface BaseMVPContract {
 
     interface View {

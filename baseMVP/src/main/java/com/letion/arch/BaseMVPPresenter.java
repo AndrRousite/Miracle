@@ -9,7 +9,6 @@ import android.support.annotation.CallSuper;
 /**
  * Created by Chatikyan on 20.05.2017.
  */
-
 public abstract class BaseMVPPresenter<V extends BaseMVPContract.View> implements LifecycleObserver, BaseMVPContract.Presenter<V> {
 
     private Bundle stateBundle;

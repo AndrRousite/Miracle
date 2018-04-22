@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModel;
 /**
  * Created by Chatikyan on 20.05.2017.
  */
-
 public final class BaseViewModel<V extends BaseMVPContract.View, P extends BaseMVPContract.Presenter<V>>
         extends ViewModel {
 

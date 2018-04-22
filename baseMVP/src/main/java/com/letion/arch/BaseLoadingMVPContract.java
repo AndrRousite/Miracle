@@ -3,7 +3,6 @@ package com.letion.arch;
 /**
  * Created by Chatikyan on 07.07.2017.
  */
-
 public interface BaseLoadingMVPContract {
 
     interface View extends BaseMVPContract.View {

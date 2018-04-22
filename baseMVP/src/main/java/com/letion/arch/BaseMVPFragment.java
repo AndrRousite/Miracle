@@ -10,7 +10,6 @@ import android.view.View;
 /**
  * Created by Chatikyan on 22.05.2017.
  */
-
 public abstract class BaseMVPFragment<V extends BaseMVPContract.View, P extends BaseMVPContract.Presenter<V>>
         extends Fragment implements BaseMVPContract.View {
 

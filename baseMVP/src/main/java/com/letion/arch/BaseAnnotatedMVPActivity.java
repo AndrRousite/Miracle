@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 /**
  * Created by Chatikyan on 29.06.2017.
  */
-
 public abstract class BaseAnnotatedMVPActivity<V extends BaseMVPContract.View, P extends BaseMVPContract.Presenter<V>> extends BaseMVPActivity<V, P> {
 
     @CallSuper
