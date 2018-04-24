@@ -15,14 +15,11 @@ android {
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }// ARouter
-
-        buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
-        buildConfigField 'String', 'TAG', rootProject.ext.android["TAG"]
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+//            }
+//        }// ARouter
 
 //        resValue "string", "updatefun_provider_file_authorities", "com.letion.miracle.fileprovider"
 
@@ -69,12 +66,8 @@ buildscript {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation rootProject.ext.supportDeps.appcompatv7
     implementation rootProject.ext.supportDeps.constraintlayout
-    implementation rootProject.ext.butterknife.butterknife
-    annotationProcessor rootProject.ext.butterknife.butterknifeCompiler
     implementation project(':geetionLib')
 }
 
