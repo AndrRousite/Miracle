@@ -1,7 +1,8 @@
-apply plugin: 'com.android.library'
+apply from: rootProject.file('cc.gradle')
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -10,6 +11,10 @@ android {
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        // buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
+        // buildConfigField 'String', 'TAG', rootProject.ext.android["TAG"]
     }
 
     buildTypes {
@@ -18,36 +23,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     // Support库
-    implementation rootProject.ext.supportLibs
+    api rootProject.ext.supportLibs
+    // auto layout
+    implementation 'com.zhy:autolayout:1.4.5'
     // 网络请求库
-    implementation rootProject.ext.retrofitLibs
+    api rootProject.ext.retrofitLibs
     // RxJava2
-    implementation rootProject.ext.rxJavaLibs
+    api rootProject.ext.rxJavaLibs
     // dagger2
-    implementation rootProject.ext.dagger.dagger2
-    annotationProcessor  rootProject.ext.dagger.dagger2Compiler
-    // butterknife
-    implementation rootProject.ext.butterknife.butterknife
-    annotationProcessor  rootProject.ext.butterknife.butterknifeCompiler
+    api rootProject.ext.dagger.dagger2
+    annotationProcessor rootProject.ext.dagger.dagger2Compiler
     // glide
-    implementation rootProject.ext.glide.glide
-    implementation(rootProject.ext.glide.glideOkhttp) {
+    api rootProject.ext.glide.glide
+    api(rootProject.ext.glide.glideOkhttp) {
         exclude group: 'glide-parent'
     }
-    annotationProcessor  rootProject.ext.glide.glideCompiler
+    annotationProcessor rootProject.ext.glide.glideCompiler
+    // butter knife
+    // implementation rootProject.ext.butterknife.butterknife
+    // annotationProcessor rootProject.ext.butterknife.butterknifeCompiler
     //logger
-    implementation rootProject.ext.loggerLibs
+    api rootProject.ext.loggerLibs
     // util
-    implementation rootProject.ext.utilLibs
+    api rootProject.ext.utilLibs
     // leakCanary
-    debugImplementation rootProject.ext.leakCanary.canaryDebug
-    releaseImplementation rootProject.ext.leakCanary.canaryRelease
+    // debugImplementation rootProject.ext.leakCanary.canaryDebug
+    // releaseImplementation rootProject.ext.leakCanary.canaryRelease
     implementation project(':baseMVP')
 }

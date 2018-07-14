@@ -134,6 +134,9 @@ android {
         if (!runAsApp) {
             resourcePrefix project.name + "_"
         }
+
+        buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
+        buildConfigField 'String', 'TAG', rootProject.ext.android["TAG"]
     }
 
     compileOptions {
@@ -144,6 +147,15 @@ android {
 dependencies {
     implementation "com.billy.android:cc:0.5.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation rootProject.ext.butterknife.butterknife
+
+    if (runAsApp) {
+        // butter knife
+        annotationProcessor rootProject.ext.butterknife.butterknifeCompiler
+        // leakCanary
+        debugImplementation rootProject.ext.leakCanary.canaryDebug
+        releaseImplementation rootProject.ext.leakCanary.canaryRelease
+    }
 }
 
 //auto register extension:
@@ -168,9 +180,7 @@ dependencies {
 project.apply plugin: 'kotlin-android'
 project.apply plugin: 'kotlin-android-extensions'
 project.apply plugin: 'kotlin-kapt'
-//if (!runAsApp) {
-//    project.apply plugin: 'com.jakewharton.butterknife'
-//}
+
 
 project.apply plugin: 'auto-register'
 autoregister {
