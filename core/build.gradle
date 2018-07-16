@@ -19,6 +19,11 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -43,6 +48,8 @@ dependencies {
         exclude group: 'glide-parent'
     }
     annotationProcessor rootProject.ext.glide.glideCompiler
+    // eventbus
+    implementation rootProject.ext.eventbusLibs
     //logger
     implementation rootProject.ext.loggerLibs
     // util

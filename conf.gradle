@@ -33,6 +33,7 @@ ext {
             canarySdkVersion          : "1.5.4",
 
 
+            androidEventBusSdkVersion : "1.0.5.1",
             lifecycleSdkVersion       : "1.1.0"
     ]
 
@@ -83,6 +84,10 @@ ext {
             canaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:$dependVersion.canarySdkVersion"
     ]
 
+    eventbus = [
+            androidEventBus: "org.simple:androideventbus:$dependVersion.androidEventBusSdkVersion"
+    ]
+
     log = [
             logger: "com.orhanobut:logger:$dependVersion.loggerVersion"
     ]
@@ -111,4 +116,5 @@ ext {
     loggerLibs = log.values()
     utilLibs = util.values()
     lifecycleLibs = lifecycle.values()
+    eventbusLibs = eventbus.values()
 }
