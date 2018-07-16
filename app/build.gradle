@@ -2,25 +2,25 @@ apply from: rootProject.file('cc.gradle')
 apply plugin: 'AndResGuard'
 //apply tinker插件
 //apply plugin: 'com.tencent.tinker.patch'
-//apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId rootProject.ext.android["applicationId"]
+
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        // ARouter
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
-        }// ARouter
+        }
 
         buildConfigField 'boolean', 'LOG_DEBUG', rootProject.ext.android["DEBUG"]
         buildConfigField 'String', 'TAG', rootProject.ext.android["TAG"]
@@ -77,7 +77,6 @@ dependencies {
     implementation rootProject.ext.butterknife.butterknife
     annotationProcessor rootProject.ext.butterknife.butterknifeCompiler
     addComponent 'testA'
-    implementation project(':geetionLib')
 }
 
 andResGuard {
